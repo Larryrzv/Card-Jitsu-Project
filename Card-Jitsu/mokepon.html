@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" content="width=device-width, initial-scale=1">
+    <title>Card-Jitsu</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<section id="Seleccionar-Elemento">
+    <h1 class="titulo">
+        <img src="./resources/ninja2.png" alt="ninjaTitulo">
+        <img src="./resources/tituloCardJitsu.png"  alt="tituloimg">
+        <img src="./resources/ninjaComun1.png"  alt="NinjaAgua">
+    </h1>
+
+    <h2 class="subtitulo"> Elige a tu ninja:</h2>
+ 
+    <div id="contenedorPersonajes" class="PersonajesDeNinja">
+    </div>
+
+<button id="Boton-confirmar-Elemento">Confirmar</button>
+</section>
+
+<section id="ver-mapa">
+    <h1 class="titulo">
+        <img src="./resources/ninja2.png" alt="ninjaTitulo">
+        <img src="./resources/tituloCardJitsu.png"  alt="tituloimg">
+        <img src="./resources/ninjaComun1.png"  alt="NinjaAgua">
+    </h1>
+    <h2 class="subtitulo" id="subtitulo">Recorre la senda con tu ninja</h2>
+    <canvas id="mapa"></canvas>
+</section>
+
+<button id="open">Abrir tutorial</button>
+<div id="cajaTutorial">
+    <div class="tutorial" id="contenedorTutorial">
+    <h1 class="tituloTutorial">
+        <img src="./resources/ninja2.png" alt="ninjaTitulo">
+        <img src="./resources/tituloCardJitsu.png"  alt="tituloimg">
+        <img src="./resources/ninjaComun1.png"  alt="NinjaAgua">
+    </h1>
+    <p class="parrafoTutorial">Bienvenido a este mini-juego sobre el Card-Jitsu.</p>
+    <p class="parrafoTutorial1.2">Este mini-juego es una versión muy simplificada del Card-Jitsu original. Puedes elegir entre 3 ninjas elementales (Fuego, Agua y Nieve) pero solo es por estética. Luego te enfrentarás a un ninja rival al azar y deberás elegir entre 3 tipos de cartas elementales para atacar.
+        <p class="parrafoTutorial2.2">Para ganar el juego debes salir victorioso debes bajarle la vida a tu rival hasta dejarlo en cero, para hacer esto debes contrarrestar exitosamente el elemento que el rival usa contra ti. Buena suerte.
+    </p>
+    </p>
+    <div class="imagenTutorial">
+        <p id="parrafoTutorial1">Para contrarrestar el elemento del rival, se debe saber el orden de los elementos: </p>
+        <p id="parrafoTutorial2"> 
+        Fuego vence Nieve, Agua vence Fuego, y Nieve vence Agua</p>
+    <img src="./resources/Tutorial.png" class="imagenTutorial" alt="Tutorial">
+    </div>
+    
+    <button id="close">Cerrar</button></div>
+</div>
+
+
+<section id="seleccionar-ataques">
+    <div id="combateElemental">
+        <h1 class="tituloCombate">
+            <img src="./resources/ninja2.png" alt="ninjaTitulo">
+            <img src="./resources/tituloCardJitsu.png" alt="tituloimg">
+            <img src="./resources/ninjaComun1.png" alt="NinjaAgua">
+        </h1>
+
+        <h2 class="subtitulo" id="subtitulo">HORA DEL COMBATE</h2>
+        <button id="emojiAbrirCartas" type="button" data-text="👇"><img src="./resources/cartas.png" id="cartasEmojiAbrir"></button>
+          
+
+    <label id="ContenidoTuyo" for="ContenidoDelJugador">
+        <p id="contenidoTuyo"><img src="" id="emojiDeLaCardJugador" alt="emojiDeLaCardJugador"><span id="conteo-jugador"> 0</span></p>
+        <img id="contenidoTuyoimg" src="./resources/ninjaDeAgua.png" alt="NinjaJugador">
+    </label>
+    
+    <label id="ContenidoDelRival" for="ContenidoDelRival">
+        <p id="contenidoDelRival"><img src="" id="emojiDeLaCardRival" alt="emojiDeLaCardJugador"><span id="conteo-rival">0</span></p>
+        <img id="contenidoDelRivalimg" src="./resources/ninjaDeAgua.png" alt="NinjaRival">
+    </label>
+
+    <div id="divConfirmarCarta">
+        <button id="botonConfirmarCarta">Confirmar carta</button>
+    </div>
+    <div class="CajaCartas" id="CajaCartas">
+        
+    </div>
+    <section id="enfrentamiento">
+        <div id="divAtaqueElementalJugador">
+            <img id="ataqueElementalJugador" src="./resources/cartas.png" alt="ataqueJugador">
+        </div>
+        <div id="listaMensajes"><p id="cajaMensajes">⚔️</p></div>
+        <div id="divAtaqueElementalRival">
+            <img id="ataqueElementalRival" src="./resources/cartas.png" alt="ataqueRival">
+        </div>
+    </section>
+
+    <section id="mensajes2">
+        <p></p>
+    </section>
+
+    </div>
+    <div id="reiniciar">
+    <button id="boton-reiniciar">Volver a empezar</button>
+    </div>
+</section>
+<script src="./js/seleccion.js"></script>
+</body>
+</html>

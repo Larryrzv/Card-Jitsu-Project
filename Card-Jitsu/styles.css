@@ -1,0 +1,734 @@
+@font-face {
+    font-family: Candombe;
+    src: url(./resources/Candombe/candombe.ttf);}
+body {
+    font-family: Candombe;
+    background-color: #101e3e;
+}
+/* Titulo y subtitulos */
+.titulo {
+    color: black;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    width: 264px;
+    height: 149px;
+    padding-right: 8px;
+    border-radius: 13px;
+    background: rgb(76,61,61);
+    background: linear-gradient(0deg, rgba(76,61,61,1) 1%, rgba(192,112,0,1) 31%, rgba(225,175,48,1) 45%, rgba(254,244,205,1) 99%);
+    flex-direction: row;
+    align-items: center;
+}.titulo img {
+    width: 327px;
+    height: 144px;
+    margin-inline: 13%;
+    margin-top: 1px;
+    display: flex;;
+}.subtitulo {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    width: 134px;
+    height: 29px;
+    margin-top: -5px;
+    margin-bottom: 16px;
+    border-radius: 13px;
+    padding: 5px;
+    color: black;
+    background-color: #FFF7D4;
+    font-size: 10mm;}
+
+#Seleccionar-Elemento {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 783px;
+    margin-top: 8px;
+    margin-inline: auto;
+    background-color: #121F3D;
+    border-radius: 20px;
+    }
+
+.parrafo2Tutorial1 {
+    margin-block-start: -5px;
+    margin-block-end: 23px;
+    }
+/* Seccion de los ninjas a seleccionar*/
+.PersonajesDeNinja{
+    width: 93%;
+    height: 214px;
+    margin-top: 11px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+}.PersonajesDeNinja img{
+    width: 112px;
+    height: 145px;
+    margin-block-start: -7px;
+    margin-block-end: auto;
+    object-fit: contain;}
+#decoracionDeSeleccion{
+    width: 140px;
+    margin-top: auto;}
+
+.tarjetaDeAgua{
+    background-color: #363a44;
+    background-image: none;
+    background-size: 235px 215px;
+    background-position: center;
+    width: 126px;
+    height: 171px;
+    margin: 10px;
+    padding: 10px;
+    padding-top: 0px;
+    border-radius: 10px;
+    transition: 2s;    
+    color: #fdb42c;
+    border: 3px solid #83acfa;
+    text-align: center;
+    font-weight: bold;
+    font-size: 2.5rem;
+}.tarjetaDeAgua:hover {
+    border-color: #00ceff;
+    font-size: 3.5rem;
+    display: flex;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 180px;
+    height: 180px;
+    text-shadow: black -4px 1px 3px;
+    background-color: #070500;
+    box-shadow: #a1a09f 0px -7px 15px;
+    transition: 0.5s;
+    background-image: url(./resources/gemaDeAguaShiny.png);
+    padding-top: 14px;
+    padding-right: 0px;
+    padding-left: 8px;
+    padding-bottom: 0px;
+    cursor: pointer;
+    flex-direction: column;
+}
+.tarjetaDeNieve{
+    background-color: #363a44;
+    background-image: none;
+    background-size: 235px 215px;
+    background-position: center;
+    width: 126px;
+    height: 171px;
+    margin: 10px;
+    padding: 10px;
+    padding-top: 0px;
+    border-radius: 10px;
+    transition: 2s;
+    color: #fdb42c;
+    border: 3px solid #83acfa;
+    text-align: center;
+    font-weight: bold;
+    font-size: 2.5rem;
+}.tarjetaDeNieve:hover {
+    font-size: 3.5rem;
+    border-color: #d4e6ff;
+    font-size: 3.5rem;
+    display: flex;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 180px;
+    height: 180px;
+    text-shadow: black -4px 1px 3px;
+    background-color: #070500;
+    box-shadow: #a1a09f 0px -7px 15px;
+    transition: 0.5s;
+    background-image: url(./resources/gemaDeNieveShiny.png);
+    padding-top: 14px;
+    padding-right: 0px;
+    padding-left: 8px;
+    padding-bottom: 0px;
+    cursor: pointer;
+    flex-direction: column;
+}
+.tarjetaDeFuego{
+    background-color: #363a44;
+    background-image: none;
+    background-size: 235px 215px;
+    background-position: center;
+    width: 126px;
+    height: 171px;
+    margin: 10px;
+    padding: 10px;
+    padding-top: 0px;
+    border-radius: 10px;
+    color: #fdb42c;
+    transition: 2s;
+    border: 3px solid #83acfa;
+    text-align: center;
+    font-weight: bold;
+    font-size: 2.5rem;
+}.tarjetaDeFuego:hover {
+    font-size: 3.5rem;
+    border-color: #ffc342;
+    font-size: 3.5rem;
+    display: flex;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 180px;
+    height: 180px;
+    text-shadow: black -4px 1px 3px;
+    background-color: #070500;
+    box-shadow: #a1a09f 0px -7px 15px;
+    transition: 0.5s;
+    background-image: url(./resources/gemaDeFuegoShiny.png);
+    padding-top: 14px;
+    padding-right: 0px;
+    padding-left: 8px;
+    padding-bottom: 0px;
+    cursor: pointer;
+    flex-direction: column;
+}
+input {
+    display: none;
+    transition: 0s;
+}input:checked + label { 
+    color: whitesmoke;
+    transition: 0.5s;
+    background-color: rgb(249,217,187);
+background: linear-gradient(0deg, rgba(249,217,187,1) 19%, rgba(238,172,114,1) 41%, rgba(225,119,29,1) 82%);
+    box-shadow: #e1771d 0px -7px 15px 1px;
+    border: solid 1px white;}
+
+#Boton-confirmar-Elemento {
+    display: flex;
+    height: 35px;
+    width: 281px;
+    margin-block: 4px;
+    padding: 10px;
+    border: 0px;
+    background-image: linear-gradient( 83.2deg, rgba(150,93,233,1) 10.8%, rgba(99,88,238,1) 94.3% );
+    color: #121F3D;
+    font-weight: bold;
+    font-size: 24px;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+}#Boton-confirmar-Elemento:hover{
+    background-image: radial-gradient( circle farthest-corner at 10%20%,  rgba(244,164,96,1) 0%, rgba(143,188,143,1) 90% );}
+
+#cajaTutorial{
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.3);
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    pointer-events: none;
+    opacity: 0;
+    top: 0px;
+    left: 0px;
+    height: 100vh;
+    width: 100vw;
+    transition: opacity 0.3s ease;
+    font-family: cursive;
+}#open{
+    display: flex;
+    height: 26px;
+    width: 132px;
+    margin-block: 4px;
+    padding: 10px;
+    border: 0px;
+    background-image: linear-gradient( 83.2deg, rgba(150,93,233,1) 10.8%, rgba(99,88,238,1) 94.3% );
+    color: #121F3D;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+}#open:hover {
+    background-image: radial-gradient( circle farthest-corner at 10%20%,  rgba(244,164,96,1) 0%, rgba(143,188,143,1) 90% );
+}.tituloTutorial {
+    color: black;
+    margin-inline: auto;
+    margin-top: 0px;
+    margin-bottom: -9px;
+    display: flex;
+    justify-content: center;
+    width: 191px;
+    height: 126px;
+    gap: 41px;
+    padding-right: 7px;
+    border-radius: 13px;
+    flex-direction: row;
+    background: rgb(76,61,61);
+    background: linear-gradient(0deg, rgba(76,61,61,1) 1%, rgba(192,112,0,1) 31%, rgba(225,175,48,1) 45%, rgba(254,244,205,1) 99%);
+}.tituloTutorial img {
+ width: 170px;
+}.tutorial {
+    background-color: rgb(255, 255, 255);
+    width: 100vw;
+    max-width: 66%;
+    height: 532px;
+    border: 10px solid #4d6ebd;
+    padding: 30px 50px;
+    border-radius: 7px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px;
+    text-align: center;
+    font-size: 5mm;
+}#imagenTutorial {
+    display: flex;
+    justify-content: center;
+}#parrafoTutorial1{
+    margin-top: -11px;
+}#parrafoTutorial2{
+    margin-top: -23px;
+    margin-bottom: 1px;
+    font-weight: bolder;
+}#close {
+    height: 35px;
+    width: 281px;
+    margin-block: 8px;    
+    padding: 10px;
+    border: 0px;
+    padding-block: 5px;
+    background-image: linear-gradient( 83.2deg, rgba(150,93,233,1) 10.8%, rgba(99,88,238,1) 94.3% );
+    color: #121F3D;
+    font-weight: bold;
+    font-size: 24px;
+    border-radius: 10px;
+}#close:hover{
+    background-image: radial-gradient( circle farthest-corner at 10%20%,  rgba(244,164,96,1) 0%, rgba(143,188,143,1) 90% );}
+
+
+
+
+/* Seccion del combate elemental */
+#combateElemental {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3px;
+    background-color: #121F3D;
+    border-radius: 20px;
+    width: auto;
+    height: 572px;
+    font-family: Candombe;
+}.tituloCombate {
+    color: black;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    width: 227px;
+    height: 115px;
+    padding-right: 8px;
+    border-radius: 13px;
+    background: rgb(76,61,61);
+    background: linear-gradient(0deg, rgba(76,61,61,1) 1%, rgba(192,112,0,1) 31%, rgba(225,175,48,1) 45%, rgba(254,244,205,1) 99%);
+    flex-direction: row;
+    align-items: center;
+}.tituloCombate img {
+    width: 326px;
+    height: 113px;
+    margin-inline: 13%;
+    margin-top: -2px;
+}
+
+#emojiAbrirCartas{
+    display: flex;
+    flex-direction: row;
+    background: #c7c4ed;
+    border: solid white;
+    border-radius: 8px;
+    width: 175px;
+    height: 78px;
+    font-size: 32px;
+    font-family: Candombe;
+    margin-inline-start: -530px;
+    margin-block-end: 32px;
+    align-items: center;
+    justify-content: flex-start;
+}#emojiAbrirCartas:hover{
+    background: radial-gradient( circle farthest-corner at 10%20%,  rgba(244,164,96,1) 0%, rgba(143,188,143,1) 90% );
+}#emojiAbrirCartas img {
+    width: 92px;
+    order: 1; /* un orden mayor que el del emoji */
+}#emojiAbrirCartas::after {
+    order: 0; /* un orden menor que el de la imagen */
+    content: attr(data-text); /* usar el valor del atributo data-text */
+  }
+.CajaCartas {
+    display: flex;
+    background: rgb(159 163 187);
+    align-items: flex-start;
+    pointer-events: none;
+    border-radius: 13px;
+    overflow: auto;
+    border: solid 5px #24313a;
+    opacity: 0;
+    padding: 3px;
+    margin-top: -303px;
+    margin-inline-end: 657px;
+    height: 302px;
+    width: auto;
+    gap: 10px;
+    font-family: cursive;
+    flex-direction: column;
+}.CajaCartas::-webkit-scrollbar {
+  width: 10px; /* ancho de la barra vertical */
+  height: 10px; /* alto de la barra horizontal */
+}
+
+/* Cambiar el color y el borde del área de desplazamiento */
+.CajaCartas::-webkit-scrollbar-track {
+  background: #f1f1f1; /* color de fondo */
+  border: 2px solid #888; /* color y grosor del borde */
+  border-radius: 16px; /*redondez del borde*/
+}
+
+/* Cambiar el color, el borde y la sombra del botón de desplazamiento */
+.CajaCartas::-webkit-scrollbar-thumb {
+  background: #555; /* color de fondo */
+  border: 2px solid #888; /* color y grosor del borde */
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.3); /* sombra interna */
+}
+#closeBotones{
+    background: none;
+    border: none;
+    margin-block-end: -15px;
+    margin-block-start: -10px;
+}#closeBotones img{
+    width: 45px;
+}#closeBotones :hover {
+    filter: invert(1);
+}
+#boton-Nieve{
+    display: flex;
+    flex-direction: column;
+    background: #c7c4ed;
+    border: solid white;
+    border-radius: 8px;
+    width: 66px;
+    height: 82px;
+    font-size: 32px;
+    font-family: Candombe;
+    position: relative;
+    justify-content: center;
+    padding-block-end: 9px;
+    align-items: center;
+}#boton-Nieve img{
+    width: 40px;
+    pointer-events: none;
+}#boton-Nieve:hover img{
+    width: 37px;
+}#boton-Nieve:hover {
+    display: flex;
+    font-size: 28px;
+    width: 66px;
+    height: 82px;
+    cursor: pointer;
+    justify-content: center;
+    background: #9d9ac6;
+    border: solid #9b9b9b;
+}#boton-Nieve:active {
+    background: #a3a1c4;
+    color: white;
+    border: solid #393754;
+    transition: 0s;
+}
+#boton-Fuego{
+    display: flex;
+    flex-direction: column;
+    background: rgb(243, 220, 13);
+    border: solid white;
+    border-radius: 8px;
+    width: 66px;
+    height: 82px;
+    font-size: 32px;
+    font-family: Candombe;
+    position: relative;
+    justify-content: center;
+    padding-block-end: 9px;
+    align-items: center;
+}#boton-Fuego:hover {
+    display: flex;
+    font-size: 28px;
+    width: 66px;
+    height: 82px;
+    cursor: pointer;
+    justify-content: center;
+    background: rgb(183, 166, 10);
+    border: solid #9b9b9b;
+}#boton-Fuego img{
+    width: 40px;
+    pointer-events: none;
+}#boton-Fuego:hover img{
+    width: 37px;
+}#boton-Fuego:active {
+    background-color: rgb(246 151 42);
+    color: white;
+    border: solid #192f36;
+    transition: 0s;
+}
+#boton-Agua{
+    display: flex;
+    flex-direction: column;
+    background: #03b1f4;
+    border: solid white;
+    border-radius: 8px;
+    width: 66px;
+    height: 82px;
+    font-size: 32px;
+    font-family: Candombe;
+    position: relative;
+    justify-content: center;
+    padding-block-end: 9px;
+    align-items: center;
+}#boton-Agua:hover {
+    display: flex;
+    width: 66px;
+    height: 82px;
+    font-size: 28px;
+    cursor: pointer;
+    justify-content: center;
+    background: #0e84b2;
+    border: solid #9b9b9b;
+}#boton-Agua:active {
+    background-color: #0373f4;
+    color: white;
+    border: solid #192f36;
+    transition: 0s;
+}#boton-Agua img{
+    width: 40px;
+    pointer-events: none;
+}#boton-Agua:hover img{
+    width: 37px;
+}
+
+#botonesAtaques img{
+    width: 45px;
+    margin-top: -1px;}
+
+
+#seleccionar-ataques {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -6px;
+    margin-left: 142px;
+    border-radius: 20px;
+    width: 74vw;}
+
+/* Cajas con tu ninja y el ninja rival */
+#ContenidoTuyo{
+    display: flex;
+    height: 265px;
+    width: 156px;
+    pointer-events: none;
+    transition: 1s;
+    align-items: center;
+    flex-direction: column;
+    margin-top: -20px;
+    margin-right: 578px;
+    margin-left: 48px;
+    border-radius: 13px;
+    border: 10px solid #014d98;
+    box-shadow: rgb(34, 133, 179) 0px 0px 20px 2px;
+    background-position: -8px -5px;
+    background-repeat: no-repeat;
+    background-size: 199px 236px;
+    background-position: center;
+    background-image: url(./resources/gemaDeNieveShiny.png);
+    background-color: #7fb6ff;
+}#emojiDeLaCardJugador{
+    width: 37px;
+    margin-top: 10px;
+}#contenidoTuyo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    width: 48px;
+    height: 83px;
+    border-radius: 13px;
+    padding-top: 6px;
+    margin-top: -10px;
+    margin-bottom: -66px;
+    margin-left: -128px;
+    font-size: 12mm;
+    background-color: #014d98;
+}#contenidoTuyoimg{
+    width: 245px;
+    padding-left: 12px;
+    margin-top: 11px;
+}#emojiDeLaCardRival{
+    width: 37px;
+    margin-top: 10px;
+}#ContenidoDelRival{
+    display: flex;
+    height: 265px;
+    width: 156px;
+    transition: 1s;
+    align-items: center;
+    flex-direction: column;
+    margin-top: -310px;
+    margin-right: 48px;
+    margin-left: 578px;
+    border-radius: 13px;
+    border: 10px solid #014d98;
+    box-shadow: rgb(34, 133, 179) 0px 0px 20px 2px;
+    background-position: -8px -5px;
+    background-repeat: no-repeat;
+    background-size: 199px 236px;
+    background-position: center;
+    background-image: url(./resources/gemaDeNieveShiny.png);
+    background-color: #7fb6ff;
+}#contenidoDelRival{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 83px;
+    border-radius: 13px;
+    padding-top: 6px;
+    margin-top: -10px;
+    margin-bottom: -66px;
+    margin-left: -128px;
+    font-size: 12mm;
+    background-color: #014d98;
+}#contenidoDelRivalimg{
+    width: 245px;
+    padding-left: 12px;
+    margin-top: 15px;}
+
+.seleccionComoda {
+    margin: 9px;}
+
+/* Caja con el resultado del enfrentamiento elemental  */
+#divConfirmarCarta {
+    display: flex;
+    position: relative;
+    bottom: 271px;
+    right: 128px;
+    pointer-events: none;
+    opacity: 0;
+}#botonConfirmarCarta {
+    display: flex;
+    height: 45px;
+    width: 98px;
+    padding: 10px;
+    border: 0px;
+    position: absolute;
+    background-image: linear-gradient( 83.2deg, rgba(150,93,233,1) 10.8%, rgba(99,88,238,1) 94.3% );
+    color: #121F3D;
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}#botonConfirmarCarta:hover {
+    background-image: radial-gradient( circle farthest-corner at 10%20%, rgba(244,164,96,1) 0%, rgba(143,188,143,1) 90% );
+}
+#enfrentamiento {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: auto;
+    height: auto;
+    border-radius: 20px;
+    border: solid aqua;
+    background: aliceblue;
+    margin-top: -234px;
+    margin-left: 10px;
+    font-size: 9.3mm;
+}
+#ataqueElementalJugador{
+    width: 81px;
+    margin-top: 9px;
+}#divAtaqueElementalJugador {
+    margin-left: 5px;
+    margin-block: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}#emojisProta {
+    width: 59px;
+}#ataqueElementalJugador {
+    width: 81px;
+}
+#ataqueElementalRival{
+    width: 82px;
+    margin-top: 9px;
+}#divAtaqueElementalRival {
+    margin-right: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}#emojisNoProta {
+    width: 59px;
+}
+#cajaMensajes {
+    margin-block: auto;
+}#listaMensajes{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 38px;
+    margin-inline: 28px;
+}
+#mensajes2 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 15px;
+    font-size: 10mm;
+    height: 53px;
+    position: relative;
+    width: auto;
+    padding-inline: 7px;
+    border-radius: 20px;
+    background: none;
+    justify-content: center;}
+
+/* Seccion con el boton de reiniciar */
+#reiniciar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 49px;
+    background-color: #121F3D;
+    border-radius: 20px;
+}#boton-reiniciar {
+    display: flex;
+    height: 35px;
+    width: 281px;
+    padding: 10px;
+    border: 0px;
+    background-image: linear-gradient( 83.2deg, rgba(150,93,233,1) 10.8%, rgba(99,88,238,1) 94.3% );
+    color: #121F3D;
+    font-weight: bold;
+    font-size: 24px;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}#reiniciar :hover {
+
+    background-image: radial-gradient( circle farthest-corner at 10%20%,  rgba(244,164,96,1) 0%, rgba(143,188,143,1) 90% );}
+
+#ver-mapa {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}#mapa {
+    border: 2px solid saddlebrown;
+}
+ 
+@media (max-width: 360px) {
+    .tarjetaDeNinja {
+        flex-direction: column;
+    }
+}
