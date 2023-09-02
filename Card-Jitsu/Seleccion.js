@@ -18,8 +18,6 @@ const sectionSeleccionarElementoJugador = document.getElementById("Seleccionar-E
 const contenedorPersonajes = document.getElementById("contenedorPersonajes")
 const contenedorAtaques = document.getElementById ("CajaCartas")
 
-const sectionVerMapa = document.getElementById("ver-mapa")
-const mapa = document.getElementById("mapa")
 
 
 // Variables Goblales
@@ -50,7 +48,6 @@ let indexEmojiJugador;
 let indexEmojiRival;
 let indexResultado;
 
-let lienzo = mapa.getContext("2d")
 
 
 // Clases
@@ -128,7 +125,7 @@ function iniciarJuego() {
     botonElementoJugador.addEventListener("click", function() { if (!comprobarInputs()) { 
         alert("Por favor selecciona a algun ninja"); } 
     else { 
-        canvas()} });
+        seleccionarElementoJugador()} });
 }
 
 function comprobarInputs() {
@@ -153,25 +150,6 @@ function popTutorial() {
     popupDelTutorial.style.pointerEvents = "none"
 }
 
-//prueba de canvas 
-function canvas() {
-    sectionVerMapa.style.display = "flex"
-    sectionSeleccionarAtaques.style.display = "none"
-    sectionSeleccionarElementoJugador.style.display = "none"
-    subtituloCombate.style.width = "249px"
-
-    let imagenDeNinjaAgua = new Image()
-    imagenDeNinjaAgua.src = ninjaAgua.foto
-
-    lienzo.drawImage(
-        imagenDeNinjaAgua,
-        20,
-        40,
-        100,
-        100
-    )
-}
-
 
 // Seleccion Elemento del Jugador
 function seleccionarElementoJugador() {
@@ -180,8 +158,6 @@ sectionSeleccionarAtaques.style.display = "flex"
 sectionSeleccionarElementoJugador.style.display = "none"
 tutorial.style.display = "none"
 divReiniciar.style.display = "flex"
-
-
 
 let emojiElementoDelJugador
 let pic;
