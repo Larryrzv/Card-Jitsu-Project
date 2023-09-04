@@ -4,7 +4,9 @@ const sectionSeleccionarElementoJugador = document.getElementById("Seleccionar-E
 const sectionSeleccionarModo = document.getElementById("seleccionarModo")
 
 const divReiniciar = document.getElementById("reiniciar")
-const botonReiniciar = document.getElementById("boton-reiniciar")
+const botonReiniciar1 = document.getElementById("botonReiniciar1")
+const botonReiniciar2 = document.getElementById("botonReiniciar2")
+const reinicioPrimero = document.getElementById("reiniciarClassic")
 const tutorial = document.getElementById("open")
 const botonElementoJugador = document.getElementById("Boton-confirmar-Elemento")
 const openBotones = document.getElementById("emojiAbrirCartas")
@@ -15,6 +17,8 @@ const emojisDelRival = document.getElementById("divAtaqueElementalRival")
 const resultadoMensaje = document.getElementById("listaMensajes")
 const cajaEnfrentamiento = document.getElementById("enfrentamiento")
 const subtituloCombate = document.getElementById("subtitulo")
+const cambioVidasScoreR = document.getElementById("conteoRival")
+const cambioVidasScoreJ = document.getElementById("conteoJugador")
 
 const botonPPT = document.getElementById("modoPPT")
 const botonClassic = document.getElementById("modoClassic")
@@ -39,6 +43,8 @@ let opcionDeNinjas;
 let NinjaJugador
 let conteoJugador = 0
 let conteoRival = 0
+let vidasJugador = 3
+let vidasRival = 3
 let botones = []
 let inputcheckedAgua;
 let inputcheckedNieve;
@@ -96,18 +102,18 @@ class NinjasPPT{
         this.emoji = emoji
         this.clase = clase
         this.vida = vida
-        this.ataques = []
+        this.ataquesPPT = []
     }
 }
-let ninjaBlack1 = new NinjasPPT("Jugador", "./resources/ninjaComun1.png", "./resources/emojiSombra", "tarjetaJugador", 3)
-let ninjaBlack2 = new NinjasPPT("Rival", "./resources/ninja2.png", "./resources/emojiSombra", "tarjetaRival", 3)
+let ninjaBlack1 = new NinjasPPT("Jugador", "./resources/ninjaComun1.png", "./resources/emojiSombra.png", "tarjetaJugador", 3)
+let ninjaBlack2 = new NinjasPPT("Rival", "./resources/ninja2.png", "./resources/emojiSombra.png", "tarjetaRival", 3)
 
-ninjaBlack1.ataques.push(
+ninjaBlack1.ataquesPPT.push(
     { nombre: "Nieve", id: "boton-Nieve", img: "./resources/cartasDeNieve.png"},
     { nombre: "Agua", id: "boton-Agua", img: "./resources/cartasDeAgua.png"},
     { nombre: "Fuego", id: "boton-Fuego", img: "./resources/cartasDeFuego.png"},
 )
-ninjaBlack2.ataques.push(
+ninjaBlack2.ataquesPPT.push(
     { nombre: "Nieve", id: "boton-Nieve", img: "./resources/cartasDeNieve.png"},
     { nombre: "Agua", id: "boton-Agua", img: "./resources/cartasDeAgua.png"},
     { nombre: "Fuego", id: "boton-Fuego", img: "./resources/cartasDeFuego.png"},
@@ -120,15 +126,12 @@ ninjasPPT.push(ninjaBlack1, ninjaBlack2)
 function iniciarJuego() {
     sectionSeleccionarAtaques.style.display = "none"
     seleccionarElementoJugador
+    reinicioPrimero.style.display = "none"
     sectionSeleccionarElementoJugador.style.display = "none"
-
-    divReiniciar.style.display = "flex"
-
 
     botonPPT.addEventListener("click", modoPPT)
     botonClassic.addEventListener("click", modoClassic)
     tutorial.addEventListener("click", popTutorial)
-
 
 }
 
@@ -142,8 +145,8 @@ function modoPPT() {
     openBotones.addEventListener("click", abrirBotonesElementales)
     botonConfirmarCarta.addEventListener("click", encuentro)
 
-    botonReiniciar.addEventListener("click", reiniciarJuego)
-    divReiniciar.style.display = "flex"
+    botonReiniciar1.addEventListener("click", reiniciarJuego)
+    botonReiniciar2.addEventListener("click", reiniciarJuego)
 
     edicionJugadorPPT()
 }
@@ -158,14 +161,17 @@ let colorBackground = document.getElementById("contenidoTuyo")
         NinjaJugador = ninjaBlack1.nombre
         emojiElementoDelJugador = ninjaBlack1.emoji
         picJ = ninjaBlack1.foto
-        configuracionDeCarta.style.backgroundImage = "url(./resources/GemasDeFuegoNieveAgua.png)";
-        configuracionDeCarta.style.backgroundColor = "rgb(254 194 25)"
-        configuracionDeCarta.style.boxShadow = " 0px 0px 20px 2px rgb(255 144 58)"
+        cambioVidasScoreJ.innerHTML = ninjaBlack1.vida
+        configuracionDeCarta.style.backgroundImage = "url(./resources/gemaSombra.png)";
+        configuracionDeCarta.style.backgroundSize = "197px 235px"
+        configuracionDeCarta.style.backgroundColor = "rgb(255 255 255)"
+        configuracionDeCarta.style.boxShadow = "rgb(255 255 255) 0px 0px 20px 2px"
         configuracionDeCarta.style.marginBottom = "12px"
-        configuracionDeCarta.style.border = "12px solid rgb(243, 220, 13)"
-        contenidoTuyoImg.style.marginTop = "5px"
-        contenidoTuyoImg.style.width = "278px"
-        colorBackground.style.backgroundColor = "rgb(243, 220, 13)"
+        configuracionDeCarta.style.border = "12px solid rgb(0 0 0)"
+        configuracionDeCarta.style.color = "aliceblue"
+        contenidoTuyoImg.style.marginTop = "29px"
+        contenidoTuyoImg.style.width = "202px"
+        colorBackground.style.backgroundColor = "rgb(0 0 0)"
     
         document.getElementById("contenidoTuyoimg").src = picJ 
         document.getElementById("emojiDeLaCardJugador").src = emojiElementoDelJugador
@@ -178,43 +184,19 @@ if (!(emojiElementoDelJugador == "")) {
 }
 return (isSelected = false)
 }
-//agregar la visualizacion del Rival para el modo PPT
-function edicionRivalPPT() {
-let picR;
-let emojiElementoDelRival;
-let configuracionDeCartaRival = document.getElementById
-("ContenidoDelRival")
-let backgroundColorRival = document.getElementById("contenidoDelRival")
-let ContenidoRivalimg = document.getElementById("contenidoDelRivalimg")
-        NinjaJugador = ninjaAgua.nombre
-        emojiElementoDelRival = ninjaBlack2.emoji
-        picR = ninjaBlack2.foto
-        configuracionDeCartaRival.style.backgroundImage = "url(./resources/GemasDeFuegoNieveAgua.png)";
-        backgroundColorRival.style.backgroundColor = "rgb(243, 220, 13)"
-        configuracionDeCartaRival.style.backgroundColor = "rgb(254 194 25)"
-        configuracionDeCartaRival.style.boxShadow = "rgb(254 25 25) 0px 0px 20px 2px"
-        configuracionDeCartaRival.style.marginBottom = "21px"
-        configuracionDeCartaRival.style.border = "12px solid rgb(243, 220, 13)"
-        ContenidoRivalimg.style.marginTop = "5px"
-        ContenidoRivalimg.style.width = "278px"
-
-    document.getElementById("contenidoDelRivalimg").src = picR
-    document.getElementById("emojiDeLaCardRival").src = emojiElementoDelRival
-    AtaquesNinjaRival = ninjasPPT[ElementoAleatorio].ataques
-    subtituloCombate.style.width = "194px"
-}
 
 function extraerAtaquesPPT(NinjaJugador) {
     let ataquesNinjasPPT
     for (let i = 0; i < ninjasPPT.length; i++) {
         if (NinjaJugador === ninjasPPT[i].nombre) {
-            ataquesNinjasPPT = ninjasPPT[i].ataques
+            ataquesNinjasPPT = ninjasPPT[i].ataquesPPT
         }
-
     }
     mostrarAtaquesPPT(ataquesNinjasPPT)
 }
 function mostrarAtaquesPPT(ataquesNinjasPPT){
+    contenedorAtaques.style.justifyContent = "center"
+
     ataquesNinjasPPT.forEach((ataquesNinjasPPT)=> {
         ataquesNinjaJugador = `
         <button id=${ataquesNinjasPPT.id} class="boton-de-Ataque BAtaques" type="button">${ataquesNinjasPPT.nombre} <img src=${ataquesNinjasPPT.img} alt="medallon"></button>
@@ -222,9 +204,83 @@ function mostrarAtaquesPPT(ataquesNinjasPPT){
         contenedorAtaques.innerHTML += ataquesNinjaJugador
     })
     botones = document.querySelectorAll(".BAtaques")
-
 }
 
+
+//agregar la visualizacion del Rival para el modo PPT
+function edicionRivalPPT() {
+let ElementoAleatorio = aleatorio(0, ninjasPPT.length -1)
+let picR;
+let emojiElementoDelRival;
+let configuracionDeCartaRival = document.getElementById
+("ContenidoDelRival")
+let backgroundColorRival = document.getElementById("contenidoDelRival")
+let ContenidoRivalimg = document.getElementById("contenidoDelRivalimg")
+        emojiElementoDelRival = ninjaBlack2.emoji
+        picR = ninjaBlack2.foto
+        cambioVidasScoreR.innerHTML = ninjaBlack2.vida
+        configuracionDeCartaRival.style.backgroundImage = "url(./resources/gemaSombra.png)";
+        backgroundColorRival.style.backgroundSize = "197px 235px"
+        backgroundColorRival.style.backgroundColor = "rgb(0 0 0)"
+        configuracionDeCartaRival.style.backgroundColor = "rgb(255 255 255)"
+        configuracionDeCartaRival.style.boxShadow = "rgb(254, 25, 25) 0px 0px 20px 2px"
+        configuracionDeCartaRival.style.color = "aliceblue"
+        configuracionDeCartaRival.style.marginBottom = "21px"
+        configuracionDeCartaRival.style.border = "12px solid rgb(0 0 0)"
+        ContenidoRivalimg.style.marginTop = "46px"
+        ContenidoRivalimg.style.width = "206px"
+
+    document.getElementById("contenidoDelRivalimg").src = picR
+    document.getElementById("emojiDeLaCardRival").src = emojiElementoDelRival
+    AtaquesNinjaRival = ninjasPPT[ElementoAleatorio].ataquesPPT
+    subtituloCombate.style.width = "194px"
+    ataqueJugadorPPT()
+}
+
+
+function ataqueJugadorPPT() {
+    let innerEspada = document.getElementById("cajaMensajes")
+    botones.forEach((boton) => {
+        boton.addEventListener("click", (e) => {
+            if (e.target.textContent === "Agua ") {
+                confirmarCarta.style.pointerEvents = "all"
+                confirmarCarta.style.opacity = "1"
+                seleccionJugador = 3
+                emojiAtaqueJugador = AGUA
+                emojiAtaqueRival = "./resources/cartas.png"
+                ataqueJugadorPPT = "⚔️"
+
+                innerEspada.innerHTML = ataqueJugadorPPT
+                document.getElementById("ataqueElementalJugador").src = emojiAtaqueJugador
+                document.getElementById("ataqueElementalRival").src = emojiAtaqueRival
+            }
+            else if (e.target.textContent === "Fuego ") {
+                confirmarCarta.style.pointerEvents = "all"
+                confirmarCarta.style.opacity = "1"
+                seleccionJugador = 2
+                emojiAtaqueJugador = FUEGO
+                emojiAtaqueRival = "./resources/cartas.png"
+                ataqueJugadorPPT = "⚔️"
+                innerEspada.innerHTML = ataqueJugadorPPT
+                document.getElementById("ataqueElementalJugador").src = emojiAtaqueJugador
+                document.getElementById("ataqueElementalRival").src = emojiAtaqueRival
+            }
+            else {
+                confirmarCarta.style.pointerEvents = "all"
+                confirmarCarta.style.opacity = "1"
+                seleccionJugador = 1
+                emojiAtaqueJugador = NIEVE
+                emojiAtaqueRival = "./resources/cartas.png"
+                ataqueJugadorPPT = "⚔️"
+
+                innerEspada.innerHTML = ataqueJugadorPPT
+                document.getElementById("ataqueElementalJugador").src = emojiAtaqueJugador
+                document.getElementById("ataqueElementalRival").src = emojiAtaqueRival
+            }
+            iniciarPelea()
+        })
+    })
+}
 
 function encuentro () {
     contenedorAtaques.style.opacity = "0"
@@ -233,82 +289,55 @@ function encuentro () {
     confirmarCarta.style.opacity = "0"
     ataquealeatorio = aleatorio(0, AtaquesNinjaRival.length -1)
         if (ataquealeatorio == 2) {
-            emojiAtaqueRival = "./resources/simboloDeFuego.png"
-            AtaqueDelRival.push("FUEGO")
+            emojiAtaqueRival = FUEGO
             actualAtaqueRival = 2
     
         }   else if (ataquealeatorio == 3){ 
-                emojiAtaqueRival = "./resources/simboloDeAgua.png"
-                AtaqueDelRival.push("AGUA")
+                emojiAtaqueRival = AGUA
                 actualAtaqueRival = 3
         }   else {
-            emojiAtaqueRival = "./resources/simboloDeNieve.png"
-            AtaqueDelRival.push("NIEVE")
+            emojiAtaqueRival = NIEVE
             actualAtaqueRival = 1
         }
-                console.log(AtaqueDelRival)
-                resultadoPPT()
+                console.log(seleccionJugador, actualAtaqueRival)
                 document.getElementById("ataqueElementalRival").src = emojiAtaqueRival
+                resultadosPPT()
     }
 
-
-function resultadoPPT() {
-    let innerEspada = document.getElementById("cajaMensajes")
-    botones.forEach((boton) => {
-        boton.addEventListener("click", (e) => {
-            if (e.target.textContent === "Agua ") {
-                ataquedelJugador.push("AGUA")
-                console.log(ataquedelJugador)
-                confirmarCarta.style.pointerEvents = "all"
-                confirmarCarta.style.opacity = "1"
-                seleccionJugador = 3
-                emojiAtaqueJugador = "./resources/simboloDeAgua.png"
-                emojiAtaqueRival = "./resources/cartas.png"
-                resultadoPPT = "⚔️"
-
-                innerEspada.innerHTML = resultadoPPT
-                document.getElementById("ataqueElementalJugador").src = emojiAtaqueJugador
-                document.getElementById("ataqueElementalRival").src = emojiAtaqueRival
-            }
-            else if (e.target.textContent === "Fuego ") {
-                ataquedelJugador.push("FUEGO")
-                console.log(ataquedelJugador)
-                confirmarCarta.style.pointerEvents = "all"
-                confirmarCarta.style.opacity = "1"
-                seleccionJugador = 2
-                emojiAtaqueJugador = "./resources/simboloDeFuego.png"
-                emojiAtaqueRival = "./resources/cartas.png"
-                resultadoPPT = "⚔️"
-                innerEspada.innerHTML = resultadoPPT
-                document.getElementById("ataqueElementalJugador").src = emojiAtaqueJugador
-                document.getElementById("ataqueElementalRival").src = emojiAtaqueRival
-            }
-            else {
-                ataquedelJugador.push("NIEVE")
-                console.log(ataquedelJugador)
-                confirmarCarta.style.pointerEvents = "all"
-                confirmarCarta.style.opacity = "1"
-                seleccionJugador = 1
-                emojiAtaqueJugador = "./resources/simboloDeNieve.png"
-                emojiAtaqueRival = "./resources/cartas.png"
-                resultadoPPT = "⚔️"
-
-                innerEspada.innerHTML = resultadoPPT
-                document.getElementById("ataqueElementalJugador").src = emojiAtaqueJugador
-                document.getElementById("ataqueElementalRival").src = emojiAtaqueRival
-            }
-            revisarVidas ()
-            crearMensajesPPT ()
-        })
-    })
-}
-
+    function resultadosPPT() {
+        let cajaEnfrentamiento = document.getElementById("enfrentamiento")
+        let contenidoTuyoColor = document.getElementById("contenidoTuyo")
+        let contenidoRivalColor = document.getElementById("contenidoDelRival")
+        if(seleccionJugador == actualAtaqueRival) {
+            resultado = " EMPATE "
+            cajaEnfrentamiento.style.background = "#f3dc0d"
+        }
+        else if( (seleccionJugador == 2 && actualAtaqueRival == 3) || (seleccionJugador == 3 && actualAtaqueRival == 1) || (seleccionJugador == 1 && actualAtaqueRival == 2)){       
+            vidasJugador--
+            cambioVidasScoreJ.innerHTML = vidasJugador
+            resultado = " PERDISTES "
+            cajaEnfrentamiento.style.background = "#ff2929"
+            cajaEnfrentamiento.style.border = "solid black"
+            contenidoTuyoColor.style.color = "red"
+            contenidoRivalColor.style.color = "white"} 
+        else{
+            vidasRival--
+            cambioVidasScoreR.innerHTML = vidasRival 
+            resultado = " GANASTES "
+            cajaEnfrentamiento.style.background = "#5cd93d"
+            cajaEnfrentamiento.style.border = "solid white"
+            contenidoTuyoColor.style.color = "white"
+            contenidoRivalColor.style.color = "red"}
+                revisarVidas ()
+                crearMensajesPPT ()
+    } 
+    
 function revisarVidas (){
     let configuracionDeCarta = document.getElementById("ContenidoTuyo")
     let configuracionDeCartaRival = document.getElementById("ContenidoDelRival")
     let cajaMensajes = document.getElementById("mensajes2")
     if(vidasJugador == 0){
-        crearMesajeFinal("Lo Siento, Has Perdido, vuelve a intentarlo")
+        crearMesajeFinalPPT("Lo Siento has Perdido, vuelve a intentarlo")
         desabilitarBotonesCombates()
         cajaMensajes.style.background = "#7f4d5a"
         cajaMensajes.style.fontSize = "11mm"
@@ -316,7 +345,7 @@ function revisarVidas (){
         configuracionDeCarta.style.opacity = "0"
     }
     else if (vidasRival == 0) {
-        crearMesajeFinal("¡¡Felicidades Has Ganado!! Quieres seguir con tu racha? Vuelve a intentarlo")
+        crearMesajeFinalPPT("¡¡Felicidades Has Ganado!! Quieres seguir con tu racha? vuelve a intentarlo")
         desabilitarBotonesCombates()
         cajaMensajes.style.background = "#FFEB3B"
         cajaMensajes.style.boxShadow = "rgb(255 232 53) 0px 0px 20px 5px"
@@ -326,14 +355,15 @@ function revisarVidas (){
     let divemojiAtaqueJugador = document.getElementById("ataqueElementalJugador")
     let divemojiAtaqueRival = document.getElementById("ataqueElementalRival")
 
-        resultadoMensaje.innerHTML =  resultadoPPT
+        resultadoMensaje.innerHTML =  resultado
         divemojiAtaqueJugador.innerHTML = emojiAtaqueJugador
         divemojiAtaqueRival.innerHTML = emojiAtaqueRival
 }
-
-function crearMesajeFinal(resultadoFinal) {
+function crearMesajeFinalPPT(resultadoFinal) {
     let sectionResultadoFinal = document.getElementById("mensajes2")
     let parrafo2 = document.createElement("p")
+    divReiniciar.style.marginTop = "0px"
+
     parrafo2.innerHTML = resultadoFinal
     
     sectionResultadoFinal.appendChild(parrafo2)
@@ -344,8 +374,11 @@ function crearMesajeFinal(resultadoFinal) {
 
 function modoClassic() {
     sectionSeleccionarAtaques.style.display = "none"
+    sectionSeleccionarModo.style.display = "none"
 
-    sectionVerMapa.style.display = "none"
+    divReiniciar.style.display = "flex"
+    reinicioPrimero.style.display = "flex"
+    sectionSeleccionarElementoJugador.style.display = "flex"
 
     ninjasElementales.forEach((Ninjas) => {
         opcionDeNinjas = `
@@ -357,12 +390,13 @@ function modoClassic() {
 
     })
 
-    divReiniciar.style.display = "flex"
+    
 
     openBotones.addEventListener("click", abrirBotonesElementales)
     botonConfirmarCarta.addEventListener("click", resultados)
 
-    botonReiniciar.addEventListener("click", reiniciarJuego)
+    botonReiniciar1.addEventListener("click", reiniciarJuego)
+    botonReiniciar2.addEventListener("click", reiniciarJuego)
     
     inputcheckedAgua = document.getElementById("NinjaAgua")
     inputcheckedNieve = document.getElementById("NinjaNieve")
@@ -407,7 +441,7 @@ function seleccionarElementoJugador() {
 sectionSeleccionarAtaques.style.display = "flex"
 sectionSeleccionarElementoJugador.style.display = "none"
 tutorial.style.display = "none"
-divReiniciar.style.display = "flex"
+reinicioPrimero.style.display = "none"
 
 let emojiElementoDelJugador
 let pic;
@@ -646,8 +680,7 @@ function ataqueAleatorioRival () {
         resultadoMensaje.innerHTML = ""
         
         
-        let spanconteoJugador = document.getElementById("conteo-jugador")
-        let spanConteoRival = document.getElementById("conteo-rival")
+        let spanconteoJugador = document.getElementById("conteoJugador")
         let contenidoTuyoColor = document.getElementById("contenidoTuyo")
         let contenidoRivalColor = document.getElementById("contenidoDelRival")
  
@@ -664,7 +697,7 @@ function ataqueAleatorioRival () {
                 conteoJugador = Math.max(conteoJugador - 1, 0);
                 conteoRival++
                 spanconteoJugador.innerHTML = conteoJugador
-                spanConteoRival.innerHTML = conteoRival 
+                cambioVidasScoreR.innerHTML = conteoRival 
                 resultado = "DERROTA"
                 contenidoTuyoColor.style.color = "red"
                 contenidoRivalColor.style.color = "Black"
@@ -674,7 +707,7 @@ function ataqueAleatorioRival () {
                 conteoRival = Math.max(conteoRival - 1, 0);
                 conteoJugador++
                 spanconteoJugador.innerHTML = conteoJugador
-                spanConteoRival.innerHTML = conteoRival 
+                cambioVidasScoreR.innerHTML = conteoRival 
                 resultado = "VICTORIA"
                 contenidoTuyoColor.style.color = "Black"
                 contenidoRivalColor.style.color = "red"
@@ -688,7 +721,7 @@ function revisarVictorias (){
     let configuracionDeCartaRival = document.getElementById("ContenidoDelRival")
     let cajaMensajes = document.getElementById("mensajes2")
     if(conteoRival == conteoJugador){
-        crearMesajeFinal("Has empatado. tu rival quiere la revancha ¿¡aceptas!?")
+        crearMesajeFinalClassic("Has empatado. tu rival quiere la revancha ¿¡aceptas!?")
         desabilitarBotonesCombates()
         cajaMensajes.style.background = "rgb(202 103 45)"
         cajaMensajes.style.fontSize = "11mm"
@@ -698,7 +731,7 @@ function revisarVictorias (){
         cajaEnfrentamiento.style.background = "#f3dc0d"
     }
     else if(conteoRival > conteoJugador) {
-        crearMesajeFinal("Lo Siento, Has Perdido, vuelve a intentarlo")
+        crearMesajeFinalClassic("Lo Siento, Has Perdido, vuelve a intentarlo")
         desabilitarBotonesCombates()
         cajaMensajes.style.background = "#7f4d5a"
         cajaMensajes.style.fontSize = "11mm"
@@ -708,7 +741,7 @@ function revisarVictorias (){
         cajaEnfrentamiento.style.border = "solid black"
     }
     else {
-        crearMesajeFinal("¡¡Felicidades Has Ganado!! Quieres seguir con tu racha? Vuelve a intentarlo")
+        crearMesajeFinalClassic("¡¡Felicidades Has Ganado!! Quieres seguir con tu racha? Vuelve a intentarlo")
         desabilitarBotonesCombates()
         cajaMensajes.style.background = "#FFEB3B"
         cajaMensajes.style.boxShadow = "rgb(255 232 53) 0px 0px 20px 5px"
@@ -735,10 +768,12 @@ function crearMensajes() {
         emojisDelRival.appendChild(nuevoEmojiEnemigo);
 }
 
-function crearMesajeFinal(resultadoFinal) {
+function crearMesajeFinalClassic(resultadoFinal) {
     let sectionResultadoFinal = document.getElementById("mensajes2")
     let parrafo2 = document.createElement("p")
     parrafo2.innerHTML = resultadoFinal
+    divReiniciar.style.marginTop = "75px"
+
     
     sectionResultadoFinal.appendChild(parrafo2)
 }
