@@ -39,9 +39,76 @@ body {
     background-color: #FFF7D4;
     font-size: 10mm;}
 
-#Seleccionar-Elemento {
+.seleccionar-Modo{
     display: flex;
     flex-direction: column;
+    align-items: center;
+    width: 783px;
+    margin-top: 8px;
+    margin-inline: auto;
+    background-color: #121F3D;
+    border-radius: 20px;
+}
+.modosNinjas{
+    width: 93%;
+    height: 214px;
+    margin-top: 11px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+#modoPPT{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    background-color: #363a44;
+    background-image: none;
+    background-size: 235px 215px;
+    background-position: center;
+    width: auto;
+    height: 158px;
+    margin: 10px;
+    border-radius: 10px;
+    transition: 2s;    
+    color: #fdb42c;
+    border: 3px solid #83acfa;
+    text-align: center;
+    font-weight: bold;
+    font-size: 2.5rem;
+}#modoPPT img{ 
+    width: 168px;
+}
+
+
+#modoClassic{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    background-color: #363a44;
+    background-image: none;
+    background-size: 235px 215px;
+    background-position: center;
+    width: auto;
+    height: 157px;
+    margin: 10px;
+    border-radius: 10px;
+    transition: 2s;    
+    color: #fdb42c;
+    border: 3px solid #83acfa;
+    text-align: center;
+    font-weight: bold;
+    font-size: 2.5rem;
+
+}#modoClassic img{ 
+    width: 155px;
+
+}
+
+#Seleccionar-Elemento {
+    display: flex;
+    flex-direction: row;
     align-items: center;
     width: 783px;
     margin-top: 8px;
