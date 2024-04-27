@@ -130,7 +130,8 @@ function iniciarJuego() {
     sectionSeleccionarElementoJugador.style.display = "none"
 
     botonPPT.addEventListener("click", modoPPT)
-    botonClassic.addEventListener("click", modoClassic)
+     /* comentado hasta terminar el modo classic */
+    // botonClassic.addEventListener("click", modoClassic)
     tutorial.addEventListener("click", popTutorial)
 
 }
@@ -140,8 +141,7 @@ function modoPPT() {
     sectionSeleccionarModo.style.display = "none"
 
     divReiniciar.style.display = "flex"
-    tutorial.style.display = "none"
-
+    
     openBotones.addEventListener("click", abrirBotonesElementales)
     botonConfirmarCarta.addEventListener("click", encuentro)
 
@@ -433,6 +433,7 @@ function popTutorial() {
     let popupDelTutorial = document.getElementById("cajaTutorial")
     popupDelTutorial.style.opacity = "0"
     popupDelTutorial.style.pointerEvents = "none"
+    tutorial.style.position = "absolute"
 }
 
 // Seleccion Elemento del Jugador
@@ -440,7 +441,6 @@ function seleccionarElementoJugador() {
 
 sectionSeleccionarAtaques.style.display = "flex"
 sectionSeleccionarElementoJugador.style.display = "none"
-tutorial.style.display = "none"
 reinicioPrimero.style.display = "none"
 
 let emojiElementoDelJugador

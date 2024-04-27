@@ -43,15 +43,15 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 783px;
+    width: -webkit-fill-available;
+    position: absolute;
     margin-top: 8px;
     margin-inline: auto;
     background-color: #121F3D;
     border-radius: 20px;
+    align-content: center;
 }
 .modosNinjas{
-    width: 93%;
-    height: 214px;
     margin-top: 11px;
     display: flex;
     flex-wrap: nowrap;
@@ -61,7 +61,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    height: fit-content;
     background-color: #ffffff;
     background-image: none;
     background-size: 235px 215px;
@@ -74,37 +74,33 @@ body {
     text-align: center;
     font-weight: bold;
     font-size: 2.5rem;
-}#modoPPT img{ 
-    width: 168px;
 }#modoPPT:hover {
     border-color: #00ceff;
     font-size: 0rem;
-    display: flex;
-    align-items: center;
     background-repeat: no-repeat;
     background-size: cover;
-    width: 213px;
-    height: auto;
     background-color: #000000;
     text-shadow: black -4px 1px 3px;
     box-shadow: #aaaaaa -4px 0px 15px 2px;
     transition: 0.5s;
     padding-top: 14px;
-    padding-right: 0px;
+    padding-right: 8px;
     padding-left: 8px;
-    padding-bottom: 8px;
+    padding-bottom: 14px;
     cursor: pointer;
+}#modoPPT img{
+    width: 293px;
+    height: 250px;
 }
 #modoClassic{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    height: fit-content;
     background-color: #000000;
     background-image: none;
     background-size: 235px 215px;
     background-position: center;
-    width: 182px;
     margin: 10px;
     border-radius: 10px;
     transition: 2s;    
@@ -114,38 +110,35 @@ body {
     font-weight: bold;
     font-size: 2.5rem;
 
-}#modoClassic img{ 
-    width: 139px;
 }#modoClassic:hover {
     border-color: #00ceff;
     font-size: 0rem;
-    display: flex;
-    align-items: center;
     background-repeat: no-repeat;
     background-size: cover;
-    width: 213px;
-    height: auto;
     text-shadow: black -4px 1px 3px;
     background-color: #ffffff;
     box-shadow: #a1a09f 4px 0px 15px 2px;
     transition: 0.5s;
     padding-top: 14px;
-    padding-right: 0px;
+    padding-right: 8px;
     padding-left: 8px;
-    padding-bottom: 8px;
+    padding-bottom: 14px;
     cursor: pointer;
-    flex-direction: column;
+}#modoClassic img{
+    width: 268px;
 }
 
 #Seleccionar-Elemento {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 783px;
+    position: absolute;
+    width: -webkit-fill-available;
     margin-top: 8px;
     margin-inline: auto;
     background-color: #121F3D;
     border-radius: 20px;
+    z-index: 1;
     }
 
 .parrafo2Tutorial1 {
@@ -314,13 +307,15 @@ background: linear-gradient(0deg, rgba(249,217,187,1) 19%, rgba(238,172,114,1) 4
 }#Boton-confirmar-Elemento:hover{
     background-image: radial-gradient( circle farthest-corner at 10%20%,  rgba(244,164,96,1) 0%, rgba(143,188,143,1) 90% );}
 
-#cajaTutorial{
+.sectionTutorial{
+    position: relative;
+    pointer-events: none;
+}#cajaTutorial{
     display: flex;
     background-color: rgba(0, 0, 0, 0.3);
     align-items: center;
     justify-content: center;
     position: fixed;
-    pointer-events: none;
     opacity: 0;
     top: 0px;
     left: 0px;
@@ -328,6 +323,7 @@ background: linear-gradient(0deg, rgba(249,217,187,1) 19%, rgba(238,172,114,1) 4
     width: 100vw;
     transition: opacity 0.3s ease;
     font-family: cursive;
+    z-index: 3;
 }#open{
     display: flex;
     height: 26px;
@@ -335,12 +331,15 @@ background: linear-gradient(0deg, rgba(249,217,187,1) 19%, rgba(238,172,114,1) 4
     margin-block: 4px;
     padding: 10px;
     border: 0px;
-    background-image: linear-gradient( 83.2deg, rgba(150,93,233,1) 10.8%, rgba(99,88,238,1) 94.3% );
+    position: absolute;
+    background-image: linear-gradient(83.2deg, rgba(150, 93, 233, 1) 10.8%, rgba(99, 88, 238, 1) 94.3%);
     color: #121F3D;
     font-weight: bold;
     font-size: 16px;
     border-radius: 5px;
     align-items: center;
+    pointer-events: all;
+    z-index: 2;
     justify-content: center;
 }#open:hover {
     background-image: radial-gradient( circle farthest-corner at 10%20%,  rgba(244,164,96,1) 0%, rgba(143,188,143,1) 90% );
@@ -364,7 +363,7 @@ background: linear-gradient(0deg, rgba(249,217,187,1) 19%, rgba(238,172,114,1) 4
 }.tutorial {
     background-color: rgb(255, 255, 255);
     width: 100vw;
-    max-width: 66%;
+    max-width: 78%;
     height: 532px;
     border: 10px solid #4d6ebd;
     padding: 30px 50px;
@@ -794,6 +793,7 @@ background: linear-gradient(0deg, rgba(249,217,187,1) 19%, rgba(238,172,114,1) 4
 /* Seccion con el boton de reiniciar */
 #reiniciarClassic {
     width: 64px;
+    float: right;
 }#reiniciarClassic img {
     width: 40px;
 }#reiniciarClassic :hover {
@@ -811,11 +811,10 @@ background: linear-gradient(0deg, rgba(249,217,187,1) 19%, rgba(238,172,114,1) 4
 #botonReiniciar1 {
     display: flex;
     height: auto;
-    position: absolute;
     width: auto;
     padding: 7px;
     border: 0px;
-    background-image: linear-gradient( 83.2deg, rgba(150,93,233,1) 10.8%, rgba(99,88,238,1) 94.3% );
+    background-image: linear-gradient(83.2deg, rgba(150, 93, 233, 1) 10.8%, rgba(99, 88, 238, 1) 94.3%);
     color: #121F3D;
     font-weight: bold;
     font-size: 24px;
@@ -823,6 +822,7 @@ background: linear-gradient(0deg, rgba(249,217,187,1) 19%, rgba(238,172,114,1) 4
     align-items: center;
     justify-content: center;
     flex-direction: row;
+    z-index: 2;
 }#botonReiniciar2 {
     display: flex;
     height: 35px;
@@ -851,8 +851,16 @@ background: linear-gradient(0deg, rgba(249,217,187,1) 19%, rgba(238,172,114,1) 4
     border: 2px solid saddlebrown;
 }
  
-@media (max-width: 360px) {
+@media (max-width: 1000px) {
     .tarjetaDeNinja {
         flex-direction: column;
+    }
+    .modosNinjas{
+        flex-direction: column;
+    }#modoClassic img{
+        width: 368px;
+    }#modoPPT img{
+        width: 393px;
+        height: 350px;
     }
 }
