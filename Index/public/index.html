@@ -1,0 +1,225 @@
+<!-- index.html es de la rama platzi a la que migrare-->
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" content="width=device-width, initial-scale=1" />
+    <title>Card-Jitsu</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="/resources/favicon.ico">
+  </head>
+
+  <body>
+    <!-- Seccion que contiene la seleccion de modo de juego -->
+    <section class="seleccionar-Modo" id="seleccionarModo">
+      <h1 class="titulo">
+        <img src="./resources/ninja2.png" alt="ninjaTitulo" />
+        <img src="./resources/tituloCardJitsu.png" alt="tituloimg" />
+        <img src="./resources/ninjaComun1.png" alt="NinjaAgua" />
+      </h1>
+
+      <h2 class="subtitulo">Elige el modo de juego:</h2>
+      
+      <div id="contenedorModos" class="modosNinjas">
+        <button type="button" id="modoPPT">
+          <img src="./resources/cartas.png" />
+        </button>
+        <button type="button" id="modoClassic">
+          <img src="./resources/GemasDeFuegoNieveAgua.png" />
+        </button>
+      </div>
+    </section>
+    <!-- div que contiene todo lo referente al reinicio del modo classic -->
+    <div id="divReiniciarClassic">
+      <button id="botonReiniciar1">
+        <img src="./resources/regreso.png" alt="emojiReset" />
+      </button>
+    </div>
+
+    <!-- Seleccionar Ninja elemental del modo Classic -->
+    <section id="Seleccionar-Elemento">
+      <h1 class="titulo">
+        <img src="./resources/ninja2.png" alt="ninjaTitulo" />
+        <img src="./resources/tituloCardJitsu.png" alt="tituloimg" />
+        <img src="./resources/ninjaComun1.png" alt="NinjaAgua" />
+      </h1>
+
+      <h2 class="subtitulo">Elige a tu ninja:</h2>
+
+      <div id="contenedorPersonajes" class="PersonajesDeNinja"></div>
+
+      <button id="Boton-confirmar-Elemento">Confirmar</button>
+    </section>
+    <!-- Canvas del modo Classic -->
+    <section id="ver-mapa">
+      <h2 class="subtitulo" id="subtitulo">Recorre la senda con tu ninja</h2>
+
+      <div id="mapaYTeclas">
+        <canvas id="mapa"></canvas>
+        <div id="botonesCanvas">
+          <button
+            id="izquierda"
+            ontouchend="detenerMovimientoBotones()"
+            onmouseup="detenerMovimientoBotones()"
+            onmousedown="moverIzquierda()"
+            ontouchstart="moverIzquierda()"
+          >
+            ⬅
+          </button>
+          <div id="divArribaYAbajo">
+            <button
+              id="arriba"
+              ontouchend="detenerMovimientoBotones()"
+              onmouseup="detenerMovimientoBotones()"
+              onmousedown="moverArriba()"
+              ontouchstart="moverArriba()"
+            >
+              ⬆
+            </button>
+            <button
+              id="abajo"
+              ontouchend="detenerMovimientoBotones()"
+              onmouseup="detenerMovimientoBotones()"
+              onmousedown="moverAbajo()"
+              ontouchstart="moverAbajo()"
+            >
+              ⬇
+            </button>
+          </div>
+          <button
+            id="derecha"
+            ontouchend="detenerMovimientoBotones()"
+            onmouseup="detenerMovimientoBotones()"
+            onmousedown="moverDerecha()"
+            ontouchstart="moverDerecha()"
+          >
+            ➡
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tutorial y resumen de la pagina -->
+    <section class="sectionTutorial">
+      <div id="cajaTutorial">
+        <div class="tutorial" id="contenedorTutorial">
+          <h1 class="tituloTutorial">
+            <img src="./resources/ninja2.png" alt="ninjaTitulo" />
+            <img src="./resources/tituloCardJitsu.png" alt="tituloimg" />
+            <img src="./resources/ninjaComun1.png" alt="NinjaAgua" />
+          </h1>
+          <p class="parrafoTutorial">
+            Bienvenido a este pequeño proyecto sobre el Card-Jitsu.
+          </p>
+          <p class="parrafoTutorial1.2">
+            Este sitio replica el Card-Jitsu un minijuego original de
+            Club-Penguin, puedes elegir mi version supersimplificada de este a
+            un sencillo Piedra, Papel o Tijera, y en una futura actualizacion
+            estara disponible la jugabilidad del Card-Jitsu original.
+          </p>
+          <p class="parrafoTutorial1.2"
+              >Para Ganar en la version original debes sumar 3 cartas de
+              diferente color, sea del mismo elemento o no, pero para lograr
+              sumarlo tu eleccion debera vencer a la del rival ya sea por valor
+              numerico o por tipo de elemento. quien sume 3 cartas de diferentes
+              color primero gana</p>
+          <div class="imagenTutorial">
+            <p id="parrafoTutorial1">
+              Para vencer la eleccion del rival primero se debe saber el orden
+              de los elementos:
+            </p>
+            <p id="parrafoTutorial2">
+              Fuego vence Nieve, Agua vence Fuego, y Nieve vence Agua
+            </p>
+            <img
+              src="./resources/Tutorial.png"
+              class="imagenTutorial"
+              alt="Tutorial"
+            />
+          </div>
+
+          <button id="close">Cerrar</button>
+        </div>
+      </div>
+      <button id="open">Abrir tutorial</button>
+    </section>
+
+    <!-- Seccion completa de los enfrentamientos PPT y classic -->
+    <section id="seleccionar-ataques">
+      <div id="combateElemental">
+        <h1 class="tituloCombate">
+          <img src="./resources/ninja2.png" alt="ninjaTitulo" />
+          <img src="./resources/tituloCardJitsu.png" alt="tituloimg" />
+          <img src="./resources/ninjaComun1.png" alt="NinjaAgua" />
+        </h1>
+
+        <h2 class="subtitulo" id="subtitulo">HORA DEL COMBATE</h2>
+        <button id="emojiAbrirCartas" type="button" data-text="👇">
+          <img src="./resources/cartas.png" id="cartasEmojiAbrir" />
+        </button>
+
+        <!-- Personaje y visual del jugador -->
+        <label id="ContenidoTuyo" for="ContenidoDelJugador">
+          <p id="contenidoTuyo">
+            <img
+              src=""
+              id="emojiDeLaCardJugador"
+              alt="emojiDeLaCardJugador"
+            /><span id="conteoJugador"> 0</span>
+          </p>
+          <img
+            id="contenidoTuyoimg"
+            src="./resources/ninja2.png"
+            alt="NinjaJugador"
+          />
+        </label>
+        <!-- Personaje y visual del rival -->
+        <label id="ContenidoDelRival" for="ContenidoDelRival">
+          <p id="contenidoDelRival">
+            <img
+              src=""
+              id="emojiDeLaCardRival"
+              alt="emojiDeLaCardJugador"
+            /><span id="conteoRival">0</span>
+          </p>
+          <img
+            id="contenidoDelRivalimg"
+            src="./resources/ninja2.png"
+            alt="NinjaRival"
+          />
+        </label>
+
+        <div id="divConfirmarCarta">
+          <button id="botonConfirmarCarta">Confirmar carta</button>
+        </div>
+        <div class="CajaCartas" id="CajaCartas"></div>
+
+        <!-- seccion del resultado de los enfrentamientos -->
+        <section id="enfrentamiento">
+          <div id="divAtaqueElementalJugador">
+            <img
+              id="ataqueElementalJugador"
+              src="./resources/cartas.png"
+              alt="ataqueJugador"
+            />
+          </div>
+          <div id="listaMensajes"><p id="cajaMensajes">⚔️</p></div>
+          <div id="divAtaqueElementalRival">
+            <img
+              id="ataqueElementalRival"
+              src="./resources/cartas.png"
+              alt="ataqueRival"
+            />
+          </div>
+        </section>
+
+        <section id="mensajes2">
+          <p></p>
+        </section>
+      </div>
+      <div id="divReiniciarPPT">
+        <button id="botonReiniciar2">Volver a empezar</button>
+      </div>
+    </section>
+    <script src="./main.js"></script>
+  </body>
+</html>

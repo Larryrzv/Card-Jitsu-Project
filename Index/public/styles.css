@@ -1,0 +1,1067 @@
+/* este styles.js es de la rama platzi a la que migrare */
+
+/* Caligrafia y tipo de letra */
+@font-face {
+  font-family: Candombe;
+  src: url(./resources/Candombe/candombe.ttf);
+}
+/* Body del html */
+body {
+  font-family: Candombe;
+  background-color: #101e3e;
+}
+/* Titulo y subtitulos */
+.titulo {
+  color: black;
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+  width: 264px;
+  height: 149px;
+  padding-right: 8px;
+  border-radius: 13px;
+  background: rgb(76, 61, 61);
+  background: linear-gradient(
+    0deg,
+    rgba(76, 61, 61, 1) 1%,
+    rgba(192, 112, 0, 1) 31%,
+    rgba(225, 175, 48, 1) 45%,
+    rgba(254, 244, 205, 1) 99%
+  );
+  flex-direction: row;
+  align-items: center;
+}
+.titulo img {
+  width: 327px;
+  height: 144px;
+  margin-inline: 13%;
+  margin-top: 1px;
+  display: flex;
+}
+.subtitulo {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  width: auto;
+  height: 29px;
+  margin-top: -5px;
+  margin-bottom: 16px;
+  border-radius: 13px;
+  padding: 5px;
+  color: black;
+  background-color: #fff7d4;
+  font-size: 10mm;
+}
+
+/* Modos de juego */
+.seleccionar-Modo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: -webkit-fill-available;
+  position: absolute;
+  margin-top: 8px;
+  margin-inline: auto;
+  background-color: #121f3d;
+  border-radius: 20px;
+  align-content: center;
+}
+.modosNinjas {
+  margin-top: 11px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+/* Modo PPT, Modo simplificado */
+#modoPPT {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: fit-content;
+  background-color: #ffffff;
+  background-image: none;
+  background-size: 235px 215px;
+  background-position: center;
+  margin: 10px;
+  border-radius: 10px;
+  transition: 2s;
+  color: #fdb42c;
+  border: 3px solid #83acfa;
+  text-align: center;
+  font-weight: bold;
+  font-size: 2.5rem;
+}
+#modoPPT:hover {
+  border-color: #00ceff;
+  font-size: 0rem;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #000000;
+  text-shadow: black -4px 1px 3px;
+  box-shadow: #aaaaaa -4px 0px 15px 2px;
+  transition: 0.5s;
+  padding-top: 14px;
+  padding-right: 8px;
+  padding-left: 8px;
+  padding-bottom: 14px;
+  cursor: pointer;
+}
+#modoPPT img {
+  width: 293px;
+  height: 250px;
+}
+/* Modo Classic, Modo original */
+#modoClassic {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: fit-content;
+  background-color: #000000;
+  background-image: none;
+  background-size: 235px 215px;
+  background-position: center;
+  margin: 10px;
+  border-radius: 10px;
+  transition: 2s;
+  color: #fdb42c;
+  border: 3px solid #83acfa;
+  text-align: center;
+  font-weight: bold;
+  font-size: 2.5rem;
+  padding: 4px;
+  pointer-events: none;
+}
+#modoClassic:hover {
+  border-color: #00ceff;
+  font-size: 0rem;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-shadow: black -4px 1px 3px;
+  background-color: #ffffff;
+  box-shadow: #a1a09f 4px 0px 15px 2px;
+  transition: 0.5s;
+  padding-top: 14px;
+  padding-right: 8px;
+  padding-left: 8px;
+  padding-bottom: 14px;
+  cursor: pointer;
+}
+#modoClassic img {
+  width: 268px;
+}
+/* Seleccionar elemento del Jugador, Modo Classic */
+#Seleccionar-Elemento {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: -webkit-fill-available;
+  position: absolute;
+  margin-top: 8px;
+  margin-inline: auto;
+  background-color: #121f3d;
+  border-radius: 20px;
+  align-content: center;
+}
+
+
+/* Seccion de los ninjas a seleccionar*/
+.PersonajesDeNinja {
+  flex-direction: row;
+  align-items: center;
+  margin-top: 11px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+.PersonajesDeNinja img {
+  width: 210px;
+  margin-block-start: -7px;
+  margin-block-end: auto;
+  object-fit: contain;
+}
+#decoracionDeSeleccion {
+  width: 140px;
+  margin-top: auto;
+}
+
+.tarjetaComunNinja {
+  color: #fdb42c;
+  width: 210px;
+  margin: 10px;
+  padding: 10px;
+  padding-top: 0px;
+  transition: 0s;
+  background-image: none;
+  background-size: 235px 215px;
+  background-position: center;
+  border: 3px solid #83acfa;
+  text-align: center;
+  font-weight: bold;
+  font-size: 2.5rem;
+  border-radius: 10px;
+  background-color: #363a44;
+}
+.tarjetaComunNinja:hover {
+  display: flex;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 110%;
+  text-shadow: black -4px 1px 3px;
+  background-color: #070500;
+  box-shadow: #a1a09f 0px -7px 15px;
+  transition: 0.5s;
+  padding-top: 14px;
+  padding-right: 0px;
+  padding-left: 8px;
+  padding-bottom: 0px;
+  cursor: pointer;
+  font-size: 3.5rem;
+  flex-direction: column;
+}
+#tarjetaDeAgua:hover {
+  border-color: #00ceff;
+  background-image: url(./resources/gemaDeAguaShiny.png);
+}
+#tarjetaDeNieve:hover {
+  border-color: #d4e6ff;
+  background-image: url(./resources/gemaDeNieveShiny.png);
+}
+#tarjetaDeFuego:hover {
+  border-color: #ffc342;
+  background-image: url(./resources/gemaDeFuegoShiny.png);
+}
+input {
+  display: none;
+  transition: 0s;
+}
+input:checked + label {
+  color: whitesmoke;
+  transition: 0.5s;
+  background-color: rgb(249, 217, 187);
+  background: linear-gradient(
+    0deg,
+    rgba(249, 217, 187, 1) 19%,
+    rgba(238, 172, 114, 1) 41%,
+    rgba(225, 119, 29, 1) 82%
+  );
+  box-shadow: #e1771d 0px -7px 15px 1px;
+  border: solid 1px white;
+}
+
+#Boton-confirmar-Elemento {
+  display: flex;
+  height: 35px;
+  width: 281px;
+  margin-block: 4px;
+  padding: 10px;
+  border: 0px;
+  background-image: linear-gradient(
+    83.2deg,
+    rgba(150, 93, 233, 1) 10.8%,
+    rgba(99, 88, 238, 1) 94.3%
+  );
+  color: #121f3d;
+  font-weight: bold;
+  font-size: 24px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+}
+#Boton-confirmar-Elemento:hover {
+  background-image: radial-gradient(
+    circle farthest-corner at 10%20%,
+    rgba(244, 164, 96, 1) 0%,
+    rgba(143, 188, 143, 1) 90%
+  );
+}
+
+/* Todo el Tutorial y resumen de la pagina */
+#cajaTutorial {
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.3);
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  pointer-events: none;
+  opacity: 0;
+  top: 0px;
+  left: 0px;
+  height: 100vh;
+  width: 100vw;
+  transition: opacity 0.3s ease;
+  font-family: cursive;
+  z-index: 2;
+}
+#open {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  height: 26px;
+  width: 132px;
+  margin-block: 4px;
+  padding: 10px;
+  border: 0px;
+  background-image: linear-gradient(
+    83.2deg,
+    rgba(150, 93, 233, 1) 10.8%,
+    rgba(99, 88, 238, 1) 94.3%
+  );
+  color: #121f3d;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 5px;
+  z-index: 1;
+}
+#open:hover {
+  background-image: radial-gradient(
+    circle farthest-corner at 10%20%,
+    rgba(244, 164, 96, 1) 0%,
+    rgba(143, 188, 143, 1) 90%
+  );
+}
+.tituloTutorial {
+  color: black;
+  margin-inline: auto;
+  margin-top: 0px;
+  margin-bottom: -9px;
+  display: flex;
+  justify-content: center;
+  width: 191px;
+  height: 126px;
+  gap: 41px;
+  padding-right: 7px;
+  border-radius: 13px;
+  flex-direction: row;
+  background: rgb(76, 61, 61);
+  background: linear-gradient(
+    0deg,
+    rgba(76, 61, 61, 1) 1%,
+    rgba(192, 112, 0, 1) 31%,
+    rgba(225, 175, 48, 1) 45%,
+    rgba(254, 244, 205, 1) 99%
+  );
+}
+.tituloTutorial img {
+  width: 170px;
+}
+.tutorial {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgb(255, 255, 255);
+  max-width: 75%;
+  max-height: 84%;
+  border: 10px solid #4d6ebd;
+  padding: 30px 50px;
+  border-radius: 7px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px;
+  text-align: center;
+  font-size: 5mm;
+}
+#imagenTutorial {
+  display: flex;
+  justify-content: center;
+}
+#parrafoTutorial1 {
+  margin-top: -11px;
+}
+#parrafoTutorial2 {
+  margin-top: -23px;
+  margin-bottom: 1px;
+  font-weight: bolder;
+}
+#close {
+  height: 35px;
+  width: 281px;
+  margin-block: 8px;
+  padding: 10px;
+  border: 0px;
+  padding-block: 5px;
+  background-image: linear-gradient(
+    83.2deg,
+    rgba(150, 93, 233, 1) 10.8%,
+    rgba(99, 88, 238, 1) 94.3%
+  );
+  color: #121f3d;
+  font-weight: bold;
+  font-size: 24px;
+  border-radius: 10px;
+}
+#close:hover {
+  background-image: radial-gradient(
+    circle farthest-corner at 10%20%,
+    rgba(244, 164, 96, 1) 0%,
+    rgba(143, 188, 143, 1) 90%
+  );
+}
+
+/* Seccion del combate elemental */
+#combateElemental {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3px;
+  background-color: #121f3d;
+  border-radius: 20px;
+  width: auto;
+  height: 572px;
+  font-family: Candombe;
+}
+.tituloCombate {
+  color: black;
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+}
+.tituloCombate img {
+  height: 73px;
+  margin-top: -5px;
+  margin-inline: -5px;
+  padding: 6px;
+  padding-inline: 9px;
+  border-radius: 9px;
+  background: rgb(76, 61, 61);
+  background: linear-gradient(
+    0deg,
+    rgba(76, 61, 61, 1) 1%,
+    rgba(192, 112, 0, 1) 31%,
+    rgba(225, 175, 48, 1) 45%,
+    rgba(254, 244, 205, 1) 99%
+  );
+}
+
+#ver-mapa {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: -webkit-fill-available;
+  position: fixed;
+}
+#mapa {
+  border: 2px solid saddlebrown;
+  margin: 10px;
+}
+#mapaYTeclas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#botonesCanvas {
+  display: flex;
+  margin: 6px;
+  gap: 5px;
+  flex-direction: row;
+  align-items: center;
+}
+#arriba {
+  display: flex;
+  height: auto;
+  width: auto;
+  border: 0px;
+  user-select: none;
+  background-image: linear-gradient(
+    83.2deg,
+    rgba(150, 93, 233, 1) 10.8%,
+    rgba(99, 88, 238, 1) 94.3%
+  );
+  color: #121f3d;
+  font-weight: bold;
+  font-size: 47px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+#arriba:hover {
+  background-image: radial-gradient(
+    circle farthest-corner at 10%20%,
+    rgba(244, 164, 96, 1) 0%,
+    rgba(143, 188, 143, 1) 90%
+  );
+}
+#abajo {
+  display: flex;
+  height: auto;
+  width: auto;
+  border: 0px;
+  user-select: none;
+  background-image: linear-gradient(
+    83.2deg,
+    rgba(150, 93, 233, 1) 10.8%,
+    rgba(99, 88, 238, 1) 94.3%
+  );
+  color: #121f3d;
+  font-weight: bold;
+  font-size: 47px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+#abajo:hover {
+  background-image: radial-gradient(
+    circle farthest-corner at 10%20%,
+    rgba(244, 164, 96, 1) 0%,
+    rgba(143, 188, 143, 1) 90%
+  );
+}
+#divArribaYAbajo {
+  display: flex;
+  flex-direction: column;
+  gap: 27px;
+}
+#derecha {
+  display: flex;
+  height: auto;
+  width: auto;
+  border: 0px;
+  user-select: none;
+  background-image: linear-gradient(
+    83.2deg,
+    rgba(150, 93, 233, 1) 10.8%,
+    rgba(99, 88, 238, 1) 94.3%
+  );
+  color: #121f3d;
+  font-weight: bold;
+  font-size: 47px;
+  border-radius: 10px;
+}
+#derecha:hover {
+  background-image: radial-gradient(
+    circle farthest-corner at 10%20%,
+    rgba(244, 164, 96, 1) 0%,
+    rgba(143, 188, 143, 1) 90%
+  );
+}
+#izquierda {
+  display: flex;
+  height: auto;
+  width: auto;
+  position: relative;
+  border: 0px;
+  user-select: none;
+  background-image: linear-gradient(
+    83.2deg,
+    rgba(150, 93, 233, 1) 10.8%,
+    rgba(99, 88, 238, 1) 94.3%
+  );
+  color: #121f3d;
+  font-weight: bold;
+  font-size: 47px;
+  border-radius: 10px;
+}
+#izquierda:hover {
+  background-image: radial-gradient(
+    circle farthest-corner at 10%20%,
+    rgba(244, 164, 96, 1) 0%,
+    rgba(143, 188, 143, 1) 90%
+  );
+}
+
+/* revisar */
+#emojiAbrirCartas {
+  display: flex;
+  flex-direction: row;
+  background: #c7c4ed;
+  border: solid white;
+  border-radius: 8px;
+  width: 175px;
+  height: 78px;
+  font-size: 32px;
+  font-family: Candombe;
+  margin-inline-start: -530px;
+  margin-block-end: 32px;
+  align-items: center;
+  justify-content: flex-start;
+}
+#emojiAbrirCartas:hover {
+  background: radial-gradient(
+    circle farthest-corner at 10%20%,
+    rgba(244, 164, 96, 1) 0%,
+    rgba(143, 188, 143, 1) 90%
+  );
+}
+#emojiAbrirCartas img {
+  width: 92px;
+  order: 1; /* un orden mayor que el del emoji */
+}
+#emojiAbrirCartas::after {
+  order: 0; /* un orden menor que el de la imagen */
+  content: attr(data-text); /* usar el valor del atributo data-text */
+}
+.CajaCartas {
+  display: flex;
+  background: rgb(159 163 187);
+  align-items: flex-start;
+  pointer-events: none;
+  border-radius: 13px;
+  overflow: auto;
+  border: solid 5px #24313a;
+  opacity: 0;
+  padding: 3px;
+  margin-top: -303px;
+  margin-inline-end: 657px;
+  height: 302px;
+  width: auto;
+  gap: 10px;
+  font-family: cursive;
+  flex-direction: column;
+}
+.CajaCartas::-webkit-scrollbar {
+  width: 10px; /* ancho de la barra vertical */
+  height: 10px; /* alto de la barra horizontal */
+}
+
+/* Cambiar el color y el borde del área de desplazamiento */
+.CajaCartas::-webkit-scrollbar-track {
+  background: #f1f1f1; /* color de fondo */
+  border: 2px solid #888; /* color y grosor del borde */
+  border-radius: 16px; /*redondez del borde*/
+}
+
+/* Cambiar el color, el borde y la sombra del botón de desplazamiento */
+.CajaCartas::-webkit-scrollbar-thumb {
+  background: #555; /* color de fondo */
+  border: 2px solid #888; /* color y grosor del borde */
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); /* sombra interna */
+}
+#closeBotones {
+  background: none;
+  border: none;
+  margin-block-end: -15px;
+  margin-block-start: -10px;
+}
+#closeBotones img {
+  width: 45px;
+}
+#closeBotones :hover {
+  filter: invert(1);
+}
+/* Boton generico para nieve */
+#boton-Nieve {
+  display: flex;
+  flex-direction: column;
+  background: #c7c4ed;
+  border: solid white;
+  border-radius: 8px;
+  width: 66px;
+  height: 82px;
+  font-size: 32px;
+  font-family: Candombe;
+  position: relative;
+  justify-content: center;
+  padding-block-end: 9px;
+  align-items: center;
+}
+#boton-Nieve img {
+  width: 40px;
+  pointer-events: none;
+}
+#boton-Nieve:hover img {
+  width: 37px;
+}
+#boton-Nieve:hover {
+  display: flex;
+  font-size: 28px;
+  width: 66px;
+  height: 82px;
+  cursor: pointer;
+  justify-content: center;
+  background: #9d9ac6;
+  border: solid #9b9b9b;
+}
+#boton-Nieve:active {
+  background: #a3a1c4;
+  color: white;
+  border: solid #393754;
+  transition: 0s;
+}
+/* Boton generico para fuego */
+#boton-Fuego {
+  display: flex;
+  flex-direction: column;
+  background: rgb(243, 220, 13);
+  border: solid white;
+  border-radius: 8px;
+  width: 66px;
+  height: 82px;
+  font-size: 32px;
+  font-family: Candombe;
+  position: relative;
+  justify-content: center;
+  padding-block-end: 9px;
+  align-items: center;
+}
+#boton-Fuego:hover {
+  display: flex;
+  font-size: 28px;
+  width: 66px;
+  height: 82px;
+  cursor: pointer;
+  justify-content: center;
+  background: rgb(183, 166, 10);
+  border: solid #9b9b9b;
+}
+#boton-Fuego img {
+  width: 40px;
+  pointer-events: none;
+}
+#boton-Fuego:hover img {
+  width: 37px;
+}
+#boton-Fuego:active {
+  background-color: rgb(246 151 42);
+  color: white;
+  border: solid #192f36;
+  transition: 0s;
+}
+/* Boton generico para agua */
+#boton-Agua {
+  display: flex;
+  flex-direction: column;
+  background: #03b1f4;
+  border: solid white;
+  border-radius: 8px;
+  width: 66px;
+  height: 82px;
+  font-size: 32px;
+  font-family: Candombe;
+  position: relative;
+  justify-content: center;
+  padding-block-end: 9px;
+  align-items: center;
+}
+#boton-Agua:hover {
+  display: flex;
+  width: 66px;
+  height: 82px;
+  font-size: 28px;
+  cursor: pointer;
+  justify-content: center;
+  background: #0e84b2;
+  border: solid #9b9b9b;
+}
+#boton-Agua:active {
+  background-color: #0373f4;
+  color: white;
+  border: solid #192f36;
+  transition: 0s;
+}
+#boton-Agua img {
+  width: 40px;
+  pointer-events: none;
+}
+#boton-Agua:hover img {
+  width: 37px;
+}
+
+#botonesAtaques img {
+  width: 45px;
+  margin-top: -1px;
+}
+
+#seleccionar-ataques {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -6px;
+  margin-left: 142px;
+  border-radius: 20px;
+  width: 74vw;
+}
+
+/* Cajas con tu ninja y el ninja rival */
+#ContenidoTuyo {
+  display: flex;
+  height: 265px;
+  width: 156px;
+  pointer-events: none;
+  transition: 1s;
+  align-items: center;
+  flex-direction: column;
+  margin-top: -20px;
+  margin-right: 578px;
+  margin-left: 48px;
+  border-radius: 13px;
+  border: 10px solid #014d98;
+  box-shadow: rgb(34, 133, 179) 0px 0px 20px 2px;
+  background-position: -8px -5px;
+  background-repeat: no-repeat;
+  background-size: 199px 236px;
+  background-position: center;
+  background-image: url(./resources/gemaDeNieveShiny.png);
+  background-color: #7fb6ff;
+}
+#emojiDeLaCardJugador {
+  width: 37px;
+  margin-top: 10px;
+}
+#contenidoTuyo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  width: 48px;
+  height: 83px;
+  border-radius: 13px;
+  padding-top: 6px;
+  margin-top: -10px;
+  margin-bottom: -66px;
+  margin-left: -128px;
+  font-size: 12mm;
+  background-color: #014d98;
+}
+#contenidoTuyoimg {
+  width: 245px;
+  padding-left: 12px;
+  margin-top: 11px;
+}
+#ContenidoDelRival {
+  display: flex;
+  height: 265px;
+  width: 156px;
+  transition: 1s;
+  align-items: center;
+  flex-direction: column;
+  margin-top: -310px;
+  margin-right: 48px;
+  margin-left: 578px;
+  border-radius: 13px;
+  border: 10px solid #014d98;
+  box-shadow: rgb(34, 133, 179) 0px 0px 20px 2px;
+  background-position: -8px -5px;
+  background-repeat: no-repeat;
+  background-size: 199px 236px;
+  background-position: center;
+  background-image: url(./resources/gemaDeNieveShiny.png);
+  background-color: #7fb6ff;
+}
+#contenidoDelRival {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 83px;
+  border-radius: 13px;
+  padding-top: 6px;
+  margin-top: -10px;
+  margin-bottom: -66px;
+  margin-left: -128px;
+  font-size: 12mm;
+  background-color: #014d98;
+}
+#contenidoDelRivalimg {
+  width: 245px;
+  padding-left: 12px;
+  margin-top: 15px;
+}
+#emojiDeLaCardRival {
+  width: 37px;
+  margin-top: 10px;
+}
+
+/* revisar */
+.seleccionComoda {
+  margin: 9px;
+}
+
+/* Caja con el resultado del enfrentamiento elemental  */
+#divConfirmarCarta {
+  display: flex;
+  position: relative;
+  bottom: 271px;
+  right: 128px;
+  pointer-events: none;
+  opacity: 0;
+}
+#botonConfirmarCarta {
+  display: flex;
+  height: 45px;
+  width: 98px;
+  padding: 10px;
+  border: 0px;
+  position: absolute;
+  background-image: linear-gradient(
+    83.2deg,
+    rgba(150, 93, 233, 1) 10.8%,
+    rgba(99, 88, 238, 1) 94.3%
+  );
+  color: #121f3d;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+#botonConfirmarCarta:hover {
+  background-image: radial-gradient(
+    circle farthest-corner at 10%20%,
+    rgba(244, 164, 96, 1) 0%,
+    rgba(143, 188, 143, 1) 90%
+  );
+}
+#enfrentamiento {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  width: auto;
+  height: auto;
+  border-radius: 20px;
+  border: solid aqua;
+  background: aliceblue;
+  margin-top: -234px;
+  margin-left: 10px;
+  font-size: 9.3mm;
+}
+#ataqueElementalJugador {
+  width: 81px;
+  margin-top: 9px;
+}
+#divAtaqueElementalJugador {
+  margin-left: 5px;
+  margin-block: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+#emojisProta {
+  width: 59px;
+}
+#ataqueElementalJugador {
+  width: 81px;
+}
+#ataqueElementalRival {
+  width: 82px;
+  margin-top: 9px;
+}
+#divAtaqueElementalRival {
+  margin-right: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+#emojisNoProta {
+  width: 59px;
+}
+#cajaMensajes {
+  margin-block: auto;
+}
+#listaMensajes {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 38px;
+  margin-inline: 28px;
+}
+#mensajes2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 15px;
+  font-size: 10mm;
+  height: 53px;
+  position: relative;
+  width: auto;
+  padding-inline: 7px;
+  border-radius: 20px;
+  background: none;
+  justify-content: center;
+}
+
+/* Botones y divs de reiniciar PPT y Classic */
+#divReiniciarClassic {
+  float: right;
+}
+#reiniciarClassic :hover {
+  background-image: radial-gradient(
+    circle farthest-corner at 10%20%,
+    rgba(244, 164, 96, 1) 0%,
+    rgba(143, 188, 143, 1) 90%
+  );
+}
+#botonReiniciar1 {
+  display: flex;
+  height: auto;
+  width: auto;
+  padding: 7px;
+  border: 0px;
+  background-image: linear-gradient(
+    83.2deg,
+    rgba(150, 93, 233, 1) 10.8%,
+    rgba(99, 88, 238, 1) 94.3%
+  );
+  color: #121f3d;
+  font-weight: bold;
+  font-size: 24px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  z-index: 2;
+}
+#botonReiniciar1:hover {
+  background-image: radial-gradient(
+    circle farthest-corner at 10%20%,
+    rgba(244, 164, 96, 1) 0%,
+    rgba(143, 188, 143, 1) 90%
+  );
+}
+#botonReiniciar1 img {
+  width: 40px;
+}
+
+#divReiniciarPPT {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 49px;
+  background-color: #121f3d;
+  border-radius: 20px;
+}
+#divReiniciarPPT :hover {
+  background-image: radial-gradient(
+    circle farthest-corner at 10%20%,
+    rgba(244, 164, 96, 1) 0%,
+    rgba(143, 188, 143, 1) 90%
+  );
+}
+#botonReiniciar2 {
+  display: flex;
+  height: 35px;
+  width: 281px;
+  padding: 10px;
+  border: 0px;
+  background-image: linear-gradient(
+    83.2deg,
+    rgba(150, 93, 233, 1) 10.8%,
+    rgba(99, 88, 238, 1) 94.3%
+  );
+  color: #121f3d;
+  font-weight: bold;
+  font-size: 24px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+/* Formato para telefonos y pantallas pequeñas */
+@media (width < 1000px) {
+  .tarjetaDeNinja {
+    flex-direction: column;
+  }
+  #contenedorPersonajes {
+    flex-direction: column;
+    align-items: center;
+  }
+}
