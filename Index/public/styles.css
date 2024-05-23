@@ -37,6 +37,7 @@ body {
   margin-inline: 13%;
   margin-top: 1px;
   display: flex;
+  user-select: none;
 }
 .subtitulo {
   justify-content: center;
@@ -51,6 +52,7 @@ body {
   color: black;
   background-color: #fff7d4;
   font-size: 10mm;
+  user-select: none;
 }
 
 /* Modos de juego */
@@ -65,12 +67,14 @@ body {
   background-color: #121f3d;
   border-radius: 20px;
   align-content: center;
+  user-select: none;
 }
 .modosNinjas {
   margin-top: 11px;
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
+  user-select: none;
 }
 
 /* Modo PPT, Modo simplificado */
@@ -130,7 +134,6 @@ body {
   font-weight: bold;
   font-size: 2.5rem;
   padding: 4px;
-  pointer-events: none;
 }
 #modoClassic:hover {
   border-color: #00ceff;
@@ -173,6 +176,7 @@ body {
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
+  user-select: none;
 }
 .PersonajesDeNinja img {
   width: 210px;
@@ -187,7 +191,7 @@ body {
 
 .tarjetaComunNinja {
   color: #fdb42c;
-  width: 210px;
+  width: min-content;
   margin: 10px;
   padding: 10px;
   padding-top: 0px;
@@ -252,22 +256,22 @@ input:checked + label {
 
 #Boton-confirmar-Elemento {
   display: flex;
-  height: 35px;
-  width: 281px;
+  font-weight: bold;
+  align-items: center;
+  justify-content: center;
+  height: 49px;
+  width: 311px;
   margin-block: 4px;
   padding: 10px;
   border: 0px;
-  background-image: linear-gradient(
-    83.2deg,
-    rgba(150, 93, 233, 1) 10.8%,
-    rgba(99, 88, 238, 1) 94.3%
-  );
-  color: #121f3d;
-  font-weight: bold;
-  font-size: 24px;
+  font-size: 34px;
   border-radius: 10px;
-  align-items: center;
-  justify-content: center;
+  background-image: linear-gradient(
+  83.2deg,
+  rgba(150, 93, 233, 1) 10.8%,
+  rgba(99, 88, 238, 1) 94.3%
+);
+  color: #121f3d;
 }
 #Boton-confirmar-Elemento:hover {
   background-image: radial-gradient(
@@ -283,35 +287,34 @@ input:checked + label {
   background-color: rgba(0, 0, 0, 0.3);
   align-items: center;
   justify-content: center;
-  position: fixed;
+  position: relative;
   pointer-events: none;
   opacity: 0;
+  height: 644px;
   top: 0px;
   left: 0px;
-  height: 100vh;
-  width: 100vw;
   transition: opacity 0.3s ease;
-  font-family: cursive;
+  font-family: sans-serif;
   z-index: 2;
 }
-#open {
+#open {    
   display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;
-  height: 26px;
-  width: 132px;
+  height: 35px;
+  width: 148px;
   margin-block: 4px;
   padding: 10px;
   border: 0px;
   background-image: linear-gradient(
-    83.2deg,
-    rgba(150, 93, 233, 1) 10.8%,
-    rgba(99, 88, 238, 1) 94.3%
-  );
+  83.2deg,
+  rgba(150, 93, 233, 1) 10.8%,
+  rgba(99, 88, 238, 1) 94.3%
+);
   color: #121f3d;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 20px;
   border-radius: 5px;
   z-index: 1;
 }
@@ -353,7 +356,7 @@ input:checked + label {
   flex-direction: column;
   background-color: rgb(255, 255, 255);
   max-width: 75%;
-  max-height: 84%;
+  height: auto;
   border: 10px solid #4d6ebd;
   padding: 30px 50px;
   border-radius: 7px;
@@ -365,8 +368,8 @@ input:checked + label {
   display: flex;
   justify-content: center;
 }
-#parrafoTutorial1 {
-  margin-top: -11px;
+.parrafoTutorial12 {
+  margin-block: 0px;
 }
 #parrafoTutorial2 {
   margin-top: -23px;
@@ -374,7 +377,7 @@ input:checked + label {
   font-weight: bolder;
 }
 #close {
-  height: 35px;
+  height: auto;  
   width: 281px;
   margin-block: 8px;
   padding: 10px;
@@ -407,7 +410,7 @@ input:checked + label {
   background-color: #121f3d;
   border-radius: 20px;
   width: auto;
-  height: 572px;
+  height: auto;
   font-family: Candombe;
 }
 .tituloCombate {
@@ -440,11 +443,12 @@ input:checked + label {
   align-items: center;
   justify-content: center;
   width: -webkit-fill-available;
-  position: fixed;
+  position: absolute;
 }
 #mapa {
   border: 2px solid saddlebrown;
   margin: 10px;
+  aspect-ratio: 1193 / 513;
 }
 #mapaYTeclas {
   display: flex;
@@ -542,7 +546,6 @@ input:checked + label {
   display: flex;
   height: auto;
   width: auto;
-  position: relative;
   border: 0px;
   user-select: none;
   background-image: linear-gradient(
@@ -562,6 +565,16 @@ input:checked + label {
     rgba(143, 188, 143, 1) 90%
   );
 }
+#advertenciaCanvas {
+  margin-bottom: -10px;
+  color: #ffffff45;
+  font-size: 12px;
+  font-family: 'Open Sans';
+  font-style: italic;
+  user-select: none;
+}
+
+
 
 /* revisar */
 #emojiAbrirCartas {
@@ -597,20 +610,22 @@ input:checked + label {
 .CajaCartas {
   display: flex;
   background: rgb(159 163 187);
-  align-items: flex-start;
   pointer-events: none;
+  position: absolute;
   border-radius: 13px;
   overflow: auto;
   border: solid 5px #24313a;
   opacity: 0;
-  padding: 3px;
-  margin-top: -303px;
-  margin-inline-end: 657px;
-  height: 302px;
-  width: auto;
+  padding: 5px;
+  margin-right: 577px;
+  margin-top: 234px;
+  width: 198px;
+  height: auto;
   gap: 10px;
-  font-family: cursive;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 .CajaCartas::-webkit-scrollbar {
   width: 10px; /* ancho de la barra vertical */
@@ -642,6 +657,8 @@ input:checked + label {
 #closeBotones :hover {
   filter: invert(1);
 }
+/* Botones del modo PPT */
+
 /* Boton generico para nieve */
 #boton-Nieve {
   display: flex;
@@ -649,9 +666,9 @@ input:checked + label {
   background: #c7c4ed;
   border: solid white;
   border-radius: 8px;
-  width: 66px;
-  height: 82px;
-  font-size: 32px;
+  width: auto;
+  height: auto;
+  font-size: 74px;
   font-family: Candombe;
   position: relative;
   justify-content: center;
@@ -659,19 +676,12 @@ input:checked + label {
   align-items: center;
 }
 #boton-Nieve img {
-  width: 40px;
+  width: 78px;
   pointer-events: none;
-}
-#boton-Nieve:hover img {
-  width: 37px;
 }
 #boton-Nieve:hover {
   display: flex;
-  font-size: 28px;
-  width: 66px;
-  height: 82px;
   cursor: pointer;
-  justify-content: center;
   background: #9d9ac6;
   border: solid #9b9b9b;
 }
@@ -688,9 +698,9 @@ input:checked + label {
   background: rgb(243, 220, 13);
   border: solid white;
   border-radius: 8px;
-  width: 66px;
-  height: 82px;
-  font-size: 32px;
+  width: auto;
+  height: auto;
+  font-size: 74px;
   font-family: Candombe;
   position: relative;
   justify-content: center;
@@ -699,20 +709,13 @@ input:checked + label {
 }
 #boton-Fuego:hover {
   display: flex;
-  font-size: 28px;
-  width: 66px;
-  height: 82px;
   cursor: pointer;
-  justify-content: center;
   background: rgb(183, 166, 10);
   border: solid #9b9b9b;
 }
 #boton-Fuego img {
-  width: 40px;
+  width: 78px;
   pointer-events: none;
-}
-#boton-Fuego:hover img {
-  width: 37px;
 }
 #boton-Fuego:active {
   background-color: rgb(246 151 42);
@@ -727,9 +730,9 @@ input:checked + label {
   background: #03b1f4;
   border: solid white;
   border-radius: 8px;
-  width: 66px;
-  height: 82px;
-  font-size: 32px;
+  width: auto;
+  height: auto;
+  font-size: 74px;
   font-family: Candombe;
   position: relative;
   justify-content: center;
@@ -738,11 +741,7 @@ input:checked + label {
 }
 #boton-Agua:hover {
   display: flex;
-  width: 66px;
-  height: 82px;
-  font-size: 28px;
   cursor: pointer;
-  justify-content: center;
   background: #0e84b2;
   border: solid #9b9b9b;
 }
@@ -753,26 +752,49 @@ input:checked + label {
   transition: 0s;
 }
 #boton-Agua img {
-  width: 40px;
+  width: 78px;
   pointer-events: none;
 }
-#boton-Agua:hover img {
-  width: 37px;
-}
 
-#botonesAtaques img {
-  width: 45px;
-  margin-top: -1px;
+/* Cartas del modo Classic */
+.cartasBotones {
+  display: flex;
+  background: none;
+  scrollbar-width: none;
+  border: none;
+  position: relative;
+  align-items: center;
+  border-radius: 8px;
+  width: 77px;
+  height: auto;
+  gap: 10px;
+  flex-direction: column;
+  align-content: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.cartasBotones img {
+  width: inherit;
+  pointer-events: none;
+  
+}
+#carta-Fuego:hover {
+  box-shadow: rgb(254, 25, 25) 0px 0px 10px 3px;
+}
+#carta-Agua:hover {
+  box-shadow: rgb(0 82 204) 0px 0px 10px 5px
+}
+#carta-Nieve:hover {
+  box-shadow: rgb(91 62 186) 0px 0px 10px 3px;
 }
 
 #seleccionar-ataques {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: -6px;
-  margin-left: 142px;
+  margin-top: 14px;
   border-radius: 20px;
-  width: 74vw;
+  width: auto;
 }
 
 /* Cajas con tu ninja y el ninja rival */
@@ -830,8 +852,7 @@ input:checked + label {
   align-items: center;
   flex-direction: column;
   margin-top: -310px;
-  margin-right: 48px;
-  margin-left: 578px;
+  margin-left: 608px;
   border-radius: 13px;
   border: 10px solid #014d98;
   box-shadow: rgb(34, 133, 179) 0px 0px 20px 2px;
@@ -918,9 +939,11 @@ input:checked + label {
   border-radius: 20px;
   border: solid aqua;
   background: aliceblue;
-  margin-top: -234px;
-  margin-left: 10px;
+  margin-top: -164px;
+  margin-left: 34px;
   font-size: 9.3mm;
+  flex-direction: row;
+  align-items: center;
 }
 #ataqueElementalJugador {
   width: 81px;
@@ -933,8 +956,8 @@ input:checked + label {
   flex-direction: column;
   gap: 12px;
 }
-#emojisProta {
-  width: 59px;
+#cartaJugador {
+  width: 104px;
 }
 #ataqueElementalJugador {
   width: 81px;
@@ -949,8 +972,8 @@ input:checked + label {
   flex-direction: column;
   gap: 12px;
 }
-#emojisNoProta {
-  width: 59px;
+#cartaRival {
+  width: 104px;
 }
 #cajaMensajes {
   margin-block: auto;
@@ -960,13 +983,14 @@ input:checked + label {
   align-items: center;
   flex-direction: column;
   gap: 38px;
-  margin-inline: 28px;
+  margin-inline: 18px;
 }
 #mensajes2 {
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-top: 15px;
+  margin-block: 24px;
+  margin-left: 44px;
   font-size: 10mm;
   height: 53px;
   position: relative;
@@ -989,6 +1013,7 @@ input:checked + label {
   );
 }
 #botonReiniciar1 {
+  position: fixed;
   display: flex;
   height: auto;
   width: auto;
@@ -1003,6 +1028,7 @@ input:checked + label {
   font-weight: bold;
   font-size: 24px;
   border-radius: 10px;
+  margin-inline-start: -54px;
   align-items: center;
   justify-content: center;
   flex-direction: row;
@@ -1060,8 +1086,62 @@ input:checked + label {
   .tarjetaDeNinja {
     flex-direction: column;
   }
+  .PersonajesDeNinja img {
+    width: 278px;;
+  }
   #contenedorPersonajes {
     flex-direction: column;
     align-items: center;
   }
+  #cajaTutorial {
+    width: 105vw;
+    height: 109vh;  
+  }
+  .tutorial{
+    font-size: 8mm;
+  }
+  .tutorial img{
+    width: 100%;
+  }
+  #close {
+    font-size: 48px;
+    width: 401px;
+  }
+  .cartasBotones {
+    width: 155px;
+    height: auto;
+    flex-direction: row;
+    scrollbar-width: auto;
+  }
+  .CajaCartas {
+    width: 194px;
+    height: 918px;
+
+  }
+
+  #boton-Nieve {
+    font-size: 128px;
+    border-radius: 18px;
+  }
+  #boton-Nieve img {
+    width: 134px;
+  }
+  /* Boton generico para fuego */
+  #boton-Fuego {
+    font-size: 128px;
+    border-radius: 18px;
+  }
+  #boton-Fuego img {
+    width: 134px;
+    pointer-events: none;
+  }
+  /* Boton generico para agua */
+  #boton-Agua {
+    font-size: 128px;
+    border-radius: 18px;
+  }
+  #boton-Agua img {
+    width: 134px;
+  }
 }
+

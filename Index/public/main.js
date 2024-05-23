@@ -5,7 +5,7 @@
 const sectionSeleccionarModo = document.getElementById("seleccionarModo");
 const sectionSeleccionarAtaques = document.getElementById(
   "seleccionar-ataques"
-);emojiAbrirCartas
+);
 const divReiniciarPPT = document.getElementById("divReiniciarPPT");
 const emojisDelJugador = document.getElementById("divAtaqueElementalJugador");
 const emojisDelRival = document.getElementById("divAtaqueElementalRival");
@@ -23,7 +23,9 @@ const contenedorAtaques = document.getElementById("CajaCartas");
 const botonConfirmarCarta = document.getElementById("botonConfirmarCarta");
 const botonPPT = document.getElementById("modoPPT");
 const botonClassic = document.getElementById("modoClassic");
+const sectionTutorial = document.getElementById("sectionTutorial")
 const botonTutorial = document.getElementById("open");
+const popupDelTutorial = document.getElementById("cajaTutorial");
 const botonElementoJugador = document.getElementById(
   "Boton-confirmar-Elemento"
 );
@@ -44,6 +46,7 @@ let ninjasElementales = [];
 let ninjasElementalesRivales = [];
 let botonesElementales = [];
 let isSelected = false;
+let imgCartaJugador = "./resources/cartas.png"
 let emojiAtaqueJugador = [];
 let ataquesNinjaJugador;
 let emojiAtaqueRival = [];
@@ -56,21 +59,25 @@ let resultado;
 let indexResultado;
 let jugadorId = null;
 let enemigoId = null;
+let rivalEnfrentamiento = null
 let botones = [];
 let inputcheckedAgua;
 let inputcheckedNieve;
 let inputcheckedFuego;
-let ataquedelJugador = [];
-let ataqueDelRival = [];
-let indexAtaqueJugador;
-let indexAtaqueEnemigo;
+let cartaDelRival = []
+let imgCartaRival = "./resources/cartas.png"
 let AtaquesNinjaRival;
 let indexEmojiJugador;
 let indexEmojiRival;
 let ninjaCanvas;
-let intervalo;
+let intervaloBoleanoMapa; // Intervalo del canvas
+let intervaloCombate // Intervalo del combate Classic
 let mapaBackground = new Image();
 mapaBackground.src = "./resources/mapaCanvas.png";
+
+let imgArbitaria = null
+let ejecutado = false;
+let termina = false
 
 
 let alturaQueBuscamos;
@@ -80,14 +87,15 @@ if (anchoDelMapa > anchoMaximoDelMapa) {
   anchoDelMapa = anchoMaximoDelMapa;
 }
 alturaQueBuscamos = (anchoDelMapa * 400) / 900;
-mapa.width = anchoDelMapa;
-mapa.height = alturaQueBuscamos;
+mapa.width = "1050" ;
+mapa.height = "511";
 
 let lienzo = mapa.getContext("2d");
 
+
 // Clases
 class Ninjas {
-  constructor(nombre, foto, Ide, clase, vida, claseFoto, fotoMapa, id = null) {
+  constructor(nombre, foto, Ide, clase, vida, claseFoto, fotoMapa, enCombate, id = null) {
     this.id = id;
     this.nombre = nombre;
     this.foto = foto;
@@ -95,6 +103,7 @@ class Ninjas {
     this.clase = clase;
     this.vida = vida;
     this.claseFoto = claseFoto;
+    this.enCombate = enCombate
     this.ataques = [];
     this.ancho = (mapa.width * 50) / 900;
     this.alto = (mapa.width * 50) / 900;
@@ -103,72 +112,25 @@ class Ninjas {
     this.mapaFoto = new Image();
     this.mapaFoto.src = fotoMapa;
     this.velocidadX = 0;
-    this.velocidadY = 0;
-  }
+    this.velocidadY = 0;  }
   pintarNinjas() {
     lienzo.drawImage(this.mapaFoto, this.x, this.y, this.ancho, this.alto);
   }
 }
-let ninjaAgua = new Ninjas(
-  "NinjaAgua",
-  "./resources/ninjaDeAgua.png",
-  "tarjetaDeAgua",
-  "tarjetaComunNinja",
-  3,
-  "imagenDinamica",
-  "./resources/emojiNinjaAgua.png"
-);
-let ninjaFuego = new Ninjas(
-  "NinjaFuego",
-  "./resources/ninjaDeFuego.png",
-  "tarjetaDeFuego",
-  "tarjetaComunNinja",
-  3,
-  "imagenDinamica",
-  "./resources/emojiNinjaFuego.png"
-);
-let ninjaNieve = new Ninjas(
-  "NinjaNieve",
-  "./resources/ninjaDeNieve.png",
-  "tarjetaDeNieve",
-  "tarjetaComunNinja",
-  3,
-  "imagenDinamica",
-  "./resources/emojiNinjaNieve.png"
-);
 
-// Lista de Ataques de los ninjas Classic
-const ninjaAguaAtaques = [
-  { nombre: "Agua", id: "boton-Agua", img: "./resources/cartasDeAgua.png" },
-  { nombre: "Agua", id: "boton-Agua", img: "./resources/cartasDeAgua.png" },
-  { nombre: "Agua", id: "boton-Agua", img: "./resources/cartasDeAgua.png" },
-  { nombre: "Fuego", id: "boton-Fuego", img: "./resources/cartasDeFuego.png" },
-  { nombre: "Fuego", id: "boton-Fuego", img: "./resources/cartasDeFuego.png" },
-  { nombre: "Nieve", id: "boton-Nieve", img: "./resources/cartasDeNieve.png" },
-  { nombre: "Nieve", id: "boton-Nieve", img: "./resources/cartasDeNieve.png" },
-];
-const ninjaFuegoAtaques = [
-  { nombre: "Fuego", id: "boton-Fuego", img: "./resources/cartasDeFuego.png" },
-  { nombre: "Fuego", id: "boton-Fuego", img: "./resources/cartasDeFuego.png" },
-  { nombre: "Fuego", id: "boton-Fuego", img: "./resources/cartasDeFuego.png" },
-  { nombre: "Agua", id: "boton-Agua", img: "./resources/cartasDeAgua.png" },
-  { nombre: "Agua", id: "boton-Agua", img: "./resources/cartasDeAgua.png" },
-  { nombre: "Nieve", id: "boton-Nieve", img: "./resources/cartasDeNieve.png" },
-  { nombre: "Nieve", id: "boton-Nieve", img: "./resources/cartasDeNieve.png" },
-];
-const ninjaNieveAtaques = [
-  { nombre: "Nieve", id: "boton-Nieve", img: "./resources/cartasDeNieve.png" },
-  { nombre: "Nieve", id: "boton-Nieve", img: "./resources/cartasDeNieve.png" },
-  { nombre: "Nieve", id: "boton-Nieve", img: "./resources/cartasDeNieve.png" },
-  { nombre: "Agua", id: "boton-Agua", img: "./resources/cartasDeAgua.png" },
-  { nombre: "Agua", id: "boton-Agua", img: "./resources/cartasDeAgua.png" },
-  { nombre: "Fuego", id: "boton-Fuego", img: "./resources/cartasDeFuego.png" },
-  { nombre: "Fuego", id: "boton-Fuego", img: "./resources/cartasDeFuego.png" },
-];
+class CartaMano{
+  constructor(color, numero, id, imgCarta) {
+  this.id = id;
+  this.numero = numero;
+  this.color = color;
+  this.imgCarta = imgCarta
+}}
+let manoDelJugador = new CartaMano(  
+  "colorindefnidio",
+  0,
+  "idindefinido"
+)
 
-ninjaAgua.ataques.push(...ninjaAguaAtaques);
-ninjaFuego.ataques.push(...ninjaFuegoAtaques);
-ninjaNieve.ataques.push(...ninjaNieveAtaques);
 
 class NinjasPPT {
   constructor(nombre, foto, emoji, clase, vida) {
@@ -196,18 +158,95 @@ let ninjaBlack2 = new NinjasPPT(
 );
 // Lista de Ataques de los ninjas PPT
 ninjaBlack1.ataquesPPT.push(
-  { nombre: "Nieve", id: "boton-Nieve", img: "./resources/cartasDeNieve.png" },
-  { nombre: "Agua", id: "boton-Agua", img: "./resources/cartasDeAgua.png" },
-  { nombre: "Fuego", id: "boton-Fuego", img: "./resources/cartasDeFuego.png" }
+  { nombre: "Nieve", id: "boton-Nieve", img: NIEVE },
+  { nombre: "Agua", id: "boton-Agua", img: AGUA },
+  { nombre: "Fuego", id: "boton-Fuego", img: FUEGO }
 );
 ninjaBlack2.ataquesPPT.push(
-  { nombre: "Nieve", id: "boton-Nieve", img: "./resources/cartasDeNieve.png" },
-  { nombre: "Agua", id: "boton-Agua", img: "./resources/cartasDeAgua.png" },
-  { nombre: "Fuego", id: "boton-Fuego", img: "./resources/cartasDeFuego.png" }
+  { nombre: "Nieve", id: "boton-Nieve", img: NIEVE },
+  { nombre: "Agua", id: "boton-Agua", img: AGUA },
+  { nombre: "Fuego", id: "boton-Fuego", img: FUEGO }
+);
+ninjasPPT.push(ninjaBlack1, ninjaBlack2);
+
+
+let ninjaAgua = new Ninjas(
+  "NinjaAgua",
+  "./resources/ninjaDeAgua.png",
+  "tarjetaDeAgua",
+  "tarjetaComunNinja",
+  3,
+  "imagenDinamica",
+  "./resources/emojiNinjaAgua.png",
+  false
+);
+let ninjaFuego = new Ninjas(
+  "NinjaFuego",
+  "./resources/ninjaDeFuego.png",
+  "tarjetaDeFuego",
+  "tarjetaComunNinja",
+  3,
+  "imagenDinamica",
+  "./resources/emojiNinjaFuego.png",
+  false
+);
+let ninjaNieve = new Ninjas(
+  "NinjaNieve",
+  "./resources/ninjaDeNieve.png",
+  "tarjetaDeNieve",
+  "tarjetaComunNinja",
+  3,
+  "imagenDinamica",
+  "./resources/emojiNinjaNieve.png",
+  false
 );
 
+/* Lista de Ataques de los ninjas Classic*/
+// 4 Agua 36 puntos, 2 Fuego 20 puntos, 4 nieve 24 puntos 80 en total
+const barajaAgua = [
+  { id: "carta-Agua", color: "Azul", numero: 12, img: "./resources/cards/CartaAzulAgua12,2.png"},
+  { id: "carta-Agua", color: "amarillo", numero: 4, img: "./resources/cards/CartaAmarillaAgua4.png"},
+  { id: "carta-Agua", color: "Azul", numero: 3, img: "./resources/cards/CartaAzulAgua12.png"},
+  { id: "carta-Fuego", color: "Azul", numero: 12, img: "./resources/cards/CartaAzulFuego12.png"},
+  { id: "carta-Fuego", color: "Rojo",  numero: 8, img: "./resources/cards/CartaRojaFuego8.png"},
+  { id: "carta-Nieve", color: "Azul", numero: 10, img: "./resources/cards/CartaAzulNieve10.png"},
+  { id: "carta-Nieve", color: "Violeta", numero: 5, img: "./resources/cards/CartaVioletaNieve5,2.png"},
+  { id: "carta-Agua", color: "Verde", numero: 11, img: "./resources/cards/CartaVerdeAgua11.png"},
+  { id: "carta-Nieve", color: "Rojo", numero: 9, img: "./resources/cards/CartaRojaNieve9.png"},
+  { id: "carta-Agua", color: "Violeta", numero: 6, img: "./resources/cards/CartaVioletaAgua6.png"},
+];
+// 4 Fuego 34 puntos, 3 agua 19 puntos, 4 nieve 19 puntos 71 en total
+const barajaFuego = [
+  { id: "carta-Nieve", color: "Naranja", numero: 12, img: "./resources/cards/CartaNaranjaNieve12.png"},
+  { id: "carta-Fuego", color: "Rojo", numero: 8, img: "./resources/cards/CartaRojaFuego8y2.png"},
+  { id: "carta-Agua", color: "Rojo", numero: 9, img: "./resources/cards/CartaRojaAgua9.png"},
+  { id: "carta-Fuego", color: "Rojo", numero: 12, img: "./resources/cards/CartaRojaFuego12.png"},
+  { id: "carta-Agua", color: "Amarillo", numero: 4, img: "./resources/cards/CartaAmarillaAgua4.png"},
+  { id: "carta-Fuego", color: "Amarillo", numero: 6, img: "./resources/cards/CartaAmarillaFuego6,2.png"},
+  { id: "carta-Agua", color: "Verde", numero: 11, img: "./resources/cards/CartaVerdeAgua11.png" },
+  { id: "carta-Agua", color: "Azul", numero: 12, img: "./resources/cards/CartaAzulAgua12.png"},
+  { id: "carta-Fuego", color: "Azul", numero: 12, img: "./resources/cards/CartaAzulFuego12.png"},
+  { id: "carta-Nieve", color: "Verde", numero: 6, img: "./resources/cards/CartaVerdeNieve10,2.png"},
+];
+// 4 nieve 33 puntos, 3 agua 20 puntos, 3 fuego 17 puntos 70 en total
+const barajaNieve = [
+  { id: "carta-Nieve", color: "Amarillo", numero: 11, img: "./resources/Cards/CartaAmarillaNieve11.png" },
+  { id: "carta-Nieve", color: "Amarillo", numero: 7, img: "./resources/Cards/CartaAmarillaNieve7.png" },
+  { id: "carta-Agua", color: "Amarillo", numero: 4, img: "./resources/Cards/CartaAmarillaAgua4.png" },
+  { id: "carta-Fuego", color: "Amarillo", numero: 6, img: "./resources/Cards/CartaAmarillaFuego6.png" },
+  { id: "carta-Nieve", color: "Violeta", numero: 5, img: "./resources/Cards/CartaVioletaNieve5.png" },
+  { id: "carta-Fuego", color: "Azul", numero: 3, img: "./resources/Cards/CartaAzulFuego3.png" },
+  { id: "carta-Nieve", color: "Azul", numero: 10, img: "./resources/Cards/CartaAzulNieve10.png" },
+  { id: "carta-Agua", color: "Naranja", numero: 10, img: "./resources/Cards/CartaNaranjaAgua10.png" },
+  { id: "carta-Agua", color: "Violeta", numero: 6, img: "./resources/Cards/CartaVioletaAgua6.png" },
+  { id: "carta-Fuego", color: "Rojo", numero: 8, img: "./resources/Cards/CartaRojaFuego8y2.png" },
+ ];
+
+ninjaAgua.ataques.push(...barajaAgua);
+ninjaFuego.ataques.push(...barajaFuego);
+ninjaNieve.ataques.push(...barajaNieve);
+
 ninjasElementales.push(ninjaAgua, ninjaFuego, ninjaNieve);
-ninjasPPT.push(ninjaBlack1, ninjaBlack2);
 
 // Al Iniciar Juego
 function iniciarJuego() {
@@ -218,20 +257,22 @@ function iniciarJuego() {
   sectionSeleccionarElementoJugador.style.display = "none";
 
   botonPPT.addEventListener("click", modoPPT);
-  /* comentado hasta terminar el modo classic */
   botonClassic.addEventListener("click", modoClassic);
   botonTutorial.addEventListener("click", popTutorial);
 }
 
 // Modo de juego PPT, se requiere revision
 function modoPPT() {
+  sectionTutorial.style.position = "absolute";    
+  sectionTutorial.style.pointerEvents = "none";    
+  
   sectionSeleccionarAtaques.style.display = "flex";
   sectionSeleccionarModo.style.display = "none";
 
   divReiniciarPPT.style.display = "flex";
 
   openBotones.addEventListener("click", abrirBotonesElementales);
-  botonConfirmarCarta.addEventListener("click", encuentro);
+  botonConfirmarCarta.addEventListener("click", encuentroPPT);
 
   botonReiniciar1.addEventListener("click", reiniciarJuego);
   botonReiniciar2.addEventListener("click", reiniciarJuego);
@@ -250,7 +291,7 @@ function edicionJugadorPPT() {
   NinjaJugador = ninjaBlack1.nombre;
   emojiElementoDelJugador = ninjaBlack1.emoji;
   picJ = ninjaBlack1.foto;
-  cambioVidasScoreJ.innerHTML = ninjaBlack1.vida;
+  cambioVidasScoreJ.innerHTML = 3;
   configuracionDeCarta.style.backgroundImage =
     "url(./resources/gemaSombra.png)";
   configuracionDeCarta.style.backgroundSize = "197px 235px";
@@ -285,6 +326,8 @@ function extraerAtaquesPPT(NinjaJugador) {
 }
 function mostrarAtaquesPPT(ataquesNinjasPPT) {
   contenedorAtaques.style.justifyContent = "center";
+  contenedorAtaques.style.flexDirection = "column";
+  contenedorAtaques.style.width = "auto";
 
   ataquesNinjasPPT.forEach((ataquesNinjasPPT) => {
     ataquesNinjaJugador = `
@@ -305,7 +348,7 @@ function edicionRivalPPT() {
   let ContenidoRivalimg = document.getElementById("contenidoDelRivalimg");
   emojiElementoDelRival = ninjaBlack2.emoji;
   picR = ninjaBlack2.foto;
-  cambioVidasScoreR.innerHTML = ninjaBlack2.vida;
+  cambioVidasScoreR.innerHTML = 3;
   configuracionDeCartaRival.style.backgroundImage =
     "url(./resources/gemaSombra.png)";
   backgroundColorRival.style.backgroundSize = "197px 235px";
@@ -340,9 +383,9 @@ function ataqueJugadorPPT() {
         ataqueJugadorPPT = "⚔️";
 
         innerEspada.innerHTML = ataqueJugadorPPT;
-        document.getElementById("ataqueElementalJugador").src =
+        document.getElementById("cartaJugador").src =
           emojiAtaqueJugador;
-        document.getElementById("ataqueElementalRival").src = emojiAtaqueRival;
+        document.getElementById("cartaRival").src = emojiAtaqueRival;
       } else if (e.target.textContent === "Fuego ") {
         confirmarCarta.style.pointerEvents = "all";
         confirmarCarta.style.opacity = "1";
@@ -351,9 +394,9 @@ function ataqueJugadorPPT() {
         emojiAtaqueRival = "./resources/cartas.png";
         ataqueJugadorPPT = "⚔️";
         innerEspada.innerHTML = ataqueJugadorPPT;
-        document.getElementById("ataqueElementalJugador").src =
+        document.getElementById("cartaJugador").src =
           emojiAtaqueJugador;
-        document.getElementById("ataqueElementalRival").src = emojiAtaqueRival;
+        document.getElementById("cartaRival").src = emojiAtaqueRival;
       } else {
         confirmarCarta.style.pointerEvents = "all";
         confirmarCarta.style.opacity = "1";
@@ -363,16 +406,16 @@ function ataqueJugadorPPT() {
         ataqueJugadorPPT = "⚔️";
 
         innerEspada.innerHTML = ataqueJugadorPPT;
-        document.getElementById("ataqueElementalJugador").src =
+        document.getElementById("cartaJugador").src =
           emojiAtaqueJugador;
-        document.getElementById("ataqueElementalRival").src = emojiAtaqueRival;
+        document.getElementById("cartaRival").src = emojiAtaqueRival;
       }
-      iniciarPelea();
+      iniciarPeleaPPT();
     });
   });
 }
 // Logica detras del resultado de los enfrentamientos PPT
-function encuentro() {
+function encuentroPPT() {
   confirmarCarta.style.pointerEvents = "none";
   confirmarCarta.style.opacity = "0";
   ataquealeatorio = aleatorio(0, AtaquesNinjaRival.length - 1);
@@ -387,7 +430,7 @@ function encuentro() {
     actualAtaqueRival = 1;
   }
   console.log(seleccionJugador, actualAtaqueRival);
-  document.getElementById("ataqueElementalRival").src = emojiAtaqueRival;
+  document.getElementById("cartaRival").src = emojiAtaqueRival;
   resultadosPPT();
 }
 // Logica que dicta el vencedor PPT
@@ -451,8 +494,8 @@ function revisarVidas() {
 }
 function crearMensajesPPT() {
   let resultadoMensaje = document.getElementById("cajaMensajes");
-  let divemojiAtaqueJugador = document.getElementById("ataqueElementalJugador");
-  let divemojiAtaqueRival = document.getElementById("ataqueElementalRival");
+  let divemojiAtaqueJugador = document.getElementById("cartaJugador");
+  let divemojiAtaqueRival = document.getElementById("cartaRival");
 
   resultadoMensaje.innerHTML = resultado;
   divemojiAtaqueJugador.innerHTML = emojiAtaqueJugador;
@@ -475,7 +518,6 @@ function modoClassic() {
   divReiniciarPPT.style.display = "flex";
   divReiniciarClassic.style.display = "flex";
   sectionSeleccionarElementoJugador.style.display = "flex";
-
   ninjasElementales.forEach((Ninjas) => {
     opcionDeNinjas = `
         <input type="radio" id=${Ninjas.nombre} name="Seleccion" value="Seleccion">
@@ -502,7 +544,7 @@ function modoClassic() {
   inputcheckedFuego.addEventListener("click", comprobarInputs);
 
   botonReiniciar1.addEventListener("click", reiniciarJuego);
-  botonReiniciar2.addEventListener("click", reiniciarJuego);
+  botonReiniciar2.addEventListener("click", reiniciarClassic);
 
   unirseAlJuego();
 
@@ -517,7 +559,7 @@ function modoClassic() {
 }
 
 function unirseAlJuego() {
-  fetch("http://192.168.0.104:8080/unirse").then(function (res) {
+  fetch("http://192.168.0.105:3000/unirse").then(function (res) {
     if (res.ok) {
       res.text().then(function (respuesta) {
         console.log(respuesta);
@@ -541,14 +583,12 @@ function comprobarInputs() {
 }
 
 function popTutorial() {
-  let popupDelTutorial = document.getElementById("cajaTutorial");
   let close = document.getElementById("close");
   close.addEventListener("click", popTutorialClose);
   popupDelTutorial.style.opacity = "1";
   popupDelTutorial.style.pointerEvents = "auto";
 }
 function popTutorialClose() {
-  let popupDelTutorial = document.getElementById("cajaTutorial");
   popupDelTutorial.style.opacity = "0";
   popupDelTutorial.style.pointerEvents = "none";
   botonTutorial.style.position = "absolute";
@@ -556,11 +596,13 @@ function popTutorialClose() {
 
 // Seleccion Elemento del Jugador
 function seleccionarElementoJugador() {
+  sectionTutorial.style.display = "none";
   sectionVerMapa.style.display = "flex";
   sectionSeleccionarAtaques.style.display = "none";
   sectionSeleccionarElementoJugador.style.display = "none";
 
-  intervalo = setInterval(pintarCanvas, 50);
+// Inicia el intervalo para refrescar el canvas
+  intervaloBoleanoMapa = setInterval(pintarCanvas, 50);
   botonTutorial.style.display = "none";
   divReiniciarPPT.style.display = "flex";
 
@@ -608,20 +650,22 @@ function seleccionarElementoJugador() {
     contenidoTuyoImg.style.width = "278px";
     colorBackground.style.backgroundColor = "rgb(243, 220, 13)";
   }
+
+  cambioVidasScoreJ.innerHTML = ninjaBlack1.vida;
   document.getElementById("contenidoTuyoimg").src = pic;
   document.getElementById("emojiDeLaCardJugador").src = emojiElementoDelJugador;
   seleccionarNinjaBack(NinjaJugador);
 
   //Verificacion para los ataques
   if (!(emojiElementoDelJugador == "")) {
-    extraerAtaques(NinjaJugador);
+    extraerAtaquesClassic(NinjaJugador);
     return (isSelected = true);
   }
   return (isSelected = false);
 }
 
 function seleccionarNinjaBack(NinjaJugador) {
-  fetch(`http://192.168.0.104:8080/cardJitsu/${jugadorId}`, {
+  fetch(`http://192.168.0.105:3000/cardJitsu/${jugadorId}`, {
     method: "post",
     headers: {
       "Content-Type": "application/json",
@@ -632,25 +676,57 @@ function seleccionarNinjaBack(NinjaJugador) {
   });
 }
 
-function extraerAtaques(NinjaJugador) {
+function reiniciarClassic() {
+  sectionTutorial.style.display = "none";
+  sectionVerMapa.style.display = "flex";
+  sectionSeleccionarAtaques.style.display = "none";
+  sectionSeleccionarElementoJugador.style.display = "none";
+
+  botonTutorial.style.display = "none";
+  divReiniciarPPT.style.display = "flex";
+
+  ninjaCanvas.enCombate = false
+
+  extraerAtaquesClassic(NinjaJugador);
+  backToCanvas(NinjaJugador)
+}
+
+
+function backToCanvas(NinjaJugador) {
+  fetch(`http://192.168.0.105:3000/cardJitsu/volver/${jugadorId}`, {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      ninja: NinjaJugador,
+    }),
+  });
+}
+
+
+
+function extraerAtaquesClassic(NinjaJugador) {
   let ataquesNinja;
   for (let i = 0; i < ninjasElementales.length; i++) {
     if (NinjaJugador === ninjasElementales[i].nombre) {
       ataquesNinja = ninjasElementales[i].ataques;
     }
-  }
-  mostrarAtaques(ataquesNinja);
+  } 
+  mostrarAtaquesClassic(ataquesNinja);
 }
 
-function mostrarAtaques(ataquesNinja) {
+function mostrarAtaquesClassic(ataquesNinja) {
   ataquesNinja.forEach((ataquesNinja) => {
     ataquesNinjaJugador = `
-        <button id=${ataquesNinja.id} class="boton-de-Ataque BAtaques" type="button">${ataquesNinja.nombre} <img src=${ataquesNinja.img} alt="medallon"></button>
-        `;
+      <button id="${ataquesNinja.id}" class="cartasBotones" type="button" data-color="${ataquesNinja.color}" data-numero="${ataquesNinja.numero}"><img src="${ataquesNinja.img}" alt="Cards">
+      </button>
+    `;
     contenedorAtaques.innerHTML += ataquesNinjaJugador;
   });
-
-  botones = document.querySelectorAll(".BAtaques");
+  
+  botones = document.querySelectorAll(".cartasBotones");
+  secuenciaAtaqueClassic();
 }
 
 function slide() {
@@ -704,9 +780,9 @@ function selecionarElementoRival(rival) {
     AtaquesNinjaRival = ninjaFuego.ataques;
   }
 
+  cambioVidasScoreR.innerHTML = ninjaBlack1.vida;
   document.getElementById("contenidoDelRivalimg").src = pic;
   document.getElementById("emojiDeLaCardRival").src = emojiElementoDelRival;
-  secuenciaAtaque();
 }
 
 //Funciones de los ataques del jugador y rival
@@ -724,262 +800,187 @@ function abrirBotonesElementales() {
   }
 }
 
-function secuenciaAtaque() {
+/* Funcion que se encarga al momento de escoger una carta en el modo Classic*/
+function secuenciaAtaqueClassic() {
   botones.forEach((boton) => {
     boton.addEventListener("click", (e) => {
-      if (e.target.textContent === "Fuego ") {
-        ataquedelJugador.push(2);
-        console.log(ataquedelJugador);
-        emojiAtaqueJugador.push(FUEGO);
-        boton.style.background = "#f58";
-      } else if (e.target.textContent === "Agua ") {
-        ataquedelJugador.push(3);
-        console.log(ataquedelJugador);
-        emojiAtaqueJugador.push(AGUA);
-        boton.style.background = "#f58";
-      } else {
-        ataquedelJugador.push(1);
-        console.log(ataquedelJugador);
-        emojiAtaqueJugador.push(NIEVE);
-        boton.style.background = "#f58";
-      }
-      if (ataquedelJugador.length === 3) {
+        let numero = e.target.dataset.numero
+        let numeroReal = parseInt(numero, 10)
+        let color = e.target.dataset.color
+        let id = e.target.id
+        // Accede a la imagen dentro del botón
+        const imagen = e.target.querySelector('img');
+        imgCartaJugador = imagen.src; // Accede al atributo "src" de la img
+        manoDelJugador = [id, numeroReal, color]
+        console.log(manoDelJugador);
+     
+        // Elimina la carta seleccionada del DOM
+        e.target.remove();
+
+        // Hacer logica para que solo se pueda escoger 1 carta
         contenedorAtaques.style.opacity = "0";
         contenedorAtaques.style.pointerEvents = "none";
         enviarAtaques();
-      }
     });
   });
 }
 
 function enviarAtaques() {
-  fetch(`http://192.168.0.104:8080/cardJitsu/${jugadorId}/ataques`, {
+  fetch(`http://192.168.0.105:3000/cardJitsu/${jugadorId}/carta`, {
     method: "post",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      ataques: ataquedelJugador,
-      emojis: emojiAtaqueJugador,
+      carta: manoDelJugador,
+      imgCarta: imgCartaJugador,
     }),
   });
-
-  intervalo = setInterval(obtenerAtaques, 50);
+  desabilitarBotonesCombates()
+  intervaloCombate = setInterval(obtenerAtaques, 50);
 }
 
 function obtenerAtaques() {
-  fetch(`http://192.168.0.104:8080/cardJitsu/${enemigoId}/ataques`).then(
+  fetch(`http://192.168.0.105:3000/cardJitsu/${enemigoId}/carta`).then(
     function (res) {
       if (res.ok) {
-        res.json().then(function ({ ataques, emojis }) {
-          if (ataques.length === 3) {
-            ataqueDelRival = ataques;
-            emojiAtaqueRival = emojis;
-            iniciarPelea();
+        res.json().then(function ({ carta, imgCarta }) {
+          if (carta.length === 3) {  
+            cartaDelRival = carta;
+            imgCartaRival = imgCarta;
+            if (imgArbitaria !== imgCartaRival || imgArbitaria === null) {
+              if (!ejecutado) {
+                ejecutado = true;       
+                setTimeout(iniciarPelea, 2000); // Llama a iniciarPelea después de 5 segundos
+              }
+            }
           }
         });
       }
     }
   );
 }
-
-function ataquealeatorioenemigo() {
-  let ataquealeatorio = aleatorio(1, 3);
-
-  if (ataquealeatorio == 1) {
-    ataqueDelRival.push(1);
-    emojiAtaqueRival.push(NIEVE);
-    console.log(ataqueDelRival);
-    ataquealeatorio = aleatorio(2, 3);
-    if (ataquealeatorio == 3) {
-      ataqueDelRival.push(3);
-      emojiAtaqueRival.push(AGUA);
-      emojiAtaqueRival.push(FUEGO);
-      console.log(ataqueDelRival);
-    } else {
-      ataqueDelRival.push(2);
-      emojiAtaqueRival.push(FUEGO);
-      emojiAtaqueRival.push(AGUA);
-      console.log(ataqueDelRival);
-    }
-  } else if (ataquealeatorio == 3) {
-    ataqueDelRival.push(3);
-    emojiAtaqueRival.push(AGUA);
-    console.log(ataqueDelRival);
-    ataquealeatorio = aleatorio(1, 2);
-    if (ataquealeatorio == 1) {
-      ataqueDelRival.push(1);
-      emojiAtaqueRival.push(NIEVE);
-      emojiAtaqueRival.push(FUEGO);
-      console.log(ataqueDelRival);
-    } else {
-      ataqueDelRival.push(2);
-      emojiAtaqueRival.push(FUEGO);
-      emojiAtaqueRival.push(NIEVE);
-      console.log(ataqueDelRival);
-    }
-  } else {
-    ataqueDelRival.push(2);
-    emojiAtaqueRival.push(FUEGO);
-    console.log(ataqueDelRival);
-    ataquealeatorio = aleatorio(1, 3);
-    if (ataquealeatorio == 1) {
-      ataqueDelRival.push(1);
-      emojiAtaqueRival.push(NIEVE);
-      emojiAtaqueRival.push(AGUA);
-      console.log(ataqueDelRival);
-    } else {
-      ataqueDelRival.push(2);
-      emojiAtaqueRival.push(AGUA);
-      emojiAtaqueRival.push(NIEVE);
-      console.log(ataqueDelRival);
-    }
-  }
-  iniciarPelea();
-}
-
 function iniciarPelea() {
-  clearInterval(intervalo);
-  if (ataquedelJugador.length === 3) {
-    confirmarCarta.style.pointerEvents = "all";
-    confirmarCarta.style.opacity = "1";
-  }
+  confirmarCarta.style.pointerEvents = "all";
+  confirmarCarta.style.opacity = "1";
+
 }
-
-function indexAmbosOponentes(jugador, enemigo) {
-  indexAtaqueJugador = ataquedelJugador[jugador];
-  indexAtaqueEnemigo = ataqueDelRival[enemigo];
-
-  indexEmojiJugador = emojiAtaqueJugador[jugador];
-  indexEmojiRival = emojiAtaqueRival[enemigo];
+function iniciarPeleaPPT() {
+  confirmarCarta.style.pointerEvents = "all";
+  confirmarCarta.style.opacity = "1";
 }
 
 //Comparacion de los ataques selecionados y el resultado del enfrentamiento (1 es nieve, 2 es fuego y 3 es agua).
 function resultados() {
-  let imagenCartaBorrarJ = document.getElementById("ataqueElementalJugador");
-  let imagenCartaBorrarR = document.getElementById("ataqueElementalRival");
+  let imagenCartaBorrarJ = document.getElementById("cartaJugador");
+  let imagenCartaBorrarR = document.getElementById("cartaRival");
 
   emojisDelJugador.removeChild(imagenCartaBorrarJ);
   emojisDelRival.removeChild(imagenCartaBorrarR);
 
   confirmarCarta.style.pointerEvents = "none";
   confirmarCarta.style.opacity = "0";
-  contenedorAtaques.style.opacity = "0";
-  contenedorAtaques.style.pointerEvents = "none";
 
   resultadoMensaje.innerHTML = "";
 
   let contenidoTuyoColor = document.getElementById("contenidoTuyo");
   let contenidoRivalColor = document.getElementById("contenidoDelRival");
 
-  cajaEnfrentamiento.style.marginTop = "-72px";
-
-  for (let index = 0; index < ataquedelJugador.length; index++) {
-    if (ataquedelJugador[index] === ataqueDelRival[index]) {
-      indexAmbosOponentes(index, index, index);
-      resultado = "EMPATE";
-
-      crearMensajes();
-    } else if (
-      (ataquedelJugador[index] == 2 && ataqueDelRival[index] == 3) ||
-      (ataquedelJugador[index] == 3 && ataqueDelRival[index] == 1) ||
-      (ataquedelJugador[index] == 1 && ataqueDelRival[index] == 2)
-    ) {
-      indexAmbosOponentes(index, index, index);
-      conteoRival++;
-      cambioVidasScoreJ.innerHTML = conteoJugador;
-      cambioVidasScoreR.innerHTML = conteoRival;
-      resultado = "DERROTA";
-      contenidoTuyoColor.style.color = "red";
-      contenidoRivalColor.style.color = "Black";
-      crearMensajes();
-    } else {
-      indexAmbosOponentes(index, index, index);
-      conteoJugador++;
-      cambioVidasScoreJ.innerHTML = conteoJugador;
-      cambioVidasScoreR.innerHTML = conteoRival;
-      resultado = "VICTORIA";
-      contenidoTuyoColor.style.color = "Black";
+/* Fase de comparacion de cartas*/  
+  //Si ambas cartas tienen el mismo elemento se comparara el valor numerico, si no se determinara por el elemento quien gana
+  
+  if (manoDelJugador[0] === cartaDelRival[0]) {
+    // Los elementos son iguales, compara los números
+    if (manoDelJugador[1] > cartaDelRival[1]) /*Gana el Jugador por numeros*/{
+      vidasRival--;
+      cambioVidasScoreR.innerHTML = vidasRival;
+      resultado = " GANASTES ";
+      cajaEnfrentamiento.style.background = "#5cd93d";
+      cajaEnfrentamiento.style.border = "solid white";
+      contenidoTuyoColor.style.color = "white";
       contenidoRivalColor.style.color = "red";
-      crearMensajes();
+      crearMensajes()
+    } else if (manoDelJugador[1] < cartaDelRival[1])/*Gana el Rival por numeros*/  {
+      vidasJugador--;
+      cambioVidasScoreJ.innerHTML = vidasJugador;
+      resultado = " PERDISTES ";
+      cajaEnfrentamiento.style.background = "#ff2929";
+      cajaEnfrentamiento.style.border = "solid black";
+      contenidoTuyoColor.style.color = "red";
+      contenidoRivalColor.style.color = "white";    
+      crearMensajes()
+    } else {
+      resultado = " EMPATE ";
+      cajaEnfrentamiento.style.background = "#f3dc0d";
+      crearMensajes()
     }
+  // Los elementos son diferentes, el ganador se decide según el elemento
+  } else if (
+    (cartaDelRival[0] == "carta-Fuego" && manoDelJugador[0] == "carta-Agua") ||
+    (cartaDelRival[0] == "carta-Agua" && manoDelJugador[0] == "carta-Nieve") ||
+    (cartaDelRival[0] == "carta-Nieve" && manoDelJugador[0] == "carta-Fuego")) 
+    { //Gana el Jugador por su Elemento
+      vidasRival--;
+      cambioVidasScoreR.innerHTML = vidasRival;
+      resultado = " GANASTES ";
+      cajaEnfrentamiento.style.background = "#5cd93d";
+      cajaEnfrentamiento.style.border = "solid white";
+      contenidoTuyoColor.style.color = "white";
+      contenidoRivalColor.style.color = "red";
+      crearMensajes()
+  } else { //Gana el Rival por su Elemento
+      vidasJugador--;
+      cambioVidasScoreJ.innerHTML = vidasJugador;
+      resultado = " PERDISTES ";
+      cajaEnfrentamiento.style.background = "#ff2929";
+      cajaEnfrentamiento.style.border = "solid black";
+      contenidoTuyoColor.style.color = "White";
+      contenidoRivalColor.style.color = "white";
+      crearMensajes()
   }
-  revisarVictorias();
+  ejecutado = false
+  imgArbitaria = imgCartaRival;
+  clearInterval(intervaloCombate)
+  setTimeout(habilitarBotonesCombates, 3000)
+  revisarVidas();
 }
 
-function revisarVictorias() {
-  let configuracionDeCarta = document.getElementById("ContenidoTuyo");
-  let configuracionDeCartaRival = document.getElementById("ContenidoDelRival");
-  let cajaMensajes = document.getElementById("mensajes2");
-  if (conteoRival == conteoJugador) {
-    crearMesajeFinal("Has empatado. tu rival quiere la revancha ¿¡aceptas!?");
-    desabilitarBotonesCombates();
-    cajaMensajes.style.background = "rgb(202 103 45)";
-    cajaMensajes.style.fontSize = "11mm";
-    cajaMensajes.style.boxShadow = "rgb(101 69 9) 0px 0px 20px 5px";
-    configuracionDeCarta.style.opacity = "0.5";
-    configuracionDeCartaRival.style.opacity = "0.5";
-    cajaEnfrentamiento.style.background = "#f3dc0d";
-  } else if (conteoRival > conteoJugador) {
-    crearMesajeFinal("Lo Siento, Has Perdido, vuelve a intentarlo");
-    desabilitarBotonesCombates();
-    cajaMensajes.style.background = "#7f4d5a";
-    cajaMensajes.style.fontSize = "11mm";
-    cajaMensajes.style.boxShadow = "rgb(147 62 84) 0px 0px 20px 5px";
-    configuracionDeCarta.style.opacity = "0";
-    cajaEnfrentamiento.style.background = "#ff2929";
-    cajaEnfrentamiento.style.border = "solid black";
-  } else {
-    crearMesajeFinal(
-      "¡¡Felicidades Has Ganado!! Quieres seguir con tu racha? Vuelve a intentarlo"
-    );
-    desabilitarBotonesCombates();
-    cajaMensajes.style.background = "#FFEB3B";
-    cajaMensajes.style.boxShadow = "rgb(255 232 53) 0px 0px 20px 5px";
-    configuracionDeCartaRival.style.opacity = "0";
-    cajaEnfrentamiento.style.background = "#5cd93d";
-    cajaEnfrentamiento.style.border = "solid white";
-  }
-}
-// PENDIENTE, HACER EL ALGORITMO QUE DECIDA EL RESULTADO DEL DUELO
 function crearMensajes() {
-  let nuevoEmojiJugador = document.createElement("img");
-  let nuevoEmojiEnemigo = document.createElement("img");
-  let resultadosLista = document.createElement("p");
+  let nuevaImgCartaJugador = document.createElement("img");
+  let nuevaImgCartaEnemigo = document.createElement("img");
+  let resultadosLista = document.createElement("strong");
 
   resultadosLista.innerHTML = resultado;
   resultadosLista.setAttribute("id", "cajaMensajes");
-  nuevoEmojiJugador.setAttribute("src", indexEmojiJugador);
-  nuevoEmojiJugador.setAttribute("id", "emojisProta");
-  nuevoEmojiEnemigo.setAttribute("src", indexEmojiRival);
-  nuevoEmojiEnemigo.setAttribute("id", "emojisNoProta");
+  nuevaImgCartaJugador.setAttribute("src", imgCartaJugador);
+  nuevaImgCartaJugador.setAttribute("id", "cartaJugador");
+  nuevaImgCartaEnemigo.setAttribute("src", imgCartaRival);
+  nuevaImgCartaEnemigo.setAttribute("id", "cartaRival");
 
   resultadoMensaje.appendChild(resultadosLista);
-  emojisDelJugador.appendChild(nuevoEmojiJugador);
-  emojisDelRival.appendChild(nuevoEmojiEnemigo);
+  emojisDelJugador.appendChild(nuevaImgCartaJugador);
+  emojisDelRival.appendChild(nuevaImgCartaEnemigo);
 }
 
-function crearMesajeFinal(resultadoFinal) {
-  let sectionResultadoFinal = document.getElementById("mensajes2");
-  let parrafo2 = document.createElement("p");
-  parrafo2.innerHTML = resultadoFinal;
-
-  sectionResultadoFinal.appendChild(parrafo2);
-}
 function reiniciarJuego() {
   location.reload();
 }
+
 
 //desabilitaciones de botones&Elemento
 function desabilitarBotonesCombates() {
   openBotones.style.opacity = "0.5";
   openBotones.style.pointerEvents = "none";
   contenedorPersonajes.style.opacity = "0.5";
+}function habilitarBotonesCombates() {
+  openBotones.style.opacity = "1";
+  openBotones.style.pointerEvents = "all";
 }
 
 function aleatorio(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
+
 
 //prueba de canvas
 function pintarCanvas() {
@@ -989,16 +990,19 @@ function pintarCanvas() {
   subtituloCombate.style.padding = "4px";
 
   ninjaCanvas = obtenerNinja(ninjasElementales);
+  ninjaCanvas.id = jugadorId
 
   ninjaCanvas.x = ninjaCanvas.x + ninjaCanvas.velocidadX;
   ninjaCanvas.y = ninjaCanvas.y + ninjaCanvas.velocidadY;
+  ninjaCanvas.enCombate = ninjaCanvas.enCombate
 
   lienzo.clearRect(0, 0, mapa.width, mapa.height);
 
   lienzo.drawImage(mapaBackground, 0, 0, mapa.width, mapa.height);
 
   ninjaCanvas.pintarNinjas();
-  enviarPosicion(ninjaCanvas.x, ninjaCanvas.y);
+  enviarPosicion(ninjaCanvas.x, ninjaCanvas.y, ninjaCanvas.enCombate);
+
   ninjasElementalesRivales.forEach(function (ninja) {
     if (ninja != undefined) {
       ninja.pintarNinjas();
@@ -1007,8 +1011,8 @@ function pintarCanvas() {
   });
 }
 
-function enviarPosicion(x, y) {
-  fetch(`http://192.168.0.104:8080/cardJitsu/${jugadorId}/posicion`, {
+function enviarPosicion(x, y, enCombate) {
+  fetch(`http://192.168.0.105:3000/cardJitsu/${jugadorId}/posicion`, {
     method: "post",
     headers: {
       "Content-Type": "application/json",
@@ -1016,11 +1020,11 @@ function enviarPosicion(x, y) {
     body: JSON.stringify({
       x,
       y,
+      enCombate
     }),
   }).then(function (res) {
     if (res.ok)
       res.json().then(function ({ enemigos }) {
-        console.log(enemigos);
         ninjasElementalesRivales = enemigos.map(function (rival) {
           if (rival.ninja != undefined) {
             let ninjaRival = null;
@@ -1035,6 +1039,7 @@ function enviarPosicion(x, y) {
                 3,
                 "",
                 "./resources/emojiNinjaAgua.png",
+                null,
                 rival.id
               );
             } else if (ninjaNombre === "NinjaFuego") {
@@ -1046,6 +1051,7 @@ function enviarPosicion(x, y) {
                 3,
                 "",
                 "./resources/emojiNinjaFuego.png",
+                null,
                 rival.id
               );
             } else if (ninjaNombre === "NinjaNieve") {
@@ -1057,17 +1063,20 @@ function enviarPosicion(x, y) {
                 3,
                 "",
                 "./resources/emojiNinjaNieve.png",
+                null,
                 rival.id
               );
             }
             ninjaRival.x = rival.x || 0;
             ninjaRival.y = rival.y || 0;
+            ninjaRival.enCombate = rival.enCombate
             return ninjaRival;
           }
         });
       });
   });
 }
+
 
 function moverDerecha() {
   ninjaCanvas.velocidadX = 5;
@@ -1083,19 +1092,19 @@ function moverAbajo() {
 }
 function detenerMovimiento(event) {
   switch (event.key) {
-    case "ArrowRight":
+    case "d":
       ninjaCanvas.velocidadX = 0;
       break;
 
-    case "ArrowLeft":
+    case "a":
       ninjaCanvas.velocidadX = 0;
       break;
 
-    case "ArrowUp":
+    case "w":
       ninjaCanvas.velocidadY = 0;
       break;
 
-    case "ArrowDown":
+    case "s":
       ninjaCanvas.velocidadY = 0;
       break;
     default:
@@ -1109,19 +1118,19 @@ function detenerMovimientoBotones() {
 
 function sePresionoUnaTecla(event) {
   switch (event.key) {
-    case "ArrowRight":
+    case "d":
       moverDerecha();
       break;
 
-    case "ArrowLeft":
+    case "a":
       moverIzquierda();
       break;
 
-    case "ArrowUp":
+    case "w":
       moverArriba();
       break;
 
-    case "ArrowDown":
+    case "s":
       moverAbajo();
       break;
     default:
@@ -1139,6 +1148,7 @@ function obtenerNinja() {
 function colision() {
   ninjaCanvas.velocidadX = 0;
   ninjaCanvas.velocidadY = 0;
+  ninjaCanvas.enCombate = true
 }
 function revisarColision(rival) {
   const arribaRival = rival.y;
@@ -1160,13 +1170,13 @@ function revisarColision(rival) {
     return;
   }
   colision();
-  alert("has enfrentado al " + rival.nombre);
-  clearInterval(intervalo);
   enemigoId = rival.id;
   sectionSeleccionarAtaques.style.display = "flex";
   sectionVerMapa.style.display = "none";
   selecionarElementoRival(rival);
 }
+
+
 
 // También escucha el evento 'resize' para ajustar las imágenes si cambia el tamaño de la ventana
 // Llama a la función al cargar la página

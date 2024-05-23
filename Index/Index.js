@@ -2,12 +2,20 @@ const express = require("express")
 const cors = require("cors")
 const app = express()
 const port = 3000;
+const Minuto = 60 * 2000
 
 app.use(express.static("public"))
 app.use(cors())
 app.use(express.json())
 
-const jugadores = []
+let jugadores = []
+let oponentes = []
+
+setInterval(reinicio, Minuto)
+function reinicio(){
+    jugadores = []
+}
+
 class Jugador {
     constructor(id) {
     this.id = id
@@ -17,13 +25,14 @@ class Jugador {
         this.ninja = ninja
     }
 
-    actualizarPosicion(x, y) {
+    actualizarPosicion(x, y, enCombate) {
         this.x = x
         this.y = y
+        this.enCombate = enCombate
     }
-    asignarAtaques(ataques, emojis) {
-        this.ataques = ataques
-        this.emojis = emojis
+    asignarCarta(carta, imgCarta) {
+        this.carta = carta
+        this.imgCarta = imgCarta
     }
 }
 
@@ -47,18 +56,34 @@ app.get("/unirse",(req, res)  => {
 })
 
 app.post("/cardJitsu/:jugadorId", (req, res) => {
-    const jugadorId = req.params.jugadorId || ""
+    const jugadorId = req.params.jugadorId || "lol"
     const nombre = req.body.ninja || "lol"
     const ninja = new Ninjas(nombre)
     
     const jugadorIndex = jugadores.findIndex((jugador => jugadorId === jugador.id))
 
-    if (jugadorIndex >= 0) {
+
+    if (jugadorIndex !== -1) {
         jugadores[jugadorIndex].asignarNinja(ninja)
     }
 
     console.log(jugadores)
-    console.log(jugadorId)
+    res.end()
+})
+
+app.post("/cardJitsu/volver/:jugadorId", (req, res) => {
+    const jugadorId = req.params.jugadorId || "lol"    
+    
+    const peleadorIndex = oponentes.findIndex((jugador => jugadorId === jugador.id))
+
+
+    if (peleadorIndex !== -1) {        
+        jugadores.push(oponentes[peleadorIndex]);
+        oponentes.splice(peleadorIndex, 1);
+    }
+
+    console.log(jugadores)
+    console.log(oponentes, "Nada")
     res.end()
 })
 
@@ -66,41 +91,52 @@ app.post("/cardJitsu/:jugadorId/posicion", (req, res) => {
     const jugadorId = req.params.jugadorId || ""
     const x = req.body.x || 0
     const y = req.body.y || 0
+    const enCombate = req.body.enCombate
 
     const jugadorIndex = jugadores.findIndex((jugador => jugadorId === jugador.id))
+    const indiceBoolean = jugadores.findIndex((jugador => jugador.enCombate === true))
 
-    if (jugadorIndex >= 0) {
-        jugadores[jugadorIndex].actualizarPosicion(x, y)
+
+    if (indiceBoolean !== -1) {
+        // Si se encuentra el array con el nombre "Pedro", elimínalo
+        oponentes.push(jugadores[indiceBoolean]);
+        jugadores.splice(indiceBoolean, 1);
+        console.log('Se eliminó el jugador porque entro en combate');
+        console.log('Array en combate:', oponentes);
+        console.log('Array actualizado:', jugadores);
+      }
+    else if (jugadorIndex >= 0) {
+        jugadores[jugadorIndex].actualizarPosicion(x, y, enCombate)
     }
-  const enemigos = jugadores.filter((jugador) => jugadorId !== jugador.id)
-
+  const enemigos = jugadores.filter((jugador) => jugadorId !== jugador.id) 
 
     res.send({
         enemigos
     })
+
 })
 
-app.post("/cardJitsu/:jugadorId/ataques", (req, res) => {
+
+app.post("/cardJitsu/:jugadorId/carta", (req, res) => {
     const jugadorId = req.params.jugadorId || ""
-    const ataques = req.body.ataques || []    
-    const emojis = req.body.emojis || []  
-    const jugadorIndex = jugadores.findIndex((jugador => jugadorId === jugador.id))
+    const carta = req.body.carta || []    
+    const imgCarta = req.body.imgCarta || []  
+    const jugadorIndex = oponentes.findIndex((jugador => jugadorId === jugador.id))
 
     if (jugadorIndex >= 0) {
-        jugadores[jugadorIndex].asignarAtaques(ataques, emojis)
+        oponentes[jugadorIndex].asignarCarta(carta, imgCarta)
     }
     res.end()
 })
 
-app.get("/cardJitsu/:jugadorId/ataques", (req, res) => {
+app.get("/cardJitsu/:jugadorId/carta", (req, res) => {
     const jugadorId = req.params.jugadorId || ""
-    const jugador = jugadores.find((jugador) => jugador.id === jugadorId)
+    const jugador = oponentes.find((jugador) => jugador.id === jugadorId)
     res.send({
-        ataques: jugador.ataques || [],
-        emojis: jugador.emojis || []
+        carta: jugador.carta || [],
+        imgCarta: jugador.imgCarta || []
     })
 })
-
 
 
 app.listen(3000,() => {
