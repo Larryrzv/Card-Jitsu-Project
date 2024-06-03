@@ -226,15 +226,15 @@ body {
 }
 #tarjetaDeAgua:hover {
   border-color: #00ceff;
-  background-image: url(./resources/gemaDeAguaShiny.png);
+  background-image: url(./resources/gemaDeAguaShiny.webp);
 }
 #tarjetaDeNieve:hover {
   border-color: #d4e6ff;
-  background-image: url(./resources/gemaDeNieveShiny.png);
+  background-image: url(./resources/gemaDeNieveShiny.webp);
 }
 #tarjetaDeFuego:hover {
   border-color: #ffc342;
-  background-image: url(./resources/gemaDeFuegoShiny.png);
+  background-image: url(./resources/gemaDeFuegoShiny.webp);
 }
 input {
   display: none;
@@ -816,7 +816,7 @@ input:checked + label {
   background-repeat: no-repeat;
   background-size: 199px 236px;
   background-position: center;
-  background-image: url(./resources/gemaDeNieveShiny.png);
+  background-image: url(./resources/gemaDeNieveShiny.webp);
   background-color: #7fb6ff;
 }
 #emojiDeLaCardJugador {
@@ -860,7 +860,7 @@ input:checked + label {
   background-repeat: no-repeat;
   background-size: 199px 236px;
   background-position: center;
-  background-image: url(./resources/gemaDeNieveShiny.png);
+  background-image: url(./resources/gemaDeNieveShiny.webp);
   background-color: #7fb6ff;
 }
 #contenidoDelRival {

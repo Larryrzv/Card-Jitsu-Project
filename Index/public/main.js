@@ -39,14 +39,14 @@ const sectionVerMapa = document.getElementById("ver-mapa");
 const mapa = document.getElementById("mapa");
 
 /* Variables Goblales */
-let AGUA = "./resources/simboloDeAgua.png";
-let FUEGO = "./resources/simboloDeFuego.png";
-let NIEVE = "./resources/simboloDeNieve.png";
+let AGUA = "./resources/simboloDeAgua.webp";
+let FUEGO = "./resources/simboloDeFuego.webp";
+let NIEVE = "./resources/simboloDeNieve.webp";
 let ninjasElementales = [];
 let ninjasElementalesRivales = [];
 let botonesElementales = [];
 let isSelected = false;
-let imgCartaJugador = "./resources/cartas.png"
+let imgCartaJugador = "./resources/cartas.webp"
 let emojiAtaqueJugador = [];
 let ataquesNinjaJugador;
 let emojiAtaqueRival = [];
@@ -65,7 +65,7 @@ let inputcheckedAgua;
 let inputcheckedNieve;
 let inputcheckedFuego;
 let cartaDelRival = []
-let imgCartaRival = "./resources/cartas.png"
+let imgCartaRival = "./resources/cartas.webp"
 let AtaquesNinjaRival;
 let indexEmojiJugador;
 let indexEmojiRival;
@@ -73,7 +73,7 @@ let ninjaCanvas;
 let intervaloBoleanoMapa; // Intervalo del canvas
 let intervaloCombate // Intervalo del combate Classic
 let mapaBackground = new Image();
-mapaBackground.src = "./resources/mapaCanvas.png";
+mapaBackground.src = "./resources/mapaCanvas.webp";
 
 let imgArbitaria = null
 let ejecutado = false;
@@ -144,15 +144,15 @@ class NinjasPPT {
 }
 let ninjaBlack1 = new NinjasPPT(
   "Jugador",
-  "./resources/ninjaComun1.png",
-  "./resources/emojiSombra.png",
+  "./resources/ninjaComun1.webp",
+  "./resources/emojiSombra.webp",
   "tarjetaJugador",
   3
 );
 let ninjaBlack2 = new NinjasPPT(
   "Rival",
-  "./resources/ninja2.png",
-  "./resources/emojiSombra.png",
+  "./resources/ninja2.webp",
+  "./resources/emojiSombra.webp",
   "tarjetaRival",
   3
 );
@@ -172,74 +172,74 @@ ninjasPPT.push(ninjaBlack1, ninjaBlack2);
 
 let ninjaAgua = new Ninjas(
   "NinjaAgua",
-  "./resources/ninjaDeAgua.png",
+  "./resources/ninjaDeAgua.webp",
   "tarjetaDeAgua",
   "tarjetaComunNinja",
   3,
   "imagenDinamica",
-  "./resources/emojiNinjaAgua.png",
+  "./resources/emojiNinjaAgua.webp",
   false
 );
 let ninjaFuego = new Ninjas(
   "NinjaFuego",
-  "./resources/ninjaDeFuego.png",
+  "./resources/ninjaDeFuego.webp",
   "tarjetaDeFuego",
   "tarjetaComunNinja",
   3,
   "imagenDinamica",
-  "./resources/emojiNinjaFuego.png",
+  "./resources/emojiNinjaFuego.webp",
   false
 );
 let ninjaNieve = new Ninjas(
   "NinjaNieve",
-  "./resources/ninjaDeNieve.png",
+  "./resources/ninjaDeNieve.webp",
   "tarjetaDeNieve",
   "tarjetaComunNinja",
   3,
   "imagenDinamica",
-  "./resources/emojiNinjaNieve.png",
+  "./resources/emojiNinjaNieve.webp",
   false
 );
 
 /* Lista de Ataques de los ninjas Classic*/
 // 4 Agua 36 puntos, 2 Fuego 20 puntos, 4 nieve 24 puntos 80 en total
 const barajaAgua = [
-  { id: "carta-Agua", color: "Azul", numero: 12, img: "./resources/cards/CartaAzulAgua12,2.png"},
-  { id: "carta-Agua", color: "amarillo", numero: 4, img: "./resources/cards/CartaAmarillaAgua4.png"},
-  { id: "carta-Agua", color: "Azul", numero: 3, img: "./resources/cards/CartaAzulAgua12.png"},
-  { id: "carta-Fuego", color: "Azul", numero: 12, img: "./resources/cards/CartaAzulFuego12.png"},
-  { id: "carta-Fuego", color: "Rojo",  numero: 8, img: "./resources/cards/CartaRojaFuego8.png"},
-  { id: "carta-Nieve", color: "Azul", numero: 10, img: "./resources/cards/CartaAzulNieve10.png"},
-  { id: "carta-Nieve", color: "Violeta", numero: 5, img: "./resources/cards/CartaVioletaNieve5,2.png"},
-  { id: "carta-Agua", color: "Verde", numero: 11, img: "./resources/cards/CartaVerdeAgua11.png"},
-  { id: "carta-Nieve", color: "Rojo", numero: 9, img: "./resources/cards/CartaRojaNieve9.png"},
-  { id: "carta-Agua", color: "Violeta", numero: 6, img: "./resources/cards/CartaVioletaAgua6.png"},
+  { id: "carta-Agua", color: "Azul", numero: 12, img: "./resources/cards/CartaAzulAgua12,2.webp"},
+  { id: "carta-Agua", color: "amarillo", numero: 4, img: "./resources/cards/CartaAmarillaAgua4.webp"},
+  { id: "carta-Agua", color: "Azul", numero: 3, img: "./resources/cards/CartaAzulAgua12.webp"},
+  { id: "carta-Fuego", color: "Azul", numero: 12, img: "./resources/cards/CartaAzulFuego12.webp"},
+  { id: "carta-Fuego", color: "Rojo",  numero: 8, img: "./resources/cards/CartaRojaFuego8.webp"},
+  { id: "carta-Nieve", color: "Azul", numero: 10, img: "./resources/cards/CartaAzulNieve10.webp"},
+  { id: "carta-Nieve", color: "Violeta", numero: 5, img: "./resources/cards/CartaVioletaNieve5,2.webp"},
+  { id: "carta-Agua", color: "Verde", numero: 11, img: "./resources/cards/CartaVerdeAgua11.webp"},
+  { id: "carta-Nieve", color: "Rojo", numero: 9, img: "./resources/cards/CartaRojaNieve9.webp"},
+  { id: "carta-Agua", color: "Violeta", numero: 6, img: "./resources/cards/CartaVioletaAgua6.webp"},
 ];
 // 4 Fuego 34 puntos, 3 agua 19 puntos, 4 nieve 19 puntos 71 en total
 const barajaFuego = [
-  { id: "carta-Nieve", color: "Naranja", numero: 12, img: "./resources/cards/CartaNaranjaNieve12.png"},
-  { id: "carta-Fuego", color: "Rojo", numero: 8, img: "./resources/cards/CartaRojaFuego8y2.png"},
-  { id: "carta-Agua", color: "Rojo", numero: 9, img: "./resources/cards/CartaRojaAgua9.png"},
-  { id: "carta-Fuego", color: "Rojo", numero: 12, img: "./resources/cards/CartaRojaFuego12.png"},
-  { id: "carta-Agua", color: "Amarillo", numero: 4, img: "./resources/cards/CartaAmarillaAgua4.png"},
-  { id: "carta-Fuego", color: "Amarillo", numero: 6, img: "./resources/cards/CartaAmarillaFuego6,2.png"},
-  { id: "carta-Agua", color: "Verde", numero: 11, img: "./resources/cards/CartaVerdeAgua11.png" },
-  { id: "carta-Agua", color: "Azul", numero: 12, img: "./resources/cards/CartaAzulAgua12.png"},
-  { id: "carta-Fuego", color: "Azul", numero: 12, img: "./resources/cards/CartaAzulFuego12.png"},
-  { id: "carta-Nieve", color: "Verde", numero: 6, img: "./resources/cards/CartaVerdeNieve10,2.png"},
+  { id: "carta-Nieve", color: "Naranja", numero: 12, img: "./resources/cards/CartaNaranjaNieve12.webp"},
+  { id: "carta-Fuego", color: "Rojo", numero: 8, img: "./resources/cards/CartaRojaFuego8y2.webp"},
+  { id: "carta-Agua", color: "Rojo", numero: 9, img: "./resources/cards/CartaRojaAgua9.webp"},
+  { id: "carta-Fuego", color: "Rojo", numero: 12, img: "./resources/cards/CartaRojaFuego12.webp"},
+  { id: "carta-Agua", color: "Amarillo", numero: 4, img: "./resources/cards/CartaAmarillaAgua4.webp"},
+  { id: "carta-Fuego", color: "Amarillo", numero: 6, img: "./resources/cards/CartaAmarillaFuego6,2.webp"},
+  { id: "carta-Agua", color: "Verde", numero: 11, img: "./resources/cards/CartaVerdeAgua11.webp" },
+  { id: "carta-Agua", color: "Azul", numero: 12, img: "./resources/cards/CartaAzulAgua12.webp"},
+  { id: "carta-Fuego", color: "Azul", numero: 12, img: "./resources/cards/CartaAzulFuego12.webp"},
+  { id: "carta-Nieve", color: "Verde", numero: 6, img: "./resources/cards/CartaVerdeNieve10,2.webp"},
 ];
 // 4 nieve 33 puntos, 3 agua 20 puntos, 3 fuego 17 puntos 70 en total
 const barajaNieve = [
-  { id: "carta-Nieve", color: "Amarillo", numero: 11, img: "./resources/Cards/CartaAmarillaNieve11.png" },
-  { id: "carta-Nieve", color: "Amarillo", numero: 7, img: "./resources/Cards/CartaAmarillaNieve7.png" },
-  { id: "carta-Agua", color: "Amarillo", numero: 4, img: "./resources/Cards/CartaAmarillaAgua4.png" },
-  { id: "carta-Fuego", color: "Amarillo", numero: 6, img: "./resources/Cards/CartaAmarillaFuego6.png" },
-  { id: "carta-Nieve", color: "Violeta", numero: 5, img: "./resources/Cards/CartaVioletaNieve5.png" },
-  { id: "carta-Fuego", color: "Azul", numero: 3, img: "./resources/Cards/CartaAzulFuego3.png" },
-  { id: "carta-Nieve", color: "Azul", numero: 10, img: "./resources/Cards/CartaAzulNieve10.png" },
-  { id: "carta-Agua", color: "Naranja", numero: 10, img: "./resources/Cards/CartaNaranjaAgua10.png" },
-  { id: "carta-Agua", color: "Violeta", numero: 6, img: "./resources/Cards/CartaVioletaAgua6.png" },
-  { id: "carta-Fuego", color: "Rojo", numero: 8, img: "./resources/Cards/CartaRojaFuego8y2.png" },
+  { id: "carta-Nieve", color: "Amarillo", numero: 11, img: "./resources/Cards/CartaAmarillaNieve11.webp" },
+  { id: "carta-Nieve", color: "Amarillo", numero: 7, img: "./resources/Cards/CartaAmarillaNieve7.webp" },
+  { id: "carta-Agua", color: "Amarillo", numero: 4, img: "./resources/Cards/CartaAmarillaAgua4.webp" },
+  { id: "carta-Fuego", color: "Amarillo", numero: 6, img: "./resources/Cards/CartaAmarillaFuego6.webp" },
+  { id: "carta-Nieve", color: "Violeta", numero: 5, img: "./resources/Cards/CartaVioletaNieve5.webp" },
+  { id: "carta-Fuego", color: "Azul", numero: 3, img: "./resources/Cards/CartaAzulFuego3.webp" },
+  { id: "carta-Nieve", color: "Azul", numero: 10, img: "./resources/Cards/CartaAzulNieve10.webp" },
+  { id: "carta-Agua", color: "Naranja", numero: 10, img: "./resources/Cards/CartaNaranjaAgua10.webp" },
+  { id: "carta-Agua", color: "Violeta", numero: 6, img: "./resources/Cards/CartaVioletaAgua6.webp" },
+  { id: "carta-Fuego", color: "Rojo", numero: 8, img: "./resources/Cards/CartaRojaFuego8y2.webp" },
  ];
 
 ninjaAgua.ataques.push(...barajaAgua);
@@ -293,7 +293,7 @@ function edicionJugadorPPT() {
   picJ = ninjaBlack1.foto;
   cambioVidasScoreJ.innerHTML = 3;
   configuracionDeCarta.style.backgroundImage =
-    "url(./resources/gemaSombra.png)";
+    "url(./resources/gemaSombra.webp)";
   configuracionDeCarta.style.backgroundSize = "197px 235px";
   configuracionDeCarta.style.backgroundColor = "rgb(255 255 255)";
   configuracionDeCarta.style.boxShadow = "rgb(255 255 255) 0px 0px 20px 2px";
@@ -350,7 +350,7 @@ function edicionRivalPPT() {
   picR = ninjaBlack2.foto;
   cambioVidasScoreR.innerHTML = 3;
   configuracionDeCartaRival.style.backgroundImage =
-    "url(./resources/gemaSombra.png)";
+    "url(./resources/gemaSombra.webp)";
   backgroundColorRival.style.backgroundSize = "197px 235px";
   backgroundColorRival.style.backgroundColor = "rgb(0 0 0)";
   configuracionDeCartaRival.style.backgroundColor = "rgb(255 255 255)";
@@ -379,7 +379,7 @@ function ataqueJugadorPPT() {
         confirmarCarta.style.opacity = "1";
         seleccionJugador = 3;
         emojiAtaqueJugador = AGUA;
-        emojiAtaqueRival = "./resources/cartas.png";
+        emojiAtaqueRival = "./resources/cartas.webp";
         ataqueJugadorPPT = "⚔️";
 
         innerEspada.innerHTML = ataqueJugadorPPT;
@@ -391,7 +391,7 @@ function ataqueJugadorPPT() {
         confirmarCarta.style.opacity = "1";
         seleccionJugador = 2;
         emojiAtaqueJugador = FUEGO;
-        emojiAtaqueRival = "./resources/cartas.png";
+        emojiAtaqueRival = "./resources/cartas.webp";
         ataqueJugadorPPT = "⚔️";
         innerEspada.innerHTML = ataqueJugadorPPT;
         document.getElementById("cartaJugador").src =
@@ -402,7 +402,7 @@ function ataqueJugadorPPT() {
         confirmarCarta.style.opacity = "1";
         seleccionJugador = 1;
         emojiAtaqueJugador = NIEVE;
-        emojiAtaqueRival = "./resources/cartas.png";
+        emojiAtaqueRival = "./resources/cartas.webp";
         ataqueJugadorPPT = "⚔️";
 
         innerEspada.innerHTML = ataqueJugadorPPT;
@@ -616,18 +616,18 @@ function seleccionarElementoJugador() {
   if (inputcheckedAgua.checked) {
     NinjaJugador = ninjaAgua.nombre;
     emojiElementoDelJugador = "./resources/emojiDeAgua.png";
-    pic = "./resources/ninjaDeAguaHover.png";
+    pic = "./resources/ninjaDeAguaHover.webp";
     configuracionDeCarta.style.backgroundImage =
-      "url(./resources/gemaDeAguaShiny.png)";
+      "url(./resources/gemaDeAguaShiny.webp)";
     configuracionDeCarta.style.backgroundColor = "#0373f4";
     configuracionDeCarta.style.boxShadow = "0px 0px 20px 2px rgb(34 133 179)";
     configuracionDeCarta.style.marginBottom = "12px";
   } else if (inputcheckedNieve.checked) {
     NinjaJugador = ninjaNieve.nombre;
-    emojiElementoDelJugador = "./resources/emojiDeNieve.png";
-    pic = "./resources/ninjaDeNieveHover.png";
+    emojiElementoDelJugador = "./resources/emojiDeNieve.webp";
+    pic = "./resources/ninjaDeNieveHover.webp";
     configuracionDeCarta.style.backgroundImage =
-      "url(./resources/gemaDeNieveShiny.png)";
+      "url(./resources/gemaDeNieveShiny.webp)";
     configuracionDeCarta.style.backgroundColor = "rgb(170 162 239);";
     configuracionDeCarta.style.boxShadow = "0px 0px 20px 2px rgb(168 174 249)";
     configuracionDeCarta.style.marginBottom = "20px";
@@ -638,10 +638,10 @@ function seleccionarElementoJugador() {
     colorBackground.style.backgroundColor = "#a59acb";
   } else if (inputcheckedFuego.checked) {
     NinjaJugador = ninjaFuego.nombre;
-    emojiElementoDelJugador = "./resources/emojiDeFuego.png";
-    pic = "./resources/ninjaDeFuegoHover.png";
+    emojiElementoDelJugador = "./resources/emojiDeFuego.webp";
+    pic = "./resources/ninjaDeFuegoHover.webp";
     configuracionDeCarta.style.backgroundImage =
-      "url(./resources/gemaDeFuegoShiny.png)";
+      "url(./resources/gemaDeFuegoShiny.webp)";
     configuracionDeCarta.style.backgroundColor = "rgb(254 194 25)";
     configuracionDeCarta.style.boxShadow = " 0px 0px 20px 2px rgb(255 144 58)";
     configuracionDeCarta.style.marginBottom = "12px";
@@ -744,19 +744,19 @@ function selecionarElementoRival(rival) {
 
   if (rival.nombre == "NinjaAgua") {
     emojiElementoDelRival = "./resources/emojiDeAgua.png";
-    pic = "./resources/ninjaDeAguaHover.png";
+    pic = "./resources/ninjaDeAguaHover.webp";
     configuracionDeCartaRival.style.backgroundImage =
-      "url(./resources/gemaDeAguaShiny.png)";
+      "url(./resources/gemaDeAguaShiny.webp)";
     configuracionDeCartaRival.style.backgroundColor = "#0373f4";
     configuracionDeCartaRival.style.boxShadow =
       "rgb(254 25 25) 0px 0px 20px 2px";
     configuracionDeCartaRival.style.marginBottom = "27px";
     AtaquesNinjaRival = ninjaAgua.ataques;
   } else if (rival.nombre == "NinjaNieve") {
-    emojiElementoDelRival = "./resources/emojiDeNieve.png";
-    pic = "./resources/ninjaDeNieveHover.png";
+    emojiElementoDelRival = "./resources/emojiDeNieve.webp";
+    pic = "./resources/ninjaDeNieveHover.webp";
     configuracionDeCartaRival.style.backgroundImage =
-      "url(./resources/gemaDeNieveShiny.png)";
+      "url(./resources/gemaDeNieveShiny.webp)";
     configuracionDeCartaRival.style.backgroundColor = "rgb(170 162 239);";
     backgroundColorRival.style.backgroundColor = "#a59acb";
     configuracionDeCartaRival.style.boxShadow =
@@ -765,10 +765,10 @@ function selecionarElementoRival(rival) {
     configuracionDeCartaRival.style.border = "12px solid #a59acb";
     AtaquesNinjaRival = ninjaNieve.ataques;
   } else {
-    emojiElementoDelRival = "./resources/emojiDeFuego.png";
-    pic = "./resources/ninjaDeFuegoHover.png";
+    emojiElementoDelRival = "./resources/emojiDeFuego.webp";
+    pic = "./resources/ninjaDeFuegoHover.webp";
     configuracionDeCartaRival.style.backgroundImage =
-      "url(./resources/gemaDeFuegoShiny.png)";
+      "url(./resources/gemaDeFuegoShiny.webp)";
     backgroundColorRival.style.backgroundColor = "rgb(243, 220, 13)";
     configuracionDeCartaRival.style.backgroundColor = "rgb(254 194 25)";
     configuracionDeCartaRival.style.boxShadow =
@@ -1033,36 +1033,36 @@ function enviarPosicion(x, y, enCombate) {
             if (ninjaNombre === "NinjaAgua") {
               ninjaRival = new Ninjas(
                 "NinjaAgua",
-                "./resources/ninjaDeAgua.png",
+                "./resources/ninjaDeAgua.webp",
                 "",
                 "",
                 3,
                 "",
-                "./resources/emojiNinjaAgua.png",
+                "./resources/emojiNinjaAgua.webp",
                 null,
                 rival.id
               );
             } else if (ninjaNombre === "NinjaFuego") {
               ninjaRival = new Ninjas(
                 "NinjaFuego",
-                "./resources/ninjaDeFuego.png",
+                "./resources/ninjaDeFuego.webp",
                 "",
                 "",
                 3,
                 "",
-                "./resources/emojiNinjaFuego.png",
+                "./resources/emojiNinjaFuego.webp",
                 null,
                 rival.id
               );
             } else if (ninjaNombre === "NinjaNieve") {
               ninjaRival = new Ninjas(
                 "NinjaNieve",
-                "./resources/ninjaDeNieve.png",
+                "./resources/ninjaDeNieve.webp",
                 "",
                 "",
                 3,
                 "",
-                "./resources/emojiNinjaNieve.png",
+                "./resources/emojiNinjaNieve.webp",
                 null,
                 rival.id
               );
