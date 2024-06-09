@@ -280,7 +280,6 @@ function modoPPT() {
   edicionJugadorPPT();
 }
 
-//agregar la visualizacion del jugador para el modo PPT
 function edicionJugadorPPT() {
   let emojiElementoDelJugador;
   let picJ;
@@ -549,13 +548,13 @@ function modoClassic() {
   unirseAlJuego();
 
   //Metodo para impedir pasar a la siguiente parte sin ninja
-  /* botonElementoJugador.addEventListener("click", function () {
+  botonElementoJugador.addEventListener("click", function () {
     if (!comprobarInputs()) {
       alert("Por favor selecciona a algun ninja");
     } else {
       seleccionarElementoJugador();
     }
-  }); */
+  });
 }
 
 function unirseAlJuego() {

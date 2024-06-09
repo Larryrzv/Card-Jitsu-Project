@@ -1108,14 +1108,14 @@ input:checked + label {
     width: 401px;
   }
   .cartasBotones {
-    width: 155px;
+    width: 135px;
     height: auto;
     flex-direction: row;
     scrollbar-width: auto;
   }
   .CajaCartas {
-    width: 194px;
-    height: 918px;
+    width: 184px;
+    height: 908px;
 
   }
 

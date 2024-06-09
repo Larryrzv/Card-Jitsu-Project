@@ -2,7 +2,7 @@ const express = require("express")
 const cors = require("cors")
 const app = express()
 const port = 3000;
-const Minuto = 60 * 2000
+const Minuto = 60 * 3500
 
 app.use(express.static("public"))
 app.use(cors())
@@ -67,7 +67,6 @@ app.post("/cardJitsu/:jugadorId", (req, res) => {
         jugadores[jugadorIndex].asignarNinja(ninja)
     }
 
-    console.log(jugadores)
     res.end()
 })
 
@@ -82,8 +81,7 @@ app.post("/cardJitsu/volver/:jugadorId", (req, res) => {
         oponentes.splice(peleadorIndex, 1);
     }
 
-    console.log(jugadores)
-    console.log(oponentes, "Nada")
+
     res.end()
 })
 
@@ -101,9 +99,6 @@ app.post("/cardJitsu/:jugadorId/posicion", (req, res) => {
         // Si se encuentra el array con el nombre "Pedro", elimínalo
         oponentes.push(jugadores[indiceBoolean]);
         jugadores.splice(indiceBoolean, 1);
-        console.log('Se eliminó el jugador porque entro en combate');
-        console.log('Array en combate:', oponentes);
-        console.log('Array actualizado:', jugadores);
       }
     else if (jugadorIndex >= 0) {
         jugadores[jugadorIndex].actualizarPosicion(x, y, enCombate)
