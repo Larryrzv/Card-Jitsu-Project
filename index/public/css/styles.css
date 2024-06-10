@@ -206,6 +206,7 @@ input:checked + label {
 /* Todo el Tutorial y resumen de la pagina */
 #cajaTutorial {
   display: flex;
+  flex-direction: column;
   background-color: rgba(0, 0, 0, 0.3);
   align-items: center;
   justify-content: center;
