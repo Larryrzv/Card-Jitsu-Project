@@ -115,44 +115,6 @@ body {
   width: 293px;
   height: 250px;
 }
-/* Modo Classic, Modo original */
-#modoClassic {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: fit-content;
-  background-color: #000000;
-  background-image: none;
-  background-size: 235px 215px;
-  background-position: center;
-  margin: 10px;
-  border-radius: 10px;
-  transition: 2s;
-  color: #fdb42c;
-  border: 3px solid #83acfa;
-  text-align: center;
-  font-weight: bold;
-  font-size: 2.5rem;
-  padding: 4px;
-}
-#modoClassic:hover {
-  border-color: #00ceff;
-  font-size: 0rem;
-  background-repeat: no-repeat;
-  background-size: cover;
-  text-shadow: black -4px 1px 3px;
-  background-color: #ffffff;
-  box-shadow: #a1a09f 4px 0px 15px 2px;
-  transition: 0.5s;
-  padding-top: 14px;
-  padding-right: 8px;
-  padding-left: 8px;
-  padding-bottom: 14px;
-  cursor: pointer;
-}
-#modoClassic img {
-  width: 268px;
-}
 /* Seleccionar elemento del Jugador, Modo Classic */
 #Seleccionar-Elemento {
   display: flex;
@@ -166,7 +128,6 @@ body {
   border-radius: 20px;
   align-content: center;
 }
-
 
 /* Seccion de los ninjas a seleccionar*/
 .PersonajesDeNinja {
@@ -224,18 +185,6 @@ body {
   font-size: 3.5rem;
   flex-direction: column;
 }
-#tarjetaDeAgua:hover {
-  border-color: #00ceff;
-  background-image: url(../img/gemaDeAguaShiny.webp);
-}
-#tarjetaDeNieve:hover {
-  border-color: #d4e6ff;
-  background-image: url(../img/gemaDeNieveShiny.webp);
-}
-#tarjetaDeFuego:hover {
-  border-color: #ffc342;
-  background-image: url(../img/gemaDeFuegoShiny.webp);
-}
 input {
   display: none;
   transition: 0s;
@@ -254,33 +203,6 @@ input:checked + label {
   border: solid 1px white;
 }
 
-#Boton-confirmar-Elemento {
-  display: flex;
-  font-weight: bold;
-  align-items: center;
-  justify-content: center;
-  height: 49px;
-  width: 311px;
-  margin-block: 4px;
-  padding: 10px;
-  border: 0px;
-  font-size: 34px;
-  border-radius: 10px;
-  background-image: linear-gradient(
-  83.2deg,
-  rgba(150, 93, 233, 1) 10.8%,
-  rgba(99, 88, 238, 1) 94.3%
-);
-  color: #121f3d;
-}
-#Boton-confirmar-Elemento:hover {
-  background-image: radial-gradient(
-    circle farthest-corner at 10%20%,
-    rgba(244, 164, 96, 1) 0%,
-    rgba(143, 188, 143, 1) 90%
-  );
-}
-
 /* Todo el Tutorial y resumen de la pagina */
 #cajaTutorial {
   display: flex;
@@ -297,7 +219,7 @@ input:checked + label {
   font-family: sans-serif;
   z-index: 2;
 }
-#open {    
+#open {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -308,10 +230,10 @@ input:checked + label {
   padding: 10px;
   border: 0px;
   background-image: linear-gradient(
-  83.2deg,
-  rgba(150, 93, 233, 1) 10.8%,
-  rgba(99, 88, 238, 1) 94.3%
-);
+    83.2deg,
+    rgba(150, 93, 233, 1) 10.8%,
+    rgba(99, 88, 238, 1) 94.3%
+  );
   color: #121f3d;
   font-weight: bold;
   font-size: 20px;
@@ -377,7 +299,7 @@ input:checked + label {
   font-weight: bolder;
 }
 #close {
-  height: auto;  
+  height: auto;
   width: 281px;
   margin-block: 8px;
   padding: 10px;
@@ -438,144 +360,6 @@ input:checked + label {
   );
 }
 
-#ver-mapa {
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: -webkit-fill-available;
-  position: absolute;
-}
-#mapa {
-  border: 2px solid saddlebrown;
-  margin: 10px;
-  aspect-ratio: 1193 / 513;
-}
-#mapaYTeclas {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-#botonesCanvas {
-  display: flex;
-  margin: 6px;
-  gap: 5px;
-  flex-direction: row;
-  align-items: center;
-}
-#arriba {
-  display: flex;
-  height: auto;
-  width: auto;
-  border: 0px;
-  user-select: none;
-  background-image: linear-gradient(
-    83.2deg,
-    rgba(150, 93, 233, 1) 10.8%,
-    rgba(99, 88, 238, 1) 94.3%
-  );
-  color: #121f3d;
-  font-weight: bold;
-  font-size: 47px;
-  border-radius: 10px;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-}
-#arriba:hover {
-  background-image: radial-gradient(
-    circle farthest-corner at 10%20%,
-    rgba(244, 164, 96, 1) 0%,
-    rgba(143, 188, 143, 1) 90%
-  );
-}
-#abajo {
-  display: flex;
-  height: auto;
-  width: auto;
-  border: 0px;
-  user-select: none;
-  background-image: linear-gradient(
-    83.2deg,
-    rgba(150, 93, 233, 1) 10.8%,
-    rgba(99, 88, 238, 1) 94.3%
-  );
-  color: #121f3d;
-  font-weight: bold;
-  font-size: 47px;
-  border-radius: 10px;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-}
-#abajo:hover {
-  background-image: radial-gradient(
-    circle farthest-corner at 10%20%,
-    rgba(244, 164, 96, 1) 0%,
-    rgba(143, 188, 143, 1) 90%
-  );
-}
-#divArribaYAbajo {
-  display: flex;
-  flex-direction: column;
-  gap: 27px;
-}
-#derecha {
-  display: flex;
-  height: auto;
-  width: auto;
-  border: 0px;
-  user-select: none;
-  background-image: linear-gradient(
-    83.2deg,
-    rgba(150, 93, 233, 1) 10.8%,
-    rgba(99, 88, 238, 1) 94.3%
-  );
-  color: #121f3d;
-  font-weight: bold;
-  font-size: 47px;
-  border-radius: 10px;
-}
-#derecha:hover {
-  background-image: radial-gradient(
-    circle farthest-corner at 10%20%,
-    rgba(244, 164, 96, 1) 0%,
-    rgba(143, 188, 143, 1) 90%
-  );
-}
-#izquierda {
-  display: flex;
-  height: auto;
-  width: auto;
-  border: 0px;
-  user-select: none;
-  background-image: linear-gradient(
-    83.2deg,
-    rgba(150, 93, 233, 1) 10.8%,
-    rgba(99, 88, 238, 1) 94.3%
-  );
-  color: #121f3d;
-  font-weight: bold;
-  font-size: 47px;
-  border-radius: 10px;
-}
-#izquierda:hover {
-  background-image: radial-gradient(
-    circle farthest-corner at 10%20%,
-    rgba(244, 164, 96, 1) 0%,
-    rgba(143, 188, 143, 1) 90%
-  );
-}
-#advertenciaCanvas {
-  margin-bottom: -10px;
-  color: #ffffff45;
-  font-size: 12px;
-  font-family: 'Open Sans';
-  font-style: italic;
-  user-select: none;
-}
-
-
-
 /* revisar */
 #emojiAbrirCartas {
   display: flex;
@@ -617,14 +401,12 @@ input:checked + label {
   border: solid 5px #24313a;
   opacity: 0;
   padding: 5px;
-  margin-right: 577px;
+  margin-right: 830px;
   margin-top: 234px;
-  width: 198px;
-  height: auto;
   gap: 10px;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   flex-wrap: wrap;
 }
 .CajaCartas::-webkit-scrollbar {
@@ -668,7 +450,7 @@ input:checked + label {
   border-radius: 8px;
   width: auto;
   height: auto;
-  font-size: 74px;
+  font-size: 54px;
   font-family: Candombe;
   position: relative;
   justify-content: center;
@@ -676,7 +458,7 @@ input:checked + label {
   align-items: center;
 }
 #boton-Nieve img {
-  width: 78px;
+  width: 48px;
   pointer-events: none;
 }
 #boton-Nieve:hover {
@@ -700,7 +482,7 @@ input:checked + label {
   border-radius: 8px;
   width: auto;
   height: auto;
-  font-size: 74px;
+  font-size: 54px;
   font-family: Candombe;
   position: relative;
   justify-content: center;
@@ -714,7 +496,7 @@ input:checked + label {
   border: solid #9b9b9b;
 }
 #boton-Fuego img {
-  width: 78px;
+  width: 48px;
   pointer-events: none;
 }
 #boton-Fuego:active {
@@ -732,7 +514,7 @@ input:checked + label {
   border-radius: 8px;
   width: auto;
   height: auto;
-  font-size: 74px;
+  font-size: 54px;
   font-family: Candombe;
   position: relative;
   justify-content: center;
@@ -752,40 +534,8 @@ input:checked + label {
   transition: 0s;
 }
 #boton-Agua img {
-  width: 78px;
+  width: 48px;
   pointer-events: none;
-}
-
-/* Cartas del modo Classic */
-.cartasBotones {
-  display: flex;
-  background: none;
-  scrollbar-width: none;
-  border: none;
-  position: relative;
-  align-items: center;
-  border-radius: 8px;
-  width: 77px;
-  height: auto;
-  gap: 10px;
-  flex-direction: column;
-  align-content: center;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.cartasBotones img {
-  width: inherit;
-  pointer-events: none;
-  
-}
-#carta-Fuego:hover {
-  box-shadow: rgb(254, 25, 25) 0px 0px 10px 3px;
-}
-#carta-Agua:hover {
-  box-shadow: rgb(0 82 204) 0px 0px 10px 5px
-}
-#carta-Nieve:hover {
-  box-shadow: rgb(91 62 186) 0px 0px 10px 3px;
 }
 
 #seleccionar-ataques {
@@ -904,8 +654,8 @@ input:checked + label {
 }
 #botonConfirmarCarta {
   display: flex;
-  height: 45px;
-  width: 98px;
+  height: auto;
+  width: auto;
   padding: 10px;
   border: 0px;
   position: absolute;
@@ -916,7 +666,7 @@ input:checked + label {
   );
   color: #121f3d;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 20px;
   border-radius: 10px;
   align-items: center;
   justify-content: center;
@@ -959,9 +709,6 @@ input:checked + label {
 #cartaJugador {
   width: 104px;
 }
-#ataqueElementalJugador {
-  width: 81px;
-}
 #ataqueElementalRival {
   width: 82px;
   margin-top: 9px;
@@ -1002,55 +749,11 @@ input:checked + label {
 }
 
 /* Botones y divs de reiniciar PPT y Classic */
-#divReiniciarClassic {
-  float: right;
-}
-#reiniciarClassic :hover {
-  background-image: radial-gradient(
-    circle farthest-corner at 10%20%,
-    rgba(244, 164, 96, 1) 0%,
-    rgba(143, 188, 143, 1) 90%
-  );
-}
-#botonReiniciar1 {
-  position: fixed;
-  display: flex;
-  height: auto;
-  width: auto;
-  padding: 7px;
-  border: 0px;
-  background-image: linear-gradient(
-    83.2deg,
-    rgba(150, 93, 233, 1) 10.8%,
-    rgba(99, 88, 238, 1) 94.3%
-  );
-  color: #121f3d;
-  font-weight: bold;
-  font-size: 24px;
-  border-radius: 10px;
-  margin-inline-start: -54px;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  z-index: 2;
-}
-#botonReiniciar1:hover {
-  background-image: radial-gradient(
-    circle farthest-corner at 10%20%,
-    rgba(244, 164, 96, 1) 0%,
-    rgba(143, 188, 143, 1) 90%
-  );
-}
-#botonReiniciar1 img {
-  width: 40px;
-}
-
 #divReiniciarPPT {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-top: 49px;
   background-color: #121f3d;
   border-radius: 20px;
 }
@@ -1087,7 +790,7 @@ input:checked + label {
     flex-direction: column;
   }
   .PersonajesDeNinja img {
-    width: 278px;;
+    width: 278px;
   }
   #contenedorPersonajes {
     flex-direction: column;
@@ -1095,53 +798,49 @@ input:checked + label {
   }
   #cajaTutorial {
     width: 105vw;
-    height: 109vh;  
+    height: 109vh;
   }
-  .tutorial{
+  .tutorial {
     font-size: 8mm;
   }
-  .tutorial img{
+  .tutorial img {
     width: 100%;
   }
   #close {
     font-size: 48px;
     width: 401px;
   }
-  .cartasBotones {
-    width: 135px;
-    height: auto;
-    flex-direction: row;
-    scrollbar-width: auto;
-  }
   .CajaCartas {
-    width: 184px;
-    height: 908px;
-
+    margin-right: 0;
+    margin-top: 689px;
+    width: max-content;
+    height: auto;
+    gap: 15px;
+    flex-direction: row;
   }
 
   #boton-Nieve {
-    font-size: 128px;
+    font-size: 98px;
     border-radius: 18px;
   }
   #boton-Nieve img {
-    width: 134px;
+    width: 104px;
   }
   /* Boton generico para fuego */
   #boton-Fuego {
-    font-size: 128px;
+    font-size: 98px;
     border-radius: 18px;
   }
   #boton-Fuego img {
-    width: 134px;
+    width: 104px;
     pointer-events: none;
   }
   /* Boton generico para agua */
   #boton-Agua {
-    font-size: 128px;
+    font-size: 98px;
     border-radius: 18px;
   }
   #boton-Agua img {
-    width: 134px;
+    width: 104px;
   }
 }
-

@@ -5,7 +5,7 @@
     <meta charset="UTF-8" content="width=device-width, initial-scale=1" />
     <title>Card-Jitsu</title>
     <link rel="stylesheet" href="./css/styles.css" />
-    <link rel="icon" href="/img/favicon.ico">
+    <link rel="icon" href="/img/favicon.ico" />
   </head>
 
   <body>
@@ -18,89 +18,17 @@
       </h1>
 
       <h2 class="subtitulo">Elige el modo de juego:</h2>
-      
+
       <div id="contenedorModos" class="modosNinjas">
         <button type="button" id="modoPPT">
           <img src="./img/cartas.webp" />
         </button>
-        <button type="button" id="modoClassic">
-          <img src="./img/GemasDeFuegoNieveAgua.webp" />
-        </button>
       </div>
     </section>
-    <!-- div que contiene todo lo referente al reinicio del modo classic -->
-    <div id="divReiniciarClassic">
-      <button id="botonReiniciar1">
-        <img src="./img/regreso.png" alt="emojiReset" />
-      </button>
-    </div>
-
-    <!-- Seleccionar Ninja elemental del modo Classic -->
-    <section id="Seleccionar-Elemento">
-      <h1 class="titulo">
-        <img src="./img/ninja2.webp" alt="ninjaTitulo" />
-        <img src="./img/tituloCardJitsu.webp" alt="tituloimg" />
-        <img src="./img/ninjaComun1.webp" alt="NinjaAgua" />
-      </h1>
-
-      <h2 class="subtitulo">Elige a tu ninja:</h2>
-
-      <div id="contenedorPersonajes" class="PersonajesDeNinja"></div>
-
-      <button id="Boton-confirmar-Elemento">Confirmar</button>
-    </section>
-    <!-- Canvas del modo Classic -->
-    <section id="ver-mapa">
-      <h2 class="subtitulo" id="subtitulo">Recorre la senda con tu ninja</h2>
-        <p id="advertenciaCanvas">El mapa se actualiza cada 2 minutos asi que procura actualizar tambien la pagina</p>
-      <div id="mapaYTeclas">
-        <canvas id="mapa"></canvas>
-        <div id="botonesCanvas">
-          <button
-            id="izquierda"
-            ontouchend="detenerMovimientoBotones()"
-            onmouseup="detenerMovimientoBotones()"
-            onmousedown="moverIzquierda()"
-            ontouchstart="moverIzquierda()"
-          >
-            ⬅
-          </button>
-          <div id="divArribaYAbajo">
-            <button
-              id="arriba"
-              ontouchend="detenerMovimientoBotones()"
-              onmouseup="detenerMovimientoBotones()"
-              onmousedown="moverArriba()"
-              ontouchstart="moverArriba()"
-            >
-              ⬆
-            </button>
-            <button
-              id="abajo"
-              ontouchend="detenerMovimientoBotones()"
-              onmouseup="detenerMovimientoBotones()"
-              onmousedown="moverAbajo()"
-              ontouchstart="moverAbajo()"
-            >
-              ⬇
-            </button>
-          </div>
-          <button
-            id="derecha"
-            ontouchend="detenerMovimientoBotones()"
-            onmouseup="detenerMovimientoBotones()"
-            onmousedown="moverDerecha()"
-            ontouchstart="moverDerecha()"
-          >
-            ➡
-          </button>
-        </div>
-      </div>
-    </section>
-
+    
     <!-- Tutorial y resumen de la pagina -->
     <section class="sectionTutorial" id="sectionTutorial">
-        <button id="open">Abrir tutorial</button>
+      <button id="open">Abrir tutorial</button>
       <div id="cajaTutorial">
         <div class="tutorial" id="contenedorTutorial">
           <h1 class="tituloTutorial">
@@ -114,31 +42,27 @@
           <p class="parrafoTutorial1.2">
             Este sitio replica el Card-Jitsu un minijuego original de
             Club-Penguin, puedes elegir mi version supersimplificada de este a
-            un sencillo Piedra, Papel o Tijera. O probrar el Modo Multijugador Local,
+            un sencillo Piedra, Papel o Tijera. Para probar el multijugador
+            Local debes ve al repositorio de
+            <a href="https://github.com/Larryrzv/Card-Jitsu-Project/tree/main"
+              >Github.</a
+            >
           </p>
-          <p class="parrafoTutorial1.2"
-              >En el Modo Multijugador se juega con cartas prestablecidas, tu y tu rival escogeran cartas en numeradas con un color y elemento, y quien tenga el elemento vencedor gana, si es igual ganara quien tenga el numero mayor, el color es solo estetico.</p>
-          <div class="imagenTutorial">
-            <p id="parrafoTutorial1">
-              Para vencer la eleccion del rival primero se debe saber el orden
-              de los elementos:
-            </p>
-            <p id="parrafoTutorial2">
-              Fuego vence Nieve, Agua vence Fuego, y Nieve vence Agua
-            </p>
-            <img
-              src="./img/"
-              class="imagenTutorial"
-              alt="Tutorial"
-            />
-          </div>
-
-          <button id="close">Cerrar</button>
+          <p id="parrafoTutorial1">
+            Para vencer la eleccion del rival primero se debe saber el orden de
+            los elementos:
+          </p>
+          <p id="parrafoTutorial2">
+            Fuego vence Nieve, Agua vence Fuego, y Nieve vence Agua
+          </p>
+          <img src="./img/Tutorial.webp" class="imagenTutorial" alt="Tutorial" />
         </div>
+
+        <button id="close">Cerrar</button>
       </div>
     </section>
 
-    <!-- Seccion completa de los enfrentamientos PPT y classic -->
+    <!-- Seccion completa de los enfrentamientos PPT -->
     <section id="seleccionar-ataques">
       <div id="combateElemental">
         <h1 class="tituloCombate">
@@ -199,11 +123,7 @@
           </div>
           <div id="listaMensajes"><p id="cajaMensajes">⚔️</p></div>
           <div id="divAtaqueElementalRival">
-            <img
-              id="cartaRival"
-              src="./img/cartas.webp"
-              alt="ataqueRival"
-            />
+            <img id="cartaRival" src="./img/cartas.webp" alt="ataqueRival" />
           </div>
         </section>
 
